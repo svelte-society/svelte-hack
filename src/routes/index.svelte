@@ -11,6 +11,8 @@
 	<HeroGraphic />
 </section>
 
+<div class="br-lg" />
+
 <Sponsors />
 
 <style lang="scss">
