@@ -10,8 +10,7 @@
 			</p>
 			<p>
 				In turn, we're contributing thousands in cash
-				<a href="/prizes">prizes,</a>
-				and special rewards from our sponsors.
+				<a href="/prizes">prizes</a>, and special rewards from our sponsors.
 			</p>
 			<p>
 				Read our
