@@ -7,7 +7,7 @@
 		<path
 			d="M287.337 89.6719L193.432 89.6719L194.555 31.7827L72.4918 30.6097L72.4918 2.78883L0.850555 2.78883"
 			stroke="url(#line_a_gradient)"
-			stroke-width="3"
+			stroke-width="2"
 		/>
 		<defs>
 			<radialGradient id="line_a_gradient" cx="250" cy="100" r="50" gradientUnits="userSpaceOnUse">

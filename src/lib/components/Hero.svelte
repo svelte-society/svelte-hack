@@ -31,6 +31,7 @@
 
 		font-size: 6rem;
 	}
+
 	p {
 		text-align: left;
 
@@ -38,5 +39,9 @@
 		color: var(--dark-d);
 
 		font-size: 1.5rem;
+	}
+
+	.btn-c {
+		margin-left: 1rem;
 	}
 </style>

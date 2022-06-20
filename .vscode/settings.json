@@ -11,24 +11,5 @@
 
 	"[svelte]": {
 		"editor.defaultFormatter": "svelte.svelte-vscode"
-	},
-
-	"workbench.iconTheme": "material-icon-theme",
-
-	//* More subtle Template Tags
-	"editor.tokenColorCustomizations": {
-		"textMateRules": [
-			{
-				"scope": [
-					"punctuation.definition.tag",
-					"entity.name.tag.svelte",
-					"punctuation.separator.key-value.svelte",
-					"constant.name.attribute.tag.pug"
-				],
-				"settings": {
-					"foreground": "#ff85a9aa"
-				}
-			}
-		]
 	}
 }
