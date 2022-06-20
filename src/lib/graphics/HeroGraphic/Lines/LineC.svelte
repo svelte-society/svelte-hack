@@ -4,7 +4,7 @@
 
 <div class="linec">
 	<svg width="100%" height="100%" viewBox="0 0 280 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M279.183 3.71316L176.616 3.40969L176.599 36.6073L0.765267 36.5761" stroke="url(#line_c_gradient)" stroke-width="3" />
+		<path d="M279.183 3.71316L176.616 3.40969L176.599 36.6073L0.765267 36.5761" stroke="url(#line_c_gradient)" stroke-width="2" />
 		<defs>
 			<radialGradient id="line_c_gradient" cx="250" cy="100" r="50" gradientUnits="userSpaceOnUse">
 				<animate attributeName="cx" values="250;0;-200" {dur} repeatCount="indefinite" />

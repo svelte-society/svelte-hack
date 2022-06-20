@@ -8,6 +8,5 @@
 	"editor.formatOnSave": true,
 	"[svelte]": {
 		"editor.defaultFormatter": "svelte.svelte-vscode"
-	},
-	"workbench.iconTheme": "material-icon-theme",
+	}
 }

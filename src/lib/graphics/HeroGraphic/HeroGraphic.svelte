@@ -37,7 +37,7 @@
 		height: 400px;
 		margin: auto;
 
-		transform: translate3d(20%, 0, 0) scale(2);
+		transform: translate3d(20%, 0, 0) scale(1.5);
 	}
 	.logo,
 	.field {
