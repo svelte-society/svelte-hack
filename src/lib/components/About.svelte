@@ -22,8 +22,9 @@
 			</p>
 			<p>
 				In turn, we're contributing thousands in cash
-				<a href="/prizes">prizes</a>
-				, and special rewards from our sponsors.
+				<!-- prettier-ignore -->
+				<span><a href="/prizes">prizes</a>,</span>
+				and special rewards from our sponsors.
 			</p>
 			<p>
 				Read our
