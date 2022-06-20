@@ -52,10 +52,8 @@ $media-expressions: (
 	'handheld': 'handheld',
 	'landscape': '(orientation: landscape)',
 	'portrait': '(orientation: portrait)',
-	'retina2x':
-		'(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
-	'retina3x':
-		'(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)'
+	'retina2x': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
+	'retina3x': '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)'
 ) !default;
 
 ///
@@ -234,9 +232,7 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 			$prefix: get-expression-prefix($operator);
 			$value: get-expression-value($condition, $operator);
 
-			@if ($prefix == 'max' and $value <= $no-media-breakpoint-value) or
-				($prefix == 'min' and $value > $no-media-breakpoint-value)
-			{
+			@if ($prefix == 'max' and $value <= $no-media-breakpoint-value) or ($prefix == 'min' and $value > $no-media-breakpoint-value) {
 				@return false;
 			}
 		} @else if not index($im-no-media-expressions, $condition) {
@@ -571,9 +567,7 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 ///  @include media('>=350px', '<tablet', 'retina3x') { }
 ///
 @mixin media($conditions...) {
-	@if ($im-media-support and length($conditions) == 0) or
-		(not $im-media-support and im-intercepts-static-breakpoint($conditions...))
-	{
+	@if ($im-media-support and length($conditions) == 0) or (not $im-media-support and im-intercepts-static-breakpoint($conditions...)) {
 		@content;
 	} @else if ($im-media-support and length($conditions) > 0) {
 		@media #{unquote(parse-expression(nth($conditions, 1)))} {

@@ -33,7 +33,7 @@
 			align-items: center;
 			justify-content: center;
 			gap: 64px;
-			
+
 			padding: 22px;
 		}
 	}
