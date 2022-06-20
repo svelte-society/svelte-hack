@@ -1,6 +1,7 @@
 <script>
-	import Hero from '$lib/components/Hero.svelte'
 	import HeroGraphic from '$lib/graphics/HeroGraphic/HeroGraphic.svelte'
+	import Sponsors from '$lib/components/Sponsors.svelte'
+	import Hero from '$lib/components/Hero.svelte'
 </script>
 
 <div class="br-lg" />
@@ -10,7 +11,9 @@
 	<HeroGraphic />
 </section>
 
-<style>
+<Sponsors />
+
+<style lang="scss">
 	section {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
