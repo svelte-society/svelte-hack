@@ -1,10 +1,10 @@
 <script lang="ts">
 	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte'
-	import { mobile, ThemeToggle } from 'fractils'
+	import { mobile, scrollY, ThemeToggle } from 'fractils'
 	import { Nav } from './Nav'
 </script>
 
-<header>
+<header class:top={$scrollY === 0}>
 	<div class="content">
 		<nav>
 			<a class="home" href="/">
@@ -21,10 +21,23 @@
 
 <style>
 	header {
+		position: fixed;
 		display: flex;
+		top: 0;
+
 		width: 100vw;
 
+		backdrop-filter: blur(20px);
+		background: rgba(var(--light-a-rgb), 0.75);
 		box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.07);
+
+		transition: box-shadow 0.2s ease-in-out;
+
+		z-index: 40;
+	}
+
+	header.top {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 	}
 
 	.content {
