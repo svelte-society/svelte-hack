@@ -1,0 +1,94 @@
+//*	INCONSOLATA  -  Variable Font (wght, wdth)
+@font-face {
+	font-family: 'Inconsolata';
+	font-weight: 100 900;
+	font-style: monospace;
+	src: url('/fonts/Inconsolata/Inconsolata.ttf') format('truetype');
+}
+
+//*	LATO
+@font-face {
+	font-family: 'Lato';
+	font-weight: 100;
+	font-style: regular;
+	src: url('/fonts/Lato/Lato-Thin.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 100;
+	font-style: italic;
+	src: url('/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 300;
+	font-style: regular;
+	src: url('/fonts/Lato/Lato-Light.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 300;
+	font-style: italic;
+	src: url('/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 400;
+	font-style: regular;
+	src: url('/fonts/Lato/Lato-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 400;
+	font-style: italic;
+	src: url('/fonts/Lato/Lato-Italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 700;
+	font-style: regular;
+	src: url('/fonts/Lato/Lato-Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 700;
+	font-style: italic;
+	src: url('/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 900;
+	font-style: regular;
+	src: url('/fonts/Lato/Lato-Black.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Lato';
+	font-weight: 900;
+	font-style: italic;
+	src: url('/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
+}
+
+:root {
+	--font-a: 'Lato', sans-serif;
+	--font-mono: 'inconsolata', monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font-a);
+}
+
+a,
+p,
+li,
+section {
+	font-family: var(--font-mono);
+}
+
+pre,
+code {
+	font-family: var(--font-mono);
+}
