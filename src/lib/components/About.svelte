@@ -2,7 +2,9 @@
 	<div class="card-wrapper">
 		<div class="card">
 			<p>
-				The Svelte Society is excited to bring you <strong style:color="var(--brand-a)">SvelteHack</strong>
+				The <strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
+				is excited to bring you
+				<strong style:color="var(--brand-a)">SvelteHack</strong>
 				on behalf of the Svelte team, our generous sponsors, and the svelte community at large! We're inviting you to compete in this
 				event and share your creations with the community.
 			</p>
