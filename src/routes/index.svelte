@@ -5,18 +5,18 @@
 	import Hero from '$lib/components/Hero.svelte'
 </script>
 
-<div class="br-lg" />
+<div class="br-md" />
 
 <section class="row">
 	<Hero />
 	<HeroGraphic />
 </section>
 
-<div class="br-lg" />
+<div class="br-xl" />
 
 <Sponsors />
 
-<div class="br-lg" />
+<div class="br-xl" />
 
 <About />
 

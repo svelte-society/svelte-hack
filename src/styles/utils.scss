@@ -55,4 +55,13 @@
 	border-radius: var(--radius);
 	background: var(--brand-c);
 	border: 1px solid var(--brand-b);
+
+	& ul {
+		margin-bottom: 1.75rem;
+		padding-left: 2rem;
+
+		& li {
+			margin-bottom: 0.75rem;
+		}
+	}
 }

@@ -1,0 +1,25 @@
+<div class="br-md" />
+
+<section>
+<div class="card-wrapper">
+<div class="card">
+
+# Rules
+
+-   Your project must use Svelte as its primary dependency!
+-   Team sizes must be between 1 and 3 members.
+-   Submissions must have a demonstration video or working demo included in their README.
+-   Submissions must be new. Projects started before $STARTDATE are not eligible.
+-   Submissions can't be updated after $ENDDATE.
+-   If you're below the legal age in your country, you will need to obtain written permission from a parent or legal guardian to enter.
+
+# Who can't enter?
+
+-   Svelte Society Members
+-   Svelte Sirens Members
+-   Svelte Org Members
+-   Family Members of above orgs
+
+</div>
+</div>
+</section>

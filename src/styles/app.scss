@@ -74,8 +74,7 @@ section {
 //* Elements
 
 h1 {
-	font-size: var(--font-xl);
-	text-align: center;
+	font-size: var(--font-xxl);
 }
 
 h2 {
@@ -119,10 +118,6 @@ a {
 		&:hover {
 			text-decoration: underline;
 		}
-	}
-
-	&:visited {
-		color: var(--light-d);
 	}
 }
 
