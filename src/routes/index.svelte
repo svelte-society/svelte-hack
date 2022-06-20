@@ -1,6 +1,7 @@
 <script>
 	import HeroGraphic from '$lib/graphics/HeroGraphic/HeroGraphic.svelte'
 	import Sponsors from '$lib/components/Sponsors.svelte'
+	import About from '$lib/components/About.svelte'
 	import Hero from '$lib/components/Hero.svelte'
 </script>
 
@@ -14,6 +15,12 @@
 <div class="br-lg" />
 
 <Sponsors />
+
+<div class="br-lg" />
+
+<About />
+
+<div class="br-lg" />
 
 <style lang="scss">
 	section {

@@ -61,20 +61,19 @@ body,
 #svelte {
 	min-height: 100vh;
 
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 section {
 	width: 100%;
 	max-width: var(--max-w);
+	height: max-content;
 	margin: 0 auto;
 }
 
 //* Elements
 
 h1 {
-	margin-bottom: 0 0 1em 0;
-
 	font-size: var(--font-xl);
 	text-align: center;
 }
@@ -95,6 +94,9 @@ h2 {
 p,
 li {
 	color: var(--dark-b);
+	font-size: 1.25rem;
+	word-spacing: 1.5px;
+	line-height: 1.4rem;
 
 	@include media('<phone') {
 		word-wrap: break-word;
@@ -108,13 +110,19 @@ li {
 a {
 	color: var(--dark-a);
 
-	& :not(h1, h2) {
+	&:not(h1, h2) {
 		text-decoration: underline;
 		text-decoration-color: var(--light-d);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 1px;
 
 		&:hover {
 			text-decoration: underline;
 		}
+	}
+
+	&:visited {
+		color: var(--light-d);
 	}
 }
 

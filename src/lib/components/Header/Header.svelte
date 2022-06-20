@@ -51,15 +51,17 @@
 
 		margin-right: 2.5rem;
 
+		color: var(--dark-a);
+
 		font-weight: 600;
 		letter-spacing: 2px;
+		text-decoration: none;
 	}
 
 	.sveltehack {
 		margin-left: 3px;
 
 		font-size: 1.2rem;
-		text-decoration: none;
 	}
 
 	.theme {
