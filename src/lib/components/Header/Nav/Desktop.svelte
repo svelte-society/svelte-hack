@@ -40,7 +40,7 @@
 		color: currentColor;
 
 		font-size: 1.2rem;
-		font-weight: 600;
+		font-weight: 400;
 		text-decoration: none;
 		letter-spacing: 10%;
 

@@ -5,7 +5,7 @@
 </script>
 
 <section>
-	<h5 class="title">This hackathon is made possible by</h5>
+	<h5 class="title">Made possible by</h5>
 
 	<div class="sponsors">
 		<Vercel />
