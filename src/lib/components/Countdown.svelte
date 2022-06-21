@@ -33,7 +33,7 @@
 
 	p {
 		color: var(--dark-a);
-		text-shadow: 2px 2px var(--brand-a), 4px 4px var(--brand-b);
+		text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 4px 4px rgba(var(--brand-b-rgb), 0.5);
 
 		font-size: 3rem;
 		font-family: var(--font-mono);
