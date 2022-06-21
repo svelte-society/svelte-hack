@@ -1,5 +1,6 @@
 @use './media' as *;
 @import './input/input.scss';
+@import './elements.scss';
 @import './buttons.scss';
 @import './utils.scss';
 @import './theme.scss';
@@ -42,8 +43,6 @@ $breakpoints: (
 		0px 5px 8px rgba(0, 0, 0, 0.1), 0px 10px 15px rgba(0, 0, 0, 0.2), 0px 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-//* Containers
-
 body {
 	margin: 0;
 
@@ -62,82 +61,4 @@ body,
 	min-height: 100vh;
 
 	overflow-x: hidden;
-}
-
-section {
-	width: 100%;
-	max-width: var(--max-w);
-	height: max-content;
-	margin: 0 auto;
-}
-
-//* Elements
-
-h1 {
-	font-size: var(--font-xxl);
-}
-
-h2 {
-	font-size: var(--font-lg);
-}
-
-h1,
-h2 {
-	color: var(--dark-a);
-
-	font-weight: 500;
-	letter-spacing: 1.2px;
-	word-spacing: 8px;
-}
-
-p,
-li {
-	color: var(--dark-b);
-	font-size: 1.25rem;
-	word-spacing: 1.5px;
-	line-height: 1.4rem;
-
-	@include media('<phone') {
-		word-wrap: break-word;
-	}
-
-	& a {
-		color: var(--dark-c);
-	}
-}
-
-a {
-	color: var(--dark-a);
-
-	&:not(h1, h2) {
-		text-decoration: underline;
-		text-decoration-color: var(--light-d);
-		text-decoration-thickness: 1px;
-		text-underline-offset: 1px;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
-
-pre {
-	padding: 0.5em;
-
-	color: var(--dark-a);
-	border-radius: 3px;
-
-	font-size: 16px;
-
-	overflow-x: auto;
-}
-
-input,
-button {
-	font-size: inherit;
-	font-family: inherit;
-}
-
-button:focus:not(:focus-visible) {
-	outline: none;
 }

@@ -40,8 +40,8 @@
 	margin: 0 auto;
 
 	background: var(--light-a);
-	border: 1px solid var(--brand-b);
-	border-radius: var(--radius);
+	border: 1px solid var(--light-b);
+	border-radius: var(--radius-lg);
 
 	box-shadow: -0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.05) inset;
 }
@@ -49,12 +49,13 @@
 .card-wrapper {
 	position: relative;
 	width: max-content;
-	padding: 0.15rem 0.15rem 0.3rem 0.15rem;
+	padding: 0.15rem 0.15rem 0.35rem 0.15rem;
 	margin: 0 auto;
 
 	border-radius: var(--radius);
-	background: var(--brand-c);
-	border: 1px solid var(--brand-b);
+	background: var(--brand-a);
+	border-color: var(--light-d);
+	border: 1px solid var(--light-b);
 
 	& ul {
 		margin-bottom: 1.75rem;

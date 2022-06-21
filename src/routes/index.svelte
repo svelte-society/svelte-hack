@@ -1,5 +1,6 @@
 <script>
 	import HeroGraphic from '$lib/graphics/HeroGraphic/HeroGraphic.svelte'
+	import Countdown from '$lib/components/Countdown.svelte'
 	import Sponsors from '$lib/components/Sponsors.svelte'
 	import About from '$lib/components/About.svelte'
 	import Hero from '$lib/components/Hero.svelte'
@@ -14,15 +15,16 @@
 
 <div class="br-xl" />
 
+<Countdown />
+
+<div class="br-xl" />
+
 <Sponsors />
 
 <div class="br-xl" />
 
 <About />
 
-<div class="br-lg" />
-
-<div class="br-xl" />
 <div class="br-xl" />
 <div class="br-xl" />
 <div class="br-xl" />
