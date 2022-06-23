@@ -28,6 +28,7 @@
 <style>
 	.field {
 		width: var(--size, 383px);
+		max-width: 100%;
 		height: auto;
 	}
 	svg {
