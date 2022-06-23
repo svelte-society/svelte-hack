@@ -33,7 +33,7 @@
 
 						li(
 							class:active='{$page.url.pathname === path}'
-							in:fly='{{ y: -10 - (5 * i) }}'
+							in:fly='{{ y: -10 - (5 * i), delay: 100 + (i * 100) }}'
 							out:fade='{{ duration: 50 }}'
 						)
 
@@ -53,16 +53,16 @@
 	}
 
 	ul {
-		position: fixed;
-		inset: 0;
-		top: -50vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 2rem;
+		position: absolute;
+		inset: 0;
+		top: 30vh;
+		gap: 3rem;
 
-		margin: auto;
+		margin: 0 auto;
 
 		z-index: 25;
 	}
@@ -75,17 +75,16 @@
 
 	a {
 		display: flex;
-		align-items: center;
 
-		height: 100%;
-
-		color: currentColor;
+		color: var(--dark-a);
 
 		font-size: 2rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		text-decoration: none;
 		letter-spacing: 10%;
+
+		z-index: 60;
 
 		transition: color 0.15s linear;
 	}
