@@ -41,6 +41,7 @@
 	.card-wrapper {
 		position: relative;
 	}
+
 	.society,
 	.hat {
 		--size: 175px;
@@ -55,10 +56,17 @@
 		padding-left: 2.5rem;
 	}
 
+	@media only screen and (max-width: 800px) {
+		.card-wrapper {
+			border-radius: none;
+		}
+	}
+
 	@media only screen and (max-width: 1000px) {
 		.card-wrapper {
 			margin-bottom: 12rem;
 		}
+
 		.society,
 		.hat {
 			width: 175px;
@@ -68,6 +76,7 @@
 			right: 0;
 			margin: auto auto 0 auto;
 		}
+
 		p {
 			padding: unset;
 		}
