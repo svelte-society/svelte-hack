@@ -1,8 +1,7 @@
-@use './media' as *;
-
 .row {
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
 }
 
 .br-xs {
@@ -13,19 +12,19 @@
 }
 .br-md {
 	height: 4rem;
-	@include media('<phone') {
-		height: 3rem;
+	@media screen and (max-width: 560px) {
+		height: 2.5rem;
 	}
 }
 .br-lg {
 	height: 6.5rem;
-	@include media('<phone') {
+	@media screen and (max-width: 560px) {
 		height: 5rem;
 	}
 }
 .br-xl {
 	height: 10rem;
-	@include media('<phone') {
+	@media screen and (max-width: 560px) {
 		height: 6rem;
 	}
 }
@@ -36,6 +35,7 @@
 	gap: 1rem;
 
 	width: 800px;
+	max-width: 98vw;
 	padding: 2rem;
 	margin: 0 auto;
 

@@ -29,7 +29,7 @@ li {
 	word-spacing: 1.5px;
 	line-height: 1.4rem;
 
-	@include media('<phone') {
+	@media screen and (max-width: 560px) {
 		word-wrap: break-word;
 	}
 
