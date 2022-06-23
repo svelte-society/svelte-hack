@@ -14,7 +14,7 @@
 
 			<Nav />
 		</nav>
-		<button class="btn-b">Submit</button>
+		<button class="btn-b disabled">Submit</button>
 	</div>
 	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>
 </header>
@@ -25,7 +25,9 @@
 		display: flex;
 		top: 0;
 
-		width: 100vw;
+		width: 100%;
+		padding-left: 1rem;
+		padding-right: 5.5rem;
 
 		backdrop-filter: blur(20px);
 		background: rgba(var(--light-a-rgb), 0.75);
@@ -92,5 +94,11 @@
 
 	.theme.mobile {
 		display: none;
+	}
+
+	.disabled {
+		user-select: none;
+		pointer-events: none;
+		opacity: 0.25;
 	}
 </style>
