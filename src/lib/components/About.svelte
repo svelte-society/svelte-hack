@@ -19,14 +19,14 @@
 				<strong style:color="var(--brand-a)">SvelteHack</strong>
 				on behalf of the Svelte team, our generous sponsors, and the svelte community at large! We're inviting you to compete in this
 				event and share your creations with the community.
-			</p>
-			<p>
+				<br />
+				<br />
 				In turn, we're contributing thousands in cash
 				<!-- prettier-ignore -->
 				<span><a href="/prizes">prizes</a>,</span>
 				and special rewards from our sponsors.
-			</p>
-			<p>
+				<br />
+				<br />
 				Read our
 				<a href="rules">rules</a>
 				to learn more about how you can participate, and join our
@@ -38,14 +38,35 @@
 </section>
 
 <style>
+	.card-wrapper {
+		position: relative;
+	}
 	.society,
 	.hat {
-		--size: 100px;
+		--size: 175px;
 		position: absolute;
-		left: -9%;
-		top: -11%;
+		left: -15%;
+		top: 15%;
+
+		z-index: 1;
 	}
-	.society {
-		z-index: -1;
+
+	p {
+		padding-left: 2.5rem;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		.card-wrapper {
+			margin-bottom: 10rem;
+		}
+		.society,
+		.hat {
+			width: 175px;
+			height: 175px;
+			bottom: -50%;
+			left: 0;
+			right: 0;
+			margin: auto auto 0 auto;
+		}
 	}
 </style>
