@@ -42,6 +42,7 @@
 
 	.award {
 		margin-left: auto;
+		color: var(--dark-a);
 		font-size: var(--font-lg);
 	}
 

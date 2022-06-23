@@ -15,6 +15,16 @@
 	<div class="blob-a">
 		<BlobA />
 	</div>
+
+	<div class="card">
+		<h2>🥈 Second Place</h2>
+		<p>
+			The second place winners for each section will be awarded 1 <strong>Vercel Pro</strong>
+			subscription and 1
+			<strong>Gitpod Pro</strong>
+			subscription courtesy of our sponsors!
+		</p>
+	</div>
 </section>
 
 <style>
@@ -41,5 +51,9 @@
 		padding-bottom: 5rem;
 
 		overflow: hidden;
+	}
+
+	.card {
+		margin-top: 2rem;
 	}
 </style>
