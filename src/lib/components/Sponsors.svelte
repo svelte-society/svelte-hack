@@ -6,8 +6,9 @@
 
 <section>
 	<h5 class="title">Made possible by</h5>
+	<div class="br-sm" />
 
-	<div class="sponsors">
+	<div class="sponsors" style="--size: 175px">
 		<Vercel />
 		<Gitpod />
 		<Svelte />
@@ -17,7 +18,6 @@
 <style lang="scss">
 	section {
 		width: 100%;
-		padding: 32px;
 
 		max-width: 800px;
 		margin: 0 auto;
@@ -25,6 +25,10 @@
 		.title {
 			color: var(--dark-b);
 			text-align: center;
+			margin-bottom: 1rem;
+			@media screen and (max-width: 724px) {
+				margin-bottom: 2rem;
+			}
 		}
 
 		.sponsors {
@@ -32,9 +36,8 @@
 			flex-flow: row wrap;
 			align-items: center;
 			justify-content: center;
-			gap: 64px;
-
-			padding: 22px;
+			column-gap: 100px;
+			row-gap: 50px;
 		}
 	}
 </style>
