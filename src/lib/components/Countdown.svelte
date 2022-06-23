@@ -18,24 +18,20 @@
 </script>
 
 <div class="clock">
-	<p class="clockDisplay">
-		{formatDuration(duration)}
+	<p class="clockDisplay colorful">
+		{formatDuration(duration, { zero: true, format: ['months', 'weeks', 'days', 'hours', 'minutes', 'seconds'] })}
 	</p>
 </div>
 
 <style>
 	.clock {
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: center;
+		margin: 0 auto;
 	}
 
 	p {
-		color: var(--dark-a);
-		text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 4px 4px rgba(var(--brand-b-rgb), 0.5);
+		color: var(--dark-b);
 
-		font-size: 3rem;
+		font-size: clamp(1rem, 3rem, 4vw);
 		font-family: var(--font-mono);
 	}
 </style>
