@@ -9,9 +9,11 @@
 -   Your project must use Svelte as its primary dependency!
 -   Team sizes must be between 1 and 3 members.
 -   Submissions must have a demonstration video or working demo included in their README.
--   Submissions must be new. Projects started before $STARTDATE are not eligible.
--   Submissions can't be updated after $ENDDATE.
+-   Submissions must be new. Projects started before July 1st are not eligible.
+-   Submissions can't be updated after July 21st.
 -   If you're below the legal age in your country, you will need to obtain written permission from a parent or legal guardian to enter.
+-   You must be able to provide a link to your project on GitHub.
+-   Closed-source code is not permitted.
 
 # Who can't enter?
 
@@ -19,6 +21,11 @@
 -   Svelte Sirens Members
 -   Svelte Org Members
 -   Family Members of above orgs
+
+# Etc
+
+-   Sveltehack, Svelte Society, and Svelte Org are teams of volunteers who cannot be held liable for any reason, and reserve the right to disqualify any submission for any reason they see fit.
+-   To revoke a submission or ask a question, please contact $TODO
 
 </div>
 </div>
