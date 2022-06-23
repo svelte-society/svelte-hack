@@ -19,7 +19,7 @@
 	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>
 </header>
 
-<style>
+<style lang="scss">
 	header {
 		position: fixed;
 		display: flex;
@@ -71,6 +71,10 @@
 		font-weight: 600;
 		letter-spacing: 2px;
 		text-decoration: none;
+
+		@media only screen and (max-width: 1000px) {
+			margin-right: 1rem;
+		}
 	}
 
 	.sveltehack {

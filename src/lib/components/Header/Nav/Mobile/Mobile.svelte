@@ -40,6 +40,7 @@
 							a(
 								sveltekit:prefetch
 								href='{path}'
+								class:disabled!='{title === "Winners"}'
 							) {title}
 
 </template>
@@ -87,6 +88,12 @@
 		z-index: 60;
 
 		transition: color 0.15s linear;
+	}
+
+	.disabled {
+		user-select: none;
+		pointer-events: none;
+		opacity: 0.25;
 	}
 
 	a:hover {
