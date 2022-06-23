@@ -36,7 +36,8 @@
 		flex-direction: column;
 		flex-grow: 1;
 
-		margin: 0;
+		margin: 0 auto;
+		min-width: 100vw;
 		padding-bottom: 5rem;
 
 		overflow: hidden;
