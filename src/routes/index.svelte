@@ -1,14 +1,11 @@
 <script>
+	import { Countdown, Sponsors, About, Hero, Footer } from '$lib/components'
 	import HeroGraphic from '$lib/graphics/HeroGraphic/HeroGraphic.svelte'
-	import Countdown from '$lib/components/Countdown.svelte'
-	import Sponsors from '$lib/components/Sponsors.svelte'
-	import About from '$lib/components/About.svelte'
-	import Hero from '$lib/components/Hero.svelte'
 </script>
 
 <div class="br-md" />
 
-<section class="row">
+<section class="hero row">
 	<Hero />
 	<HeroGraphic />
 </section>
@@ -26,14 +23,20 @@
 <About />
 
 <div class="br-xl" />
-<div class="br-xl" />
-<div class="br-xl" />
+<span id="about" />
+
+<Footer />
 
 <style lang="scss">
-	section {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+	section.hero {
+		display: flex;
 		align-items: center;
+
 		width: 100%;
+		max-width: min(95vw, var(--max-w));
+
+		@media screen and (max-width: 1000px) {
+			flex-direction: column;
+		}
 	}
 </style>
