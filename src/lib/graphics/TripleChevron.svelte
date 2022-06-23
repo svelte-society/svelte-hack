@@ -9,5 +9,6 @@
 <style>
 	.triple-chevron {
 		width: var(--size, 20px);
+		transform: translateY(3px);
 	}
 </style>

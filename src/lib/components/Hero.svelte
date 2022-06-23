@@ -3,7 +3,10 @@
 </script>
 
 <div class="hero">
-	<h1>A Svelte Hackathon</h1>
+	<h1>
+		A Svelte <br />
+		Hackathon
+	</h1>
 
 	<div class="br-sm" />
 
@@ -12,15 +15,23 @@
 	<div class="br-sm" />
 
 	<div class="row">
-		<button class="btn-a">Learn More</button>
+		<a href="#about">
+			<button class="btn-a">Learn More</button>
+		</a>
 
-		<button class="btn-c">
-			Learn more about Svelte &nbsp;<TripleChevron />
-		</button>
+		<a href="https://svelte.dev" target="_blank">
+			<button class="btn-c">
+				Learn more about Svelte&nbsp;<TripleChevron />
+			</button>
+		</a>
 	</div>
 </div>
 
 <style>
+	.hero {
+		max-width: 50%;
+	}
+
 	h1 {
 		text-align: left;
 
@@ -29,7 +40,7 @@
 
 		border-left: 3px solid var(--brand-a);
 
-		font-size: 6rem;
+		font-size: min(6rem, 15vw);
 	}
 
 	p {
@@ -43,5 +54,23 @@
 
 	.btn-c {
 		margin-left: 1rem;
+	}
+
+	a {
+		all: unset;
+		display: flex;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+
+	@media screen and (max-width: 1000px) {
+		button {
+			padding: 0.75rem 2rem;
+		}
+		.hero {
+			max-width: unset;
+			width: max-content;
+		}
 	}
 </style>

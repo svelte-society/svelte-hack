@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.hero-graphic {
 		position: relative;
 		display: flex;
@@ -34,10 +34,17 @@
 		justify-content: center;
 
 		width: 400px;
+		max-width: 50%;
 		height: 400px;
 		margin: auto;
 
 		transform: translate3d(20%, 0, 0) scale(1.5);
+
+		@media screen and (max-width: 1000px) {
+			transform: translate3d(0, 0, 0) scale(1.25);
+		}
+
+		pointer-events: none;
 	}
 	.logo,
 	.field {
