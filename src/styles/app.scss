@@ -61,5 +61,8 @@ body,
 }
 
 .colorful {
-	text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 4px 4px rgba(var(--brand-b-rgb), 0.5);
+	text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 3.5px 3.5px rgba(var(--brand-b-rgb), 0.5);
+}
+:root[theme='dark'] .colorful {
+	text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 3.5px 3.5px rgba(var(--brand-a-rgb), 0.25);
 }
