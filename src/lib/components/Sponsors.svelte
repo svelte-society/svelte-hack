@@ -5,7 +5,7 @@
 </script>
 
 <section>
-	<h5 class="title">Made possible by</h5>
+	<h5 class="title">Sponsored by</h5>
 	<div class="br-sm" />
 
 	<div class="sponsors" style="--size: 175px">

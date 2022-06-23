@@ -57,7 +57,7 @@
 
 	@media only screen and (max-width: 1000px) {
 		.card-wrapper {
-			margin-bottom: 10rem;
+			margin-bottom: 12rem;
 		}
 		.society,
 		.hat {
@@ -67,6 +67,9 @@
 			left: 0;
 			right: 0;
 			margin: auto auto 0 auto;
+		}
+		p {
+			padding: unset;
 		}
 	}
 </style>

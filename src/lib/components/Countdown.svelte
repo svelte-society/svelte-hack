@@ -19,7 +19,7 @@
 
 <div class="clock">
 	<p class="clockDisplay colorful">
-		{formatDuration(duration, { zero: true, format: ['months', 'weeks', 'days', 'hours', 'minutes', 'seconds'] })}
+		{formatDuration(duration, { zero: true, format: ['months', 'weeks', 'days', 'hours', 'minutes'] })}
 	</p>
 </div>
 
@@ -31,7 +31,7 @@
 	p {
 		color: var(--dark-b);
 
-		font-size: clamp(1rem, 3rem, 4vw);
+		font-size: clamp(1.25rem, 3rem, 4vw);
 		font-family: var(--font-mono);
 	}
 </style>

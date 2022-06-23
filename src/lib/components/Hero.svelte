@@ -66,11 +66,12 @@
 
 	@media screen and (max-width: 1000px) {
 		button {
-			padding: 0.75rem 2rem;
+			padding: 0.75rem 1rem;
 		}
 		.hero {
 			max-width: unset;
 			width: max-content;
+			padding-left: 4vw;
 		}
 	}
 </style>

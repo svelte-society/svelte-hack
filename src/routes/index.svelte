@@ -29,14 +29,14 @@
 
 <style lang="scss">
 	section.hero {
-		display: flex;
-		align-items: center;
+		display: unset;
 
-		width: 100%;
-		max-width: min(95vw, var(--max-w));
+		@media screen and (min-width: 1000px) {
+			display: flex;
+			align-items: center;
 
-		@media screen and (max-width: 1000px) {
-			flex-direction: column;
+			width: 100%;
+			max-width: min(95vw, var(--max-w));
 		}
 	}
 </style>
