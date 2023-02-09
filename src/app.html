@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html theme="%sveltehack.theme%" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +28,12 @@
 		<meta property="twitter:title" content="Svelte Hack" />
 		<meta property="twitter:description" content="Official Svelte Hackathon" />
 		<meta property="twitter:image" content="https://svelte-hack.vercel.app/meta.jpg" />
+
+		<style>
+			body {
+				background-color: var(--bg-a);
+			}
+		</style>
 
 		%sveltekit.head%
 	</head>
