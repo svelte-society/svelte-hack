@@ -47,7 +47,7 @@
 		text-align: left;
 
 		margin: 0;
-		color: var(--dark-d);
+		color: var(--fg-d);
 
 		font-size: 1.5rem;
 	}

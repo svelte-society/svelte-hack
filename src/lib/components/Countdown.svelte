@@ -29,7 +29,7 @@
 	}
 
 	p {
-		color: var(--dark-b);
+		color: var(--fg-b);
 
 		font-size: clamp(1.25rem, 3rem, 4vw);
 		font-family: var(--font-mono);

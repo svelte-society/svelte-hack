@@ -9,7 +9,7 @@
 <ul>
 	{#each links as [path, title], i (title)}
 		<li class:active={$page.url.pathname === path} transition:fly={{ y: -10 - 5 * i }}>
-			<a class:disabled={title === 'Winners'} sveltekit:prefetch href={path}>{title}</a>
+			<a class:disabled={title === 'Winners'} data-sveltekit-preload-code href={path}>{title}</a>
 		</li>
 	{/each}
 </ul>
@@ -28,7 +28,7 @@
 	li {
 		list-style: none;
 
-		color: var(--dark-d);
+		color: var(--fg-d);
 	}
 
 	a {

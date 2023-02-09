@@ -39,8 +39,8 @@
 	padding: 2rem;
 	margin: 0 auto;
 
-	background: var(--light-a);
-	border: 1px solid var(--light-b);
+	background: var(--bg-a);
+	border: 1px solid var(--bg-b);
 	border-radius: var(--radius-lg);
 
 	box-shadow: -0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.05) inset;
@@ -54,8 +54,8 @@
 
 	border-radius: var(--radius);
 	background: var(--brand-a);
-	border-color: var(--light-d);
-	border: 1px solid var(--light-b);
+	border-color: var(--bg-d);
+	border: 1px solid var(--bg-b);
 
 	& ul {
 		margin-bottom: 1.75rem;

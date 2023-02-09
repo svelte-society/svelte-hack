@@ -14,7 +14,7 @@
 	$: scrolled = $scrollY > 100
 </script>
 
-<div class="burger" on:click={handleClick} class:scrolled out:fly={{ x: 75 }} class:showMenu>
+<div class="burger" on:pointerdown={handleClick} class:scrolled out:fly={{ x: 75 }} class:showMenu>
 	<OnMount>
 		{#key showMenu}
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 101" overflow="visible" height="100%" width="100%">
@@ -22,7 +22,7 @@
 					class="TopBun"
 					class:showMenu
 					class:intro
-					stroke="var(--dark-a)"
+					stroke="var(--fg-a)"
 					stroke-width="5"
 					stroke-linecap="round"
 					d="M24.238 31.748h52.524"
@@ -32,7 +32,7 @@
 					class="Patty"
 					class:showMenu
 					class:intro
-					stroke="var(--dark-a)"
+					stroke="var(--fg-a)"
 					stroke-width="5"
 					stroke-linecap="round"
 					stroke-linejoin="round"
@@ -41,7 +41,7 @@
 				<path
 					class:showMenu
 					class:intro
-					stroke="var(--dark-a)"
+					stroke="var(--fg-a)"
 					stroke-width="5"
 					class="BottomBun"
 					stroke-linecap="round"
@@ -76,7 +76,7 @@
 
 		border-radius: 100%;
 
-		background: var(--light-a);
+		background: var(--bg-a);
 
 		cursor: pointer;
 		transition: box-shadow 0.2s;

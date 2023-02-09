@@ -23,7 +23,7 @@
 		margin: 0 auto;
 
 		.title {
-			color: var(--dark-b);
+			color: var(--fg-b);
 			text-align: center;
 			margin-bottom: 1rem;
 			@media screen and (max-width: 724px) {

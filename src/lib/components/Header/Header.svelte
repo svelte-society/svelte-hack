@@ -30,7 +30,7 @@
 		padding-right: 5.5rem;
 
 		backdrop-filter: blur(20px);
-		background: rgba(var(--light-a-rgb), 0.75);
+		background: rgba(var(--bg-a-rgb), 0.75);
 		box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.07);
 
 		transition: box-shadow 0.2s ease-in-out;
@@ -66,7 +66,7 @@
 
 		margin-right: 2.5rem;
 
-		color: var(--dark-a);
+		color: var(--fg-a);
 
 		font-weight: 600;
 		letter-spacing: 2px;

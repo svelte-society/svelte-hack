@@ -71,13 +71,13 @@
 	li {
 		list-style: none;
 
-		color: var(--dark-a);
+		color: var(--fg-a);
 	}
 
 	a {
 		display: flex;
 
-		color: var(--dark-a);
+		color: var(--fg-a);
 
 		font-size: 2rem;
 		font-weight: 700;

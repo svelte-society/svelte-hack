@@ -47,6 +47,6 @@
 		height: auto;
 	}
 	path:not(.logo) {
-		fill: var(--dark-a);
+		fill: var(--fg-a);
 	}
 </style>

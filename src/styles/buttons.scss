@@ -18,7 +18,7 @@ button {
 	border: 1px solid transparent;
 
 	&:hover {
-		background: var(--light-a);
+		background: var(--bg-a);
 		color: var(--brand-a);
 		border-color: var(--brand-a);
 	}
@@ -27,13 +27,13 @@ button {
 .btn-b {
 	padding: 0.5rem 2rem;
 
-	color: var(--dark-d);
-	background: var(--light-a);
+	color: var(--fg-d);
+	background: var(--bg-a);
 	border: 1px solid var(--brand-a);
 
 	&:hover {
 		background: var(--brand-a);
-		color: var(--light-a);
+		color: var(--bg-a);
 	}
 }
 
@@ -41,7 +41,7 @@ button {
 	padding: 0.75rem 2rem;
 
 	color: var(--brand-a);
-	background: var(--light-a);
+	background: var(--bg-a);
 	border: 1px solid transparent;
 
 	&:hover {

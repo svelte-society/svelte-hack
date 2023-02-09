@@ -42,7 +42,7 @@
 
 	.award {
 		margin-left: auto;
-		color: var(--dark-a);
+		color: var(--fg-a);
 		font-size: var(--font-lg);
 	}
 
@@ -51,7 +51,7 @@
 		padding: 4px;
 
 		color: var(--brand-a);
-		background: var(--light-b);
+		background: var(--bg-b);
 
 		font-weight: 700;
 	}

@@ -5,7 +5,7 @@
 
 <style>
 	footer {
-		color: var(--dark-a);
+		color: var(--fg-a);
 		text-align: center;
 		font-size: var(--font-md);
 		font-family: var(--font-mono);
