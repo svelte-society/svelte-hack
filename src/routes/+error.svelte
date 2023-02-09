@@ -11,7 +11,7 @@
 		padding: 1rem;
 
 		background: transparent;
-		border: 1px solid var(--light-d);
-		color: var(--light-d);
+		border: 1px solid var(--bg-d);
+		color: var(--bg-d);
 	}
 </style>

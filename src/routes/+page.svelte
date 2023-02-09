@@ -27,11 +27,13 @@
 
 <Footer />
 
-<style lang="scss">
+<style>
 	section.hero {
 		display: unset;
+	}
 
-		@media screen and (min-width: 1000px) {
+	@media screen and (min-width: 1000px) {
+		section.hero {
 			display: flex;
 			align-items: center;
 
