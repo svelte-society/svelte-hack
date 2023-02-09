@@ -29,15 +29,9 @@
 		<meta property="twitter:description" content="Official Svelte Hackathon" />
 		<meta property="twitter:image" content="https://svelte-hack.vercel.app/meta.jpg" />
 
-		<style>
-			body {
-				background-color: var(--bg-a);
-			}
-		</style>
-
 		%sveltekit.head%
 	</head>
-	<body>
-		<div id="svelte">%sveltekit.body%</div>
+	<body style="background: var(--bg-a)">
+		<div id="svelte" style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

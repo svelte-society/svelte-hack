@@ -2,7 +2,7 @@ import type { Handle } from '@sveltejs/kit'
 import { parse } from 'cookie'
 
 /**
- * Injects the correct theme class into the root on the server to avoid FOUC.
+ * Injects the :root['theme'] on the server to avoid FOUC.
  */
 export const handle: Handle = ({ event, resolve }) => {
 	const cookies = parse(event.request.headers?.get('cookie') || '')
@@ -12,7 +12,7 @@ export const handle: Handle = ({ event, resolve }) => {
 	return resolve(event, {
 		transformPageChunk: ({ html, done }) => {
 			page += html
-			if (done) return page.replace('%frackit.theme%', event.locals.theme)
+			if (done) return page.replace('%sveltehack.theme%', event.locals.theme)
 		}
 	})
 }

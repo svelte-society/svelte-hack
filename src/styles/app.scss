@@ -41,28 +41,22 @@ html {
 }
 
 body {
+	min-height: 100vh;
 	margin: 0;
 
-	background-color: var(--bg-a);
+	background: var(--bg-a);
 
-	transition: color 0.5s background 0.3s background-color 0.3s;
-}
-
-#svelte {
-	display: flex;
-	flex-direction: column;
-}
-
-body,
-#svelte {
-	min-height: 100vh;
-
+	transition: color 0.5s background 0.3s;
 	overflow-x: hidden;
+	overflow-y: scroll;
+
+	scrollbar-gutter: stable;
 }
 
 .colorful {
 	text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 3.5px 3.5px rgba(var(--brand-b-rgb), 0.5);
 }
+
 :root[theme='dark'] .colorful {
 	text-shadow: 2px 2px rgba(var(--brand-a-rgb), 0.5), 3.5px 3.5px rgba(var(--brand-a-rgb), 0.25);
 }
