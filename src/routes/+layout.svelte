@@ -11,8 +11,6 @@
 
 	$: title = pageTitle($page.url.pathname)
 
-	console.log($page.url)
-
 	// Keeps the theme cookie in sync
 	$: if (browser && $theme !== parse(document.cookie).theme) {
 		document.cookie = `theme=${$theme}`
