@@ -19,7 +19,7 @@
 			<button class="btn-a">Learn More</button>
 		</a>
 
-		<a href="https://svelte.dev" target="_blank">
+		<a href="https://svelte.dev" target="_blank" rel="noreferrer">
 			<button class="btn-c">
 				Learn more about Svelte&nbsp;<TripleChevron />
 			</button>

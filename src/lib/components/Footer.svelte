@@ -1,5 +1,5 @@
 <footer>
-	Made with 🧡 by <a href="https://sveltesociety.dev/" target="_blank">Svelte Society</a>
+	Made with 🧡 by <a href="https://sveltesociety.dev/" target="_blank" rel="noreferrer">Svelte Society</a>
 </footer>
 <div class="br-md" />
 
