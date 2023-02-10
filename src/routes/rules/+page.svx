@@ -17,8 +17,8 @@
 
 # Who can't enter?
 
--   Svelte Society Members
--   Svelte Sirens Members
+-   Svelte Society Organizers
+-   Svelte Sirens Organizers
 -   Svelte Org Members
 -   Family Members of above orgs
 
