@@ -35,6 +35,10 @@
 		0px 5px 8px rgba(0, 0, 0, 0.1), 0px 10px 15px rgba(0, 0, 0, 0.2), 0px 20px 30px rgba(0, 0, 0, 0.2);
 }
 
+::selection {
+	background: #ff470050;
+}
+
 html {
 	scroll-behavior: smooth;
 }
