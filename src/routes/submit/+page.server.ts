@@ -1,3 +1,4 @@
+import { SUBMISSIONS_KEY } from '$env/static/private'
 import type { Actions } from './$types'
 import { fail } from '@sveltejs/kit'
 import { z } from 'zod'
@@ -11,8 +12,9 @@ const schema = z.object({
 	description: z.string({ required_error: 'Description is required' }).trim().min(1, "Can't be empty").max(256, 'Max length is 256 chars')
 })
 
+const url = `https://hack-api.sveltesociety.dev/api/collections/submissions/records?key=${SUBMISSIONS_KEY}`
+
 // TODO Rate Limit of some kind
-// TODO Make sure only this server code can create an item in pocketbase - is that even necessary?
 
 export const actions: Actions = {
 	async default({ request, fetch }) {
@@ -32,7 +34,7 @@ export const actions: Actions = {
 
 		try {
 			// Add the submission to the database
-			const response = await fetch('https://hack-api.sveltesociety.dev/api/collections/submissions/records', {
+			const response = await fetch(url, {
 				method: 'POST',
 				body: JSON.stringify(result.data),
 				headers: {
