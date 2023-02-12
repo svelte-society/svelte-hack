@@ -45,6 +45,9 @@
 		font-family: var(--font-b);
 
 		letter-spacing: 0.25rem;
+
+		text-align: center;
+		line-height: 2rem;
 	}
 
 	.word {

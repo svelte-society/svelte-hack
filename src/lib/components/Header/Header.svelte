@@ -25,6 +25,7 @@
 		display: flex;
 		top: 0;
 
+		max-width: 100vw;
 		width: 100%;
 		padding-left: 1rem;
 		padding-right: 5.5rem;

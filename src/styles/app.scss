@@ -43,6 +43,14 @@ html {
 	scroll-behavior: smooth;
 }
 
+html,
+body {
+	width: 100%;
+	max-width: 100vw;
+	min-width: 100%;
+	overflow-x: hidden;
+}
+
 body {
 	min-height: 100vh;
 	margin: 0;
@@ -50,10 +58,6 @@ body {
 	background: var(--bg-a);
 
 	transition: color 0.5s background 0.3s;
-	overflow-x: hidden;
-	overflow-y: scroll;
-
-	scrollbar-gutter: stable;
 }
 
 .colorful {
