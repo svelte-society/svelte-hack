@@ -16,8 +16,8 @@ const schema = z.object({
 
 export const actions: Actions = {
 	async default({ request, fetch }) {
-		const raw: Partial<z.infer<typeof schema>> = Object.fromEntries(await request.formData())
-		const result = await schema.safeParseAsync(raw)
+		const raw_data: Partial<z.infer<typeof schema>> = Object.fromEntries(await request.formData())
+		const result = await schema.safeParseAsync(raw_data)
 
 		// If the submission is invalid return the errors to the frontend
 		if (!result.success) {
@@ -26,7 +26,7 @@ export const actions: Actions = {
 			return fail(400, {
 				fieldErrors: errors.fieldErrors,
 				success: false,
-				fields: raw
+				fields: raw_data
 			})
 		}
 
@@ -47,7 +47,7 @@ export const actions: Actions = {
 			return fail(400, {
 				error: (e as any)?.message || 'Failed to submit',
 				success: false,
-				fields: raw
+				fields: raw_data
 			})
 		}
 
