@@ -1,5 +1,5 @@
 <script>
-	import Gitpod from '$lib/graphics/sponsors/Gitpod.svelte'
+	import Stackblitz from '$lib/graphics/sponsors/Stackblitz.svelte'
 	import Svelte from '$lib/graphics/sponsors/Svelte.svelte'
 	import Vercel from '$lib/graphics/sponsors/Vercel.svelte'
 </script>
@@ -10,7 +10,7 @@
 
 	<div class="sponsors" style="--size: 175px">
 		<Vercel />
-		<Gitpod />
+		<Stackblitz />
 		<Svelte />
 	</div>
 </section>
