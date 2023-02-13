@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@neoconfetti/svelte': ^1.0.0
   '@sveltejs/adapter-vercel': 2.0.2
   '@sveltejs/kit': 1.5.3
   '@types/cookie': ^0.5.1
@@ -30,6 +31,7 @@ specifiers:
   zod: ^3.20.6
 
 devDependencies:
+  '@neoconfetti/svelte': 1.0.0
   '@sveltejs/adapter-vercel': 2.0.2_@sveltejs+kit@1.5.3
   '@sveltejs/kit': 1.5.3_svelte@3.55.1+vite@4.1.1
   '@types/cookie': 0.5.1
@@ -305,6 +307,10 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
+
+  /@neoconfetti/svelte/1.0.0:
+    resolution: {integrity: sha512-SmksyaJAdSlMa9cTidVSIqYo1qti+WTsviNDwgjNVm+KQ3DRP2Df9umDIzC4vCcpEYY+chQe0i2IKnLw03AT8Q==}
     dev: true
 
   /@polka/url/1.0.0-next.21:
