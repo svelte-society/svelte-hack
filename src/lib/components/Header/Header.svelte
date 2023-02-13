@@ -1,6 +1,7 @@
-<script lang="ts">
+<script>
 	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte'
 	import { mobile, scrollY, ThemeToggle } from 'fractils'
+	import { page } from '$app/stores'
 	import { Nav } from './Nav'
 </script>
 
@@ -14,12 +15,14 @@
 
 			<Nav />
 		</nav>
-		<button class="btn-b disabled">Submit</button>
+
+		<a class="btn-b submit" href="/submit" class:active={$page.url.pathname === '/submit'}>Submit</a>
 	</div>
+
 	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>
 </header>
 
-<style lang="scss">
+<style>
 	header {
 		position: fixed;
 		display: flex;
@@ -27,6 +30,7 @@
 
 		max-width: 100vw;
 		width: 100%;
+		height: 4.5rem;
 		padding-left: 1rem;
 		padding-right: 5.5rem;
 
@@ -49,7 +53,6 @@
 		justify-content: space-between;
 
 		width: var(--max-w);
-		height: 4.5rem;
 		margin: 0 auto;
 
 		z-index: 50;
@@ -72,8 +75,9 @@
 		font-weight: 600;
 		letter-spacing: 2px;
 		text-decoration: none;
-
-		@media only screen and (max-width: 1000px) {
+	}
+	@media only screen and (max-width: 1000px) {
+		.home {
 			margin-right: 1rem;
 		}
 	}
@@ -82,6 +86,20 @@
 		margin-left: 3px;
 
 		font-size: 1.2rem;
+	}
+
+	.submit {
+		text-decoration: none;
+		border-radius: var(--radius);
+
+		opacity: 1;
+		transition: opacity 0.5s;
+	}
+
+	.submit.active {
+		opacity: 0;
+		pointer-events: none;
+		user-select: none;
 	}
 
 	.theme {
@@ -99,11 +117,5 @@
 
 	.theme.mobile {
 		display: none;
-	}
-
-	.disabled {
-		user-select: none;
-		pointer-events: none;
-		opacity: 0.25;
 	}
 </style>

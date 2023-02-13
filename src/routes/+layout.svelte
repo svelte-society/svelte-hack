@@ -3,10 +3,11 @@
 	import '../styles/app.scss'
 
 	import { browser } from '$app/environment'
-	import { Fractils, theme } from 'fractils'
-	import { Header } from '$lib/components'
-	import { pageTitle } from '$lib/utils'
 	import { page } from '$app/stores'
+	
+	import { Header, Footer } from '$lib/components'
+	import { Fractils, theme } from 'fractils'
+	import { pageTitle } from '$lib/utils'
 	import { parse } from 'cookie'
 
 	$: title = pageTitle($page.url.pathname)
@@ -30,3 +31,5 @@
 <div class="br-lg" />
 
 <slot />
+
+<Footer />
