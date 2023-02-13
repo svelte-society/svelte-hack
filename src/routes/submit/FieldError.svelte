@@ -10,6 +10,7 @@
 
 <style>
 	.error {
-		color: red;
+		color: tomato;
+		font-size: var(--font-sm);
 	}
 </style>

@@ -6,5 +6,5 @@
 	"printWidth": 140,
 	"useTabs": true,
 	"tabWidth": 4,
-	"semi": false
+	"semi": true
 }

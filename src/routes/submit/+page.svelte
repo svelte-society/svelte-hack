@@ -1,128 +1,213 @@
 <script lang="ts">
-	import type { ActionData } from './$types'
+	import type { ActionData } from './$types';
 
-	import FieldError from './FieldError.svelte'
-	import { enhance } from '$app/forms'
+	import FieldError from './FieldError.svelte';
+	import Removable from './Removable.svelte';
+	import { enhance } from '$app/forms';
 
-	export let form: ActionData
+	export let form: ActionData;
 
-	function REMOVE_ME() {
-		if (!form) {
-			// @ts-ignore
-			form = {}
-		}
+	let authorTwo = false;
+	let authorThree = false;
 
-		// @ts-ignore
-		form.fields = {
-			title: 'test',
-			github: 'https://example.com',
-			demo: 'https://example.com',
-			description: 'test',
-			author: 'test',
-			twitter: 'https://example.com'
+	function addAuthor() {
+		if (!authorTwo) {
+			authorTwo = true;
+		} else {
+			authorThree = true;
 		}
 	}
-
-	REMOVE_ME()
 </script>
 
-{#if form?.error}
-	<p>{form?.error}</p>
-{/if}
+<section>
+	<h2>Submit your project</h2>
 
-{#if form?.success}
-	<!-- maybe confetti? -->
-	<p>success</p>
-{/if}
+	<div class="br-sm" />
 
-<form method="POST" use:enhance>
-	<label>
-		<span>
-			Project Title <span class="required">*</span>
-		</span>
-		<input name="title" type="text" value={form?.fields?.title || ''} required />
-		<FieldError error={form?.fieldErrors?.title} />
-	</label>
+	<p>
+		Please review the <a href="/rules">rules</a>
+		before submitting.
+	</p>
 
-	<label>
-		<span>
-			Project Description <span class="required">*</span>
-		</span>
-		<textarea name="description" value={form?.fields?.description || ''} required />
-		<FieldError error={form?.fieldErrors?.description} />
-	</label>
+	<div class="br-md" />
 
-	<label>
-		<span>
-			Author Name <span class="required">*</span>
-		</span>
-		<input name="author" type="text" value={form?.fields?.author || ''} required />
-		<FieldError error={form?.fieldErrors?.author} />
-	</label>
+	{#if form?.error}
+		<p>{form?.error}</p>
+	{/if}
 
-	<label>
-		<span>
-			GitHub Repository <span class="required">*</span>
-		</span>
-		<input name="github" type="url" value={form?.fields?.github || ''} required />
-		<FieldError error={form?.fieldErrors?.github} />
-	</label>
+	{#if form?.success}
+		<!-- maybe confetti? -->
+		<p>success</p>
+	{/if}
 
-	<label>
-		<span>
-			Demo URL <span class="required">*</span>
-		</span>
-		<input name="demo" type="url" value={form?.fields?.demo || ''} required />
-		<FieldError error={form?.fieldErrors?.demo} />
-	</label>
+	<form method="POST" use:enhance>
+		<label>
+			<span>Author Name(s)</span>
+			<input class="author" name="authorOne" type="text" value={form?.fields?.authorOne || ''} required />
+			<FieldError error={form?.fieldErrors?.authorOne} />
 
-	<label>
-		<span>Twitter</span>
-		<input name="twitter" type="url" value={form?.fields?.twitter || ''} />
-		<FieldError error={form?.fieldErrors?.twitter} />
-	</label>
+			<Removable bind:open={authorTwo}>
+				<input class="author" name="authorTwo" type="text" value={form?.fields?.authorTwo || ''} required />
+				<FieldError error={form?.fieldErrors?.authorTwo} />
+			</Removable>
 
-	<button class="btn-a">Submit</button>
-</form>
+			<Removable bind:open={authorThree}>
+				<input class="author" name="authorThree" type="text" value={form?.fields?.authorThree || ''} required />
+				<FieldError error={form?.fieldErrors?.authorThree} />
+			</Removable>
+
+			<button title="add author" class:disabled={authorTwo && authorThree} type="button" class="add-author-btn" on:click={addAuthor}>
+				+
+			</button>
+		</label>
+
+		<label>
+			<span>Project Title</span>
+			<input name="title" type="text" value={form?.fields?.title || ''} required />
+			<FieldError error={form?.fieldErrors?.title} />
+		</label>
+
+		<label>
+			<span>Project Description</span>
+			<textarea name="description" value={form?.fields?.description || ''} required rows="4" />
+			<FieldError error={form?.fieldErrors?.description} />
+		</label>
+
+		<label>
+			<span>GitHub Repository</span>
+			<input name="github" type="url" value={form?.fields?.github || ''} required />
+			<FieldError error={form?.fieldErrors?.github} />
+		</label>
+
+		<label>
+			<span>Demo URL</span>
+			<input name="demo" type="url" value={form?.fields?.demo || ''} required />
+			<FieldError error={form?.fieldErrors?.demo} />
+		</label>
+
+		<label>
+			<span>
+				Twitter <sup class="optional">optional</sup>
+			</span>
+			<input name="twitter" type="url" value={form?.fields?.twitter || ''} />
+			<FieldError error={form?.fieldErrors?.twitter} />
+		</label>
+
+		<button type="submit" class="btn-b">Submit</button>
+	</form>
+</section>
+
+<div class="br-xl" />
 
 <style>
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	h2,
+	p {
+		text-align: center;
+	}
+
+	p {
+		font-style: italic;
+		font-size: var(--font-sm);
+
+		color: var(--fg-d);
+	}
+
+	button {
+		margin: auto;
+
+		box-shadow: var(--shadow-sm);
+
+		text-align: center;
+	}
+
 	form {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
+		gap: 2rem;
 
 		width: fit-content;
-		margin: auto;
-
-		border: 1px solid var(--brand-a);
-		border-radius: var(--radius);
-		background: var(--bg-b);
-
 		padding: 2rem;
+
+		background: var(--bg-b);
+		box-shadow: var(--shadow-sm);
+		border-radius: var(--radius);
+
+		font-family: var(--font-a);
 	}
 
 	label {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		position: relative;
+
+		font-weight: 300;
+	}
+
+	label:first-of-type {
+		margin: 0;
+	}
+
+	label span {
+		margin: 0.5rem 0;
+	}
+
+	sup.optional {
+		color: var(--bg-d);
+		font-size: var(--font-xs);
+		font-style: italic;
 	}
 
 	input,
 	textarea {
-		width: 20rem;
+		min-width: min(20rem, 90vw);
 		max-width: 90vw;
+		max-height: 10rem;
 
-		background: var(--bg-a);
 		border: none;
+		background: var(--bg-a);
 		padding: 0.5rem;
 		border-radius: var(--radius);
+
+		font-family: var(--font-mono);
+
+		transition: 0.2s;
 	}
 
-	button {
-		width: 50%;
+	textarea {
+		resize: vertical;
 	}
 
-	.required {
-		color: var(--brand-a);
+	.add-author-btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		width: 2rem;
+		height: 1rem;
+		max-height: 2rem;
+		padding: 0;
+		margin-top: 0.5rem;
+
+		border: none;
+		background: var(--bg-a);
+		border-radius: var(--radius);
+
+		box-shadow: var(--shadow-xs);
+		transition: 0.2s;
+	}
+
+	.disabled {
+		max-height: 0;
+
+		opacity: 0;
+
+		pointer-events: none;
 	}
 </style>
