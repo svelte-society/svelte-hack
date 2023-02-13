@@ -7,11 +7,11 @@
 		/>
 		<path
 			d="M105.138 419.057L103.786 323.049L162.141 323.245L161.987 266.445L285.154 266.445"
-			stroke="url(#paint0_linear_926_54)"
+			stroke="url(#line_b_gradient)"
 			stroke-width="2"
 		/>
-		<path d="M766.182 145.713L663.616 145.41L663.598 178.607L487.765 178.576" stroke="url(#line_c_gradient)" stroke-width="2" />
-		<g filter="url(#filter0_d_926_54)">
+		<path d="M766 145 L663 145 L663 178 L487 178" stroke="url(#line_c_gradient)" stroke-width="2" />
+		<g filter="url(#logo_glow)">
 			<path
 				d="M493.062 78.897C466.044 41.3296 412.256 30.3226 373.588 54.0116L305.423 96.1253C286.832 107.372 273.943 125.796 270.225 146.614C267.003 164.082 269.729 182.028 278.405 197.581C272.456 206.195 268.49 215.767 266.755 225.816C262.789 247.113 267.994 269.127 280.884 286.594C308.149 324.162 361.69 335.169 400.358 311.48L468.523 269.605C487.113 258.359 500.002 239.934 503.72 219.117C506.943 201.649 504.216 183.703 495.541 168.149C501.49 159.535 505.456 149.964 507.191 139.914C511.404 118.379 506.199 96.3646 493.062 78.897Z"
 				fill="#FF3E00"
@@ -23,23 +23,15 @@
 			/>
 		</g>
 		<defs>
-			<filter
-				id="filter0_d_926_54"
-				x="246.453"
-				y="26.5364"
-				width="281.169"
-				height="320.419"
-				filterUnits="userSpaceOnUse"
-				color-interpolation-filters="sRGB"
-			>
+			<filter id="logo_glow" x="246" y="27" width="281" height="321" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 				<feFlood flood-opacity="0" result="BackgroundImageFix" />
 				<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-				<feOffset dy="4" />
-				<feGaussianBlur stdDeviation="9.5" />
+				<feOffset dy="0" />
+				<feGaussianBlur stdDeviation="10" />
 				<feComposite in2="hardAlpha" operator="out" />
-				<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0" />
-				<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_926_54" />
-				<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_926_54" result="shape" />
+				<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0" />
+				<feBlend mode="normal" in2="BackgroundImageFix" result="logo_drop_shadow" />
+				<feBlend mode="normal" in="SourceGraphic" in2="logo_drop_shadow" result="shape" />
 			</filter>
 			<radialGradient id="line_a_gradient" gradientUnits="userSpaceOnUse">
 				<animate attributeName="cx" values="-50;500;700;700" dur="6s" repeatCount="indefinite" />
@@ -50,7 +42,7 @@
 				</stop>
 				<stop offset="0.583333" stop-color="#FF3E00" stop-opacity="0" />
 			</radialGradient>
-			<radialGradient id="paint0_linear_926_54" gradientUnits="userSpaceOnUse">
+			<radialGradient id="line" gradientUnits="userSpaceOnUse">
 				<animate attributeName="cx" values="-100;200;500;500;500" dur="7s" repeatCount="indefinite" />
 				<animate attributeName="cy" values="420;300;100;100;100" dur="7s" repeatCount="indefinite" />
 				<animate attributeName="r" values="-50;150;0;0;0" dur="7s" repeatCount="indefinite" />
