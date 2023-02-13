@@ -127,7 +127,7 @@
 				<span>
 					Twitter <sup class="optional">optional</sup>
 				</span>
-				<input name="twitter" type="url" value={form?.fields?.twitter} />
+				<input name="twitter" type="url" value={form?.fields?.twitter || ''} />
 				<FieldError error={form?.fieldErrors?.twitter} />
 			</label>
 
