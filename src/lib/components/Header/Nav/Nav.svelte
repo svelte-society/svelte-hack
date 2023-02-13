@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { setContext } from 'svelte'
-	import { mobile } from 'fractils'
+	import { mobile, OnMount } from 'fractils'
 
 	import Mobile from './Mobile/Mobile.svelte'
 	import Desktop from './Desktop.svelte'
@@ -15,8 +15,10 @@
 	])
 </script>
 
-{#if $mobile}
-	<Mobile bind:showMenu />
-{:else}
-	<Desktop />
-{/if}
+<OnMount>
+	{#if $mobile}
+		<Mobile bind:showMenu />
+	{:else}
+		<Desktop />
+	{/if}
+</OnMount>
