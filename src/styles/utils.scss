@@ -43,7 +43,7 @@
 	border: 1px solid var(--bg-b);
 	border-radius: var(--radius-lg);
 
-	box-shadow: -0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.05) inset;
+	box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--brand-a-rgb), 0.1) inset;
 }
 
 .card-wrapper {
@@ -51,7 +51,7 @@
 
 	width: max-content;
 	max-width: 100%;
-	padding: 0.15rem 0.15rem 0.35rem 0.15rem;
+	padding: 0.15rem 0.15rem 0.15rem 0.15rem;
 	margin: 0 auto;
 
 	border-radius: var(--radius);

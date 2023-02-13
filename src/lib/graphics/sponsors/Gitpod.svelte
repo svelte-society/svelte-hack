@@ -1,5 +1,11 @@
 <div class="gitpod">
-	<svg width="100%" height="100%" viewBox="0 0 131 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		width="100%"
+		height="100%"
+		viewBox="0 0 131 41"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
 		<path
 			d="M56.544 31.7952C50.7527 31.7952 46.6124 27.51 46.6124 21.8627C46.6124 16.2155 50.781 11.9303 56.4599 11.9303C59.2576 11.9303 61.4396 13.0371 63.258 14.6546L62.111 17.0668C60.7125 15.6479 58.9217 14.4844 56.348 14.4844C52.1515 14.4844 49.1304 17.4641 49.1304 21.8627C49.1304 26.2614 52.1236 29.2411 56.3762 29.2411C60.0408 29.2411 62.6428 26.9992 63.0623 23.5938H55.5926V21.0398H65.9158V21.1533C65.9158 27.3965 62.4468 31.7952 56.544 31.7952Z"
 		/>
@@ -33,7 +39,14 @@
 			fill="url(#gitpod_gradient)"
 		/>
 		<defs>
-			<linearGradient id="gitpod_gradient" x1="27.5851" y1="7.00342" x2="8.85401" y2="36.046" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				id="gitpod_gradient"
+				x1="27.5851"
+				y1="7.00342"
+				x2="8.85401"
+				y2="36.046"
+				gradientUnits="userSpaceOnUse"
+			>
 				<stop stop-color="#FFB45B" />
 				<stop offset="1" stop-color="#FF8A00" />
 			</linearGradient>

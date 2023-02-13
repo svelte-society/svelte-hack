@@ -1,7 +1,7 @@
 <script>
-	import Stackblitz from '$lib/graphics/sponsors/Stackblitz.svelte'
-	import Svelte from '$lib/graphics/sponsors/Svelte.svelte'
-	import Vercel from '$lib/graphics/sponsors/Vercel.svelte'
+	import Stackblitz from '$lib/graphics/sponsors/Stackblitz.svelte';
+	import Svelte from '$lib/graphics/sponsors/Svelte.svelte';
+	import Vercel from '$lib/graphics/sponsors/Vercel.svelte';
 </script>
 
 <section>

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { clickOutside, mobile, ThemeToggle } from 'fractils'
-	import { fly, fade } from 'svelte/transition'
-	import PageFill from './PageFill.svelte'
-	import Burger from './Burger.svelte'
-	import { getContext } from 'svelte'
-	import { page } from '$app/stores'
+	import { clickOutside, mobile, ThemeToggle } from 'fractils';
+	import { fly, fade } from 'svelte/transition';
+	import PageFill from './PageFill.svelte';
+	import Burger from './Burger.svelte';
+	import { getContext } from 'svelte';
+	import { page } from '$app/stores';
 
-	const links = getContext('links')
-	export let showMenu = false
+	const links = getContext('links');
+	export let showMenu = false;
 </script>
 
 <template lang="pug">

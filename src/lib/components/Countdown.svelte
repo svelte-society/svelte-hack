@@ -1,10 +1,10 @@
 <script>
-	import { intervalToDuration, formatDuration } from 'date-fns'
-	import { onMount } from 'svelte'
+	import { intervalToDuration, formatDuration } from 'date-fns';
+	import { onMount } from 'svelte';
 
-	const HACKATHON_DATE = new Date(2023, 3, 24, 10, 11, 12)
+	const HACKATHON_DATE = new Date(2023, 3, 24, 10, 11, 12);
 
-	let now = Date.now()
+	let now = Date.now();
 
 	$: duration = formatDuration(
 		intervalToDuration({
@@ -12,33 +12,36 @@
 			end: now
 		}),
 		{ zero: true, format: ['months', 'weeks', 'days', 'hours', 'minutes'] }
-	)
+	);
 
 	onMount(() => {
 		const interval = setInterval(() => {
-			now = Date.now()
-		}, 5000)
-		return () => clearInterval(interval)
-	})
+			now = Date.now();
+		}, 5000);
+
+		return () => clearInterval(interval);
+	});
 </script>
 
-<div class="clock">
-	<p class="clockDisplay colorful">
-		{#key now}
-			{#each duration.split(' ') ?? [duration] as _, i}
-				<span class:word={i % 2 === 1}>{_ + ' '}</span>
-			{/each}
-		{/key}
-	</p>
+<div class="countdown colorful">
+	{#key now}
+		{#each duration.split(' ') ?? [duration] as text, i}
+			<div class="text">
+				<div class:isWord={i % 2 === 1}>
+					{text + ' '}
+				</div>
+			</div>
+		{/each}
+	{/key}
 </div>
 
 <style>
-	.clock {
+	.countdown {
 		margin: 0 auto;
 		width: fit-content;
-	}
+		gap: 1rem;
 
-	p {
+		display: flex;
 		color: var(--fg-b);
 
 		font-size: clamp(1.25rem, 2rem, 4vw);
@@ -50,7 +53,12 @@
 		line-height: 2rem;
 	}
 
-	.word {
+	.text {
+		position: relative;
+		display: flex;
+	}
+
+	.isWord {
 		font-size: var(--font-md);
 	}
 </style>

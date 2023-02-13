@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@neoconfetti/svelte': ^1.0.0
   '@sveltejs/adapter-vercel': 2.0.2
   '@sveltejs/kit': 1.5.3
   '@types/cookie': ^0.5.1
@@ -27,8 +28,10 @@ specifiers:
   tslib: 2.5.0
   typescript: 4.9.5
   vite: ^4.1.1
+  zod: ^3.20.6
 
 devDependencies:
+  '@neoconfetti/svelte': 1.0.0
   '@sveltejs/adapter-vercel': 2.0.2_@sveltejs+kit@1.5.3
   '@sveltejs/kit': 1.5.3_svelte@3.55.1+vite@4.1.1
   '@types/cookie': 0.5.1
@@ -55,6 +58,7 @@ devDependencies:
   tslib: 2.5.0
   typescript: 4.9.5
   vite: 4.1.1_gyrp4zacqcjjrmgvdzgac5epyy
+  zod: 3.20.6
 
 packages:
 
@@ -303,6 +307,10 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
+
+  /@neoconfetti/svelte/1.0.0:
+    resolution: {integrity: sha512-SmksyaJAdSlMa9cTidVSIqYo1qti+WTsviNDwgjNVm+KQ3DRP2Df9umDIzC4vCcpEYY+chQe0i2IKnLw03AT8Q==}
     dev: true
 
   /@polka/url/1.0.0-next.21:
@@ -2414,4 +2422,8 @@ packages:
   /yaml/2.2.1:
     resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
     engines: {node: '>= 14'}
+    dev: true
+
+  /zod/3.20.6:
+    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
     dev: true

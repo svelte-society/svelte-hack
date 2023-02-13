@@ -1,5 +1,11 @@
 <div class="society">
-	<svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		width="100%"
+		height="100%"
+		viewBox="0 0 400 400"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
 		<path
 			d="M200 400C310.457 400 400 310.457 400 200C400 89.5431 310.457 0 200 0C89.5431 0 0 89.5431 0 200C0 310.457 89.5431 400 200 400Z"
 			fill="#FF3E00"
@@ -90,12 +96,22 @@
 				color-interpolation-filters="sRGB"
 			>
 				<feFlood flood-opacity="0" result="BackgroundImageFix" />
-				<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+				<feColorMatrix
+					in="SourceAlpha"
+					type="matrix"
+					values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+					result="hardAlpha"
+				/>
 				<feOffset dy="4" />
 				<feGaussianBlur stdDeviation="2" />
 				<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
 				<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_3" />
-				<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_3" result="shape" />
+				<feBlend
+					mode="normal"
+					in="SourceGraphic"
+					in2="effect1_dropShadow_0_3"
+					result="shape"
+				/>
 			</filter>
 		</defs>
 	</svg>

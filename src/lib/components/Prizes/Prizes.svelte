@@ -1,5 +1,5 @@
 <script>
-	import Prize from './Prize.svelte'
+	import Prize from './Prize.svelte';
 
 	const prizes = [
 		{
@@ -20,7 +20,7 @@
 			award: '$4,000',
 			icon: '🪺'
 		}
-	]
+	];
 </script>
 
 <section class="col">

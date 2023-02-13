@@ -43,12 +43,12 @@ a {
 
 	&:not(h1, h2) {
 		text-decoration: underline;
-		text-decoration-color: var(--bg-d);
+		text-decoration-color: var(--brand-a);
 		text-decoration-thickness: 1px;
 		text-underline-offset: 1px;
 
 		&:hover {
-			text-decoration: underline;
+			text-decoration-thickness: 3px;
 		}
 	}
 }
@@ -59,7 +59,8 @@ pre {
 	color: var(--fg-a);
 	border-radius: 3px;
 
-	font-size: 16px;
+	font-size: 0.8em;
+	font-weight: 600;
 
 	overflow-x: auto;
 }

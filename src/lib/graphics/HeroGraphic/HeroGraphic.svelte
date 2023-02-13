@@ -1,7 +1,7 @@
 <script>
-	import FieldStatic from '$lib/graphics/HeroGraphic/FieldStatic.svelte'
-	import Field from '$lib/graphics/HeroGraphic/Field.svelte'
-	import Connected from './Connected.svelte'
+	import FieldStatic from '$lib/graphics/HeroGraphic/FieldStatic.svelte';
+	import Field from '$lib/graphics/HeroGraphic/Field.svelte';
+	import Connected from './Connected.svelte';
 </script>
 
 <div class="hero-graphic">
@@ -19,6 +19,7 @@
 <style lang="scss">
 	.hero-graphic {
 		position: relative;
+		contain: none;
 
 		width: 400px;
 		max-width: min(50%, 100vw);
@@ -30,6 +31,8 @@
 			margin: auto;
 			margin-bottom: 5rem;
 		}
+
+		backface-visibility: hidden;
 
 		pointer-events: none;
 	}

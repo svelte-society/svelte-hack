@@ -16,24 +16,5 @@
 		"allowJs": true,
 		"checkJs": true,
 		"types": ["node"]
-	},
-	"include": [
-		"src/**/**/**/*.ts",
-		"src/**/*.svelte",
-		"src/**/*.d.ts",
-		"src/**/*.js",
-		"src/**/*.ts",
-		"src/*.d.ts"
-	],
-	"exclude": [
-		".vercel_build_output/*",
-		"mdsvex.config.js",
-		"node_modules/*",
-		".svelte-kit/*",
-		"functions/*",
-		"coverage/*",
-		".svelte/*",
-		"build/*",
-		"dist/*"
-	]
+	}
 }

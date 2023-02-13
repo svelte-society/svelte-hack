@@ -1,5 +1,11 @@
 <div class="blob-a">
-	<svg width="100%" height="100%" viewBox="0 0 279 886" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		width="100%"
+		height="100%"
+		viewBox="0 0 279 886"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
 		<path
 			d="M111.996 283.476C-21.6631 160.103 72.7179 127.61 -44.1519 0.368652L-43.3481 845.202C71.1043 780.084 295.029 657.271 277.168 538.606C254.841 390.274 245.654 406.849 111.996 283.476Z"
 			fill="var(--brand-b)"

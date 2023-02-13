@@ -31,4 +31,4 @@
 </div>
 </section>
 
-<div class="br-md" />
+<div class="br-xl" />
