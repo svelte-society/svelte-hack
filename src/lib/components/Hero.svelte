@@ -1,5 +1,5 @@
 <script>
-	import TripleChevron from '$lib/graphics/TripleChevron.svelte'
+	import TripleChevron from '$lib/graphics/TripleChevron.svelte';
 </script>
 
 <div class="hero">

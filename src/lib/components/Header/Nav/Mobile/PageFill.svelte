@@ -1,5 +1,5 @@
 <script>
-	export let showMenu = false
+	export let showMenu = false;
 </script>
 
 <div class="page-fill" class:showMenu />

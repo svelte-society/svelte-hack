@@ -1,12 +1,12 @@
 <script lang="ts">
 	export let prize: {
-		name: string
-		description: string
-		award: string
-		icon: string
-	}
+		name: string;
+		description: string;
+		award: string;
+		icon: string;
+	};
 
-	const { name, description, award, icon } = prize
+	const { name, description, award, icon } = prize;
 </script>
 
 <div class="container">

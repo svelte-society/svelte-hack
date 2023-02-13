@@ -1,23 +1,29 @@
 <script lang="ts">
-	import { OnMount, scrollY } from 'fractils'
-	import { fly } from 'svelte/transition'
+	import { OnMount, scrollY } from 'fractils';
+	import { fly } from 'svelte/transition';
 
-	export let showMenu = false
+	export let showMenu = false;
 
-	let intro = true
+	let intro = true;
 
 	const handleClick = () => {
-		intro = false
-		showMenu = !showMenu
-	}
+		intro = false;
+		showMenu = !showMenu;
+	};
 
-	$: scrolled = $scrollY > 100
+	$: scrolled = $scrollY > 100;
 </script>
 
 <div class="burger" on:pointerdown={handleClick} class:scrolled out:fly={{ x: 75 }} class:showMenu>
 	<OnMount>
 		{#key showMenu}
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 101" overflow="visible" height="100%" width="100%">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 101 101"
+				overflow="visible"
+				height="100%"
+				width="100%"
+			>
 				<path
 					class="TopBun"
 					class:showMenu
@@ -120,21 +126,25 @@
 
 	.TopBun {
 		transform-origin: 25% 40%;
-		animation: var(--openDur) cubic-bezier(0.5, 0, 1, 0.5) var(--openDelay) reverse forwards openTop;
+		animation: var(--openDur) cubic-bezier(0.5, 0, 1, 0.5) var(--openDelay) reverse forwards
+			openTop;
 		transform: rotate(45deg);
 	}
 	.BottomBun {
 		transform-origin: 30% 60%;
-		animation: var(--openDur) cubic-bezier(0.5, 0, 1, 0.5) var(--openDelay) reverse forwards openBottom;
+		animation: var(--openDur) cubic-bezier(0.5, 0, 1, 0.5) var(--openDelay) reverse forwards
+			openBottom;
 		transform: rotate(-45deg);
 	}
 
 	.TopBun.showMenu {
-		animation: var(--closeDur) cubic-bezier(0, 0.51, 0.37, 1.02) var(--closeDelay) forwards openTop;
+		animation: var(--closeDur) cubic-bezier(0, 0.51, 0.37, 1.02) var(--closeDelay) forwards
+			openTop;
 		transform: rotate(0deg);
 	}
 	.BottomBun.showMenu {
-		animation: var(--closeDur) cubic-bezier(0, 0.51, 0.37, 1.02) var(--closeDelay) forwards openBottom;
+		animation: var(--closeDur) cubic-bezier(0, 0.51, 0.37, 1.02) var(--closeDelay) forwards
+			openBottom;
 		transform: rotate(0deg);
 	}
 

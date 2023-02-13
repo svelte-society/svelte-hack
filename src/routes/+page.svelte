@@ -1,6 +1,6 @@
 <script>
-	import HeroGraphic from '$lib/graphics/HeroGraphic/HeroGraphic.svelte'
-	import { Countdown, Sponsors, About, Hero } from '$lib/components'
+	import HeroGraphic from '$lib/graphics/HeroGraphic/HeroGraphic.svelte';
+	import { Countdown, Sponsors, About, Hero } from '$lib/components';
 </script>
 
 <div class="br-md" />

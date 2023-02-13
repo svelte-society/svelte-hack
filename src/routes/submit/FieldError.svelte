@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let error: string[] | undefined
+	export let error: string[] | undefined;
 </script>
 
 {#if error?.length}

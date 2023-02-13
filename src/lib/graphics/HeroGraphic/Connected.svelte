@@ -1,5 +1,11 @@
 <div class="connected">
-	<svg width="100%" height="100%" viewBox="0 0 767 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		width="100%"
+		height="100%"
+		viewBox="0 0 767 420"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
 		<path
 			d="M287.337 147.672L193.431 147.672L194.554 89.7827L72.4913 88.6097L72.4913 60.7888L0.850067 60.7888"
 			stroke="url(#line_a_gradient)"
@@ -10,7 +16,11 @@
 			stroke="url(#line_b_gradient)"
 			stroke-width="2"
 		/>
-		<path d="M766 145 L663 145 L663 178 L487 178" stroke="url(#line_c_gradient)" stroke-width="2" />
+		<path
+			d="M766 145 L663 145 L663 178 L487 178"
+			stroke="url(#line_c_gradient)"
+			stroke-width="2"
+		/>
 		<g filter="url(#logo_glow)">
 			<path
 				d="M493.062 78.897C466.044 41.3296 412.256 30.3226 373.588 54.0116L305.423 96.1253C286.832 107.372 273.943 125.796 270.225 146.614C267.003 164.082 269.729 182.028 278.405 197.581C272.456 206.195 268.49 215.767 266.755 225.816C262.789 247.113 267.994 269.127 280.884 286.594C308.149 324.162 361.69 335.169 400.358 311.48L468.523 269.605C487.113 258.359 500.002 239.934 503.72 219.117C506.943 201.649 504.216 183.703 495.541 168.149C501.49 159.535 505.456 149.964 507.191 139.914C511.404 118.379 506.199 96.3646 493.062 78.897Z"
@@ -23,9 +33,22 @@
 			/>
 		</g>
 		<defs>
-			<filter id="logo_glow" x="246" y="27" width="281" height="321" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<filter
+				id="logo_glow"
+				x="246"
+				y="27"
+				width="281"
+				height="321"
+				filterUnits="userSpaceOnUse"
+				color-interpolation-filters="sRGB"
+			>
 				<feFlood flood-opacity="0" result="BackgroundImageFix" />
-				<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+				<feColorMatrix
+					in="SourceAlpha"
+					type="matrix"
+					values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+					result="hardAlpha"
+				/>
 				<feOffset dy="0" />
 				<feGaussianBlur stdDeviation="10" />
 				<feComposite in2="hardAlpha" operator="out" />
@@ -34,29 +57,79 @@
 				<feBlend mode="normal" in="SourceGraphic" in2="logo_drop_shadow" result="shape" />
 			</filter>
 			<radialGradient id="line_a_gradient" gradientUnits="userSpaceOnUse">
-				<animate attributeName="cx" values="-50;500;700;700" dur="6s" repeatCount="indefinite" />
-				<animate attributeName="cy" values="50;230;330;330" dur="6s" repeatCount="indefinite" />
+				<animate
+					attributeName="cx"
+					values="-50;500;700;700"
+					dur="6s"
+					repeatCount="indefinite"
+				/>
+				<animate
+					attributeName="cy"
+					values="50;230;330;330"
+					dur="6s"
+					repeatCount="indefinite"
+				/>
 				<animate attributeName="r" values="0;400;0;0" dur="6s" repeatCount="indefinite" />
 				<stop stop-color="#FF3E00" stop-opacity="0.5">
-					<animate attributeName="stop-opacity" values="0;1;0.25;0.25" dur="6s" repeatCount="indefinite" />
+					<animate
+						attributeName="stop-opacity"
+						values="0;1;0.25;0.25"
+						dur="6s"
+						repeatCount="indefinite"
+					/>
 				</stop>
 				<stop offset="0.583333" stop-color="#FF3E00" stop-opacity="0" />
 			</radialGradient>
 			<radialGradient id="line" gradientUnits="userSpaceOnUse">
-				<animate attributeName="cx" values="-100;200;500;500;500" dur="7s" repeatCount="indefinite" />
-				<animate attributeName="cy" values="420;300;100;100;100" dur="7s" repeatCount="indefinite" />
-				<animate attributeName="r" values="-50;150;0;0;0" dur="7s" repeatCount="indefinite" />
+				<animate
+					attributeName="cx"
+					values="-100;200;500;500;500"
+					dur="7s"
+					repeatCount="indefinite"
+				/>
+				<animate
+					attributeName="cy"
+					values="420;300;100;100;100"
+					dur="7s"
+					repeatCount="indefinite"
+				/>
+				<animate
+					attributeName="r"
+					values="-50;150;0;0;0"
+					dur="7s"
+					repeatCount="indefinite"
+				/>
 				<stop stop-color="#FF3E00" stop-opacity="0.5">
-					<animate attributeName="stop-opacity" values="0;0.75;0.25;0.25;0.25" dur="7s" repeatCount="indefinite" />
+					<animate
+						attributeName="stop-opacity"
+						values="0;0.75;0.25;0.25;0.25"
+						dur="7s"
+						repeatCount="indefinite"
+					/>
 				</stop>
 				<stop offset="1" stop-color="#FF3E00" stop-opacity="0" />
 			</radialGradient>
 			<radialGradient id="line_c_gradient" gradientUnits="userSpaceOnUse">
-				<animate attributeName="cx" values="800;400;0;0" dur="6.5s" repeatCount="indefinite" />
-				<animate attributeName="cy" values="0;300;330;330" dur="6.5s" repeatCount="indefinite" />
+				<animate
+					attributeName="cx"
+					values="800;400;0;0"
+					dur="6.5s"
+					repeatCount="indefinite"
+				/>
+				<animate
+					attributeName="cy"
+					values="0;300;330;330"
+					dur="6.5s"
+					repeatCount="indefinite"
+				/>
 				<animate attributeName="r" values="0;500;0;0" dur="6.5s" repeatCount="indefinite" />
 				<stop stop-color="#FF3E00" stop-opacity="0.5">
-					<animate attributeName="stop-opacity" values="0.25;0.75;0.25;0.25" dur="6.5s" repeatCount="indefinite" />
+					<animate
+						attributeName="stop-opacity"
+						values="0.25;0.75;0.25;0.25"
+						dur="6.5s"
+						repeatCount="indefinite"
+					/>
 				</stop>
 				<stop offset="0.583333" stop-color="#FF4700" stop-opacity="0" />
 			</radialGradient>

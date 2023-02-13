@@ -1,7 +1,7 @@
-import autolinkHeadings from 'rehype-autolink-headings'
-import github from 'remark-github'
-import slug from 'rehype-slug'
-import abbr from 'remark-abbr'
+import autolinkHeadings from 'rehype-autolink-headings';
+import github from 'remark-github';
+import slug from 'rehype-slug';
+import abbr from 'remark-abbr';
 
 const mdsvexConfig = {
 	extensions: ['.svelte.md', '.md', '.svx'],
@@ -18,6 +18,6 @@ const mdsvexConfig = {
 			}
 		]
 	]
-}
+};
 
-export default mdsvexConfig
+export default mdsvexConfig;

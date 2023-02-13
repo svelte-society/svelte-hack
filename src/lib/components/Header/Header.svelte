@@ -16,7 +16,9 @@
 			<Nav />
 		</nav>
 
-		<a class="btn-b submit" href="/submit" class:active={$page.url.pathname === '/submit'}>Submit</a>
+		<a class="btn-b submit" href="/submit" class:active={$page.url.pathname === '/submit'}>
+			Submit
+		</a>
 	</div>
 
 	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>

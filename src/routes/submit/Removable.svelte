@@ -14,9 +14,21 @@
 			type="button"
 			on:click={() => (open = !open)}
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 26 26">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="100%"
+				height="100%"
+				fill="none"
+				viewBox="0 0 26 26"
+			>
 				<circle cx="13" cy="13" r="12" fill="var(--bg-a)" />
-				<path class="x" stroke="var(--fg-d)" stroke-linecap="round" stroke-width="1" d="m8 8 10 10m0-10L8 18" />
+				<path
+					class="x"
+					stroke="var(--fg-d)"
+					stroke-linecap="round"
+					stroke-width="1"
+					d="m8 8 10 10m0-10L8 18"
+				/>
 			</svg>
 		</button>
 	</div>
