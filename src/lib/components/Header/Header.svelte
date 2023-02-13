@@ -1,8 +1,8 @@
 <script>
-	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte'
-	import { mobile, scrollY, ThemeToggle } from 'fractils'
-	import { page } from '$app/stores'
-	import { Nav } from './Nav'
+	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte';
+	import { mobile, scrollY, ThemeToggle } from 'fractils';
+	import { page } from '$app/stores';
+	import { Nav } from './Nav';
 </script>
 
 <header class:top={$scrollY === 0}>

@@ -1,10 +1,21 @@
 <script>
-	import { fieldStaticPath } from './paths'
+	import { fieldStaticPath } from './paths';
 </script>
 
 <div class="field-static">
-	<svg width="100%" height="100%" viewBox="-5 20 352 369" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path fill-rule="evenodd" clip-rule="evenodd" d={fieldStaticPath} fill="url(#field_static_gradient)" />
+	<svg
+		width="100%"
+		height="100%"
+		viewBox="-5 20 352 369"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			fill-rule="evenodd"
+			clip-rule="evenodd"
+			d={fieldStaticPath}
+			fill="url(#field_static_gradient)"
+		/>
 		<defs>
 			<radialGradient
 				id="field_static_gradient"
@@ -26,5 +37,7 @@
 		width: var(--size, 352px);
 		max-width: 100%;
 		height: auto;
+		backface-visibility: hidden;
+		contain: none;
 	}
 </style>
