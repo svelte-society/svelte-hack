@@ -13,6 +13,7 @@ specifiers:
   fractils: 3.1.0
   greset: 2.0.0
   mdsvex: 0.10.6
+  pocketbase: ^0.10.1
   postcss: 8.4.21
   postcss-load-config: 4.0.1
   prettier: 2.8.4
@@ -43,6 +44,7 @@ devDependencies:
   fractils: 3.1.0
   greset: 2.0.0
   mdsvex: 0.10.6_svelte@3.55.1
+  pocketbase: 0.10.1
   postcss: 8.4.21
   postcss-load-config: 4.0.1_postcss@8.4.21
   prettier: 2.8.4
@@ -1401,6 +1403,10 @@ packages:
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+    dev: true
+
+  /pocketbase/0.10.1:
+    resolution: {integrity: sha512-FMBhF+9o2AmdKJYbfz2qunnk4Q5/efYMRcukdQF49UfhsIuaSYl39fSPN1l880bYI4XAvDDeySAjK1MlxrK37A==}
     dev: true
 
   /postcss-calc/8.2.4_postcss@8.4.21:

@@ -1,12 +1,15 @@
 import type { Handle } from '@sveltejs/kit';
-import { parse } from 'cookie';
+import Pocketbase from 'pocketbase';
 
-/**
- * Injects the :root['theme'] on the server to avoid FOUC.
- */
-export const handle: Handle = ({ event, resolve }) => {
-	const cookies = parse(event.request.headers?.get('cookie') || '');
-	event.locals.theme = <'dark' | 'light' | 'system'>cookies.theme || 'dark';
+export const handle: Handle = async ({ event, resolve }) => {
+	const theme = event.cookies.get('theme') as 'dark' | 'light' | 'system' | undefined;
+	event.locals.theme = theme || 'dark';
+
+	const pb = new Pocketbase('https://hack-api.sveltesociety.dev/');
+	event.locals.pb = pb;
+
+	pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+	event.locals.user = pb.authStore.model;
 
 	let page = '';
 	return resolve(event, {

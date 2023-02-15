@@ -5,13 +5,13 @@
 declare namespace App {
 	interface Locals {
 		theme: 'dark' | 'light' | 'system';
+		pb: import('pocketbase').default;
+		user?: import('pocketbase').BaseAuthStore['model'];
 	}
 
-	interface Platform {}
-
-	interface Session {}
-
-	interface Stuff {}
+	interface PageData {
+		loggedIn: boolean;
+	}
 }
 
 /**

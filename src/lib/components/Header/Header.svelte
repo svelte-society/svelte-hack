@@ -16,12 +16,8 @@
 			<Nav />
 		</nav>
 
-		<a
-			class="btn-b submit"
-			href="/submit"
-			class:active={$mobile || $page.url.pathname === '/submit'}
-		>
-			Submit
+		<a class="btn-b login" href={$page.data.loggedIn ? '/submit' : '/login'}>
+			{$page.data.loggedIn ? 'Submit' : 'Login'}
 		</a>
 	</div>
 
@@ -95,18 +91,12 @@
 		font-size: 1.2rem;
 	}
 
-	.submit {
+	.login {
 		text-decoration: none;
 		border-radius: var(--radius);
 
 		opacity: 1;
 		transition: opacity 0.5s;
-	}
-
-	.submit.active {
-		opacity: 0;
-		pointer-events: none;
-		user-select: none;
 	}
 
 	.theme {
