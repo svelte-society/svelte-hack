@@ -1,7 +1,10 @@
-/.vercel_build_output
 /node_modules
 /.svelte-kit
+/.vercel_build_output
 /functions
-.DS_Store
 /build
+
 .env
+.vscode
+
+.DS_Store
