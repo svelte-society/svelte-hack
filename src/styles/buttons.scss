@@ -17,7 +17,8 @@ button {
 	background: var(--brand-a);
 	border: 1px solid transparent;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		background: var(--bg-a);
 		color: var(--brand-a);
 		border-color: var(--brand-a);
@@ -31,7 +32,8 @@ button {
 	background: var(--bg-a);
 	border: 1px solid var(--brand-a);
 
-	&:hover {
+	&:hover,
+	&:focus {
 		background: var(--brand-a);
 		color: var(--bg-a);
 	}
@@ -44,7 +46,8 @@ button {
 	background: var(--bg-a);
 	border: 1px solid transparent;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		border-color: var(--brand-a);
 	}
 }
