@@ -21,10 +21,12 @@
 		<p>
 			The second place winners for each section will be awarded 1 <strong>Vercel Pro</strong>
 			subscription and 1
-			<strong>Gitpod Pro</strong>
+			<strong>Stackblitz Pro</strong>
 			subscription courtesy of our sponsors!
 		</p>
 	</div>
+
+	<div class="br-lg" />
 </section>
 
 <style>
