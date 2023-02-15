@@ -7,6 +7,7 @@
 {#if open}
 	<div transition:slide={{ duration: 250 }} class="removable">
 		<slot />
+
 		<button
 			transition:scale={{ duration: 200, delay: 200 }}
 			class="close"

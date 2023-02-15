@@ -1,27 +1,26 @@
 <script lang="ts">
-	import type { ActionData, Snapshot } from './$types';
-
+	import type { ActionData, PageData } from './$types';
 	import FieldError from './FieldError.svelte';
 	import Removable from './Removable.svelte';
-	import Confetti from './Confetti.svelte';
-	import { fly } from 'svelte/transition';
 	import { enhance } from '$app/forms';
 
+	export let data: PageData;
 	export let form: ActionData;
 
-	export const snapshot: Snapshot = {
-		capture: () => (form?.success ? {} : form),
-		restore: (data) => (form = data)
+	$: fields = {
+		authorOne: form?.fields?.authorOne || data?.authorOne || '',
+		authorTwo: form?.fields?.authorTwo || data?.authorTwo || '',
+		authorThree: form?.fields?.authorThree || data?.authorThree || '',
+		title: form?.fields?.title || data?.title || '',
+		description: form?.fields?.description || data?.description || '',
+		github: form?.fields?.github || data?.github || '',
+		demo: form?.fields?.demo || data?.demo || ''
 	};
 
 	let disabled = false;
 
-	$: if (!form?.success) {
-		disabled = false;
-	}
-
-	let authorTwo = false;
-	let authorThree = false;
+	let authorTwo = !!data?.authorTwo;
+	let authorThree = !!data?.authorThree;
 
 	function addAuthor() {
 		if (!authorTwo) {
@@ -32,159 +31,100 @@
 	}
 </script>
 
-{#if form?.success}
-	<section>
-		<div class="br-xl" />
-		<Confetti />
-		<h2 class="thanks">Thank you for your submission!</h2>
-	</section>
-{:else}
-	<section out:fly={{ y: 10, duration: 250 }}>
-		<h2>Submit your project</h2>
+<section>
+	<h2>Your SvelteHack Project</h2>
 
-		<div class="br-sm" />
+	<div class="br-sm" />
 
-		<p>
-			Please review the <a href="/rules">rules</a>
-			before submitting.
-		</p>
+	<p>
+		You can edit this submission any time until DEADLINE_HERE. Please review the
+		<a href="/rules">rules</a>
+		before submitting.
+	</p>
 
-		<div class="br-md" />
+	<div class="br-md" />
 
-		{#if form?.error}
-			<p>{form?.error}</p>
-		{/if}
+	{#if form?.error}
+		<p>{form?.error}</p>
+	{/if}
 
-		<form
-			method="POST"
-			use:enhance={() => {
-				disabled = true;
-			}}
-		>
-			<label>
-				<span>Author Name(s)</span>
+	<form
+		method="POST"
+		use:enhance={() => {
+			disabled = true;
+
+			return async ({ update }) => {
+				disabled = false;
+				await update({ reset: false });
+			};
+		}}
+	>
+		<label>
+			<span>Author Email(s)</span>
+
+			<input name="authorOne" type="email" value={fields.authorOne} {disabled} required />
+			<FieldError error={form?.fieldErrors?.authorOne} />
+
+			<Removable bind:open={authorTwo}>
+				<input name="authorTwo" type="email" value={fields.authorTwo} {disabled} required />
+				<FieldError error={form?.fieldErrors?.authorTwo} />
+			</Removable>
+
+			<Removable bind:open={authorThree}>
 				<input
-					class="author"
-					name="authorOne"
-					type="text"
-					value={form?.fields?.authorOne || ''}
+					name="authorThree"
+					type="email"
+					value={fields.authorThree}
 					{disabled}
 					required
 				/>
 
-				<FieldError error={form?.fieldErrors?.authorOne} />
+				<FieldError error={form?.fieldErrors?.authorThree} />
+			</Removable>
 
-				<Removable bind:open={authorTwo}>
-					<input
-						class="author"
-						name="authorTwo"
-						type="text"
-						value={form?.fields?.authorTwo || ''}
-						{disabled}
-						required
-					/>
+			<button
+				title="add author"
+				class:disabled={authorTwo && authorThree}
+				type="button"
+				class="add-author-btn"
+				on:click={addAuthor}
+				{disabled}
+			>
+				+
+			</button>
+		</label>
 
-					<FieldError error={form?.fieldErrors?.authorTwo} />
-				</Removable>
+		<label>
+			<span>Project Title</span>
+			<input name="title" type="text" value={fields.title} {disabled} required />
+			<FieldError error={form?.fieldErrors?.title} />
+		</label>
 
-				<Removable bind:open={authorThree}>
-					<input
-						class="author"
-						name="authorThree"
-						type="text"
-						value={form?.fields?.authorThree || ''}
-						{disabled}
-						required
-					/>
+		<label>
+			<span>Project Description</span>
+			<textarea name="description" value={fields.description} {disabled} required rows="4" />
+			<FieldError error={form?.fieldErrors?.description} />
+		</label>
 
-					<FieldError error={form?.fieldErrors?.authorThree} />
-				</Removable>
+		<label>
+			<span>GitHub Repository</span>
+			<input name="github" type="url" value={fields.github} {disabled} required />
+			<FieldError error={form?.fieldErrors?.github} />
+		</label>
 
-				<button
-					title="add author"
-					class:disabled={authorTwo && authorThree}
-					type="button"
-					class="add-author-btn"
-					on:click={addAuthor}
-					{disabled}
-				>
-					+
-				</button>
-			</label>
+		<label>
+			<span>Demo URL</span>
+			<input name="demo" type="url" value={fields.demo} {disabled} required />
+			<FieldError error={form?.fieldErrors?.demo} />
+		</label>
 
-			<label>
-				<span>Project Title</span>
-				<input
-					name="title"
-					type="text"
-					value={form?.fields?.title || ''}
-					{disabled}
-					required
-				/>
-
-				<FieldError error={form?.fieldErrors?.title} />
-			</label>
-
-			<label>
-				<span>Project Description</span>
-				<textarea
-					name="description"
-					value={form?.fields?.description || ''}
-					{disabled}
-					required
-					rows="4"
-				/>
-
-				<FieldError error={form?.fieldErrors?.description} />
-			</label>
-
-			<label>
-				<span>GitHub Repository</span>
-				<input
-					name="github"
-					type="url"
-					value={form?.fields?.github || ''}
-					{disabled}
-					required
-				/>
-
-				<FieldError error={form?.fieldErrors?.github} />
-			</label>
-
-			<label>
-				<span>Demo URL</span>
-				<input
-					name="demo"
-					type="url"
-					value={form?.fields?.demo || ''}
-					{disabled}
-					required
-				/>
-
-				<FieldError error={form?.fieldErrors?.demo} />
-			</label>
-
-			<label>
-				<span>
-					Twitter <sup class="optional">optional</sup>
-				</span>
-				<input name="twitter" type="url" value={form?.fields?.twitter || ''} {disabled} />
-				<FieldError error={form?.fieldErrors?.twitter} />
-			</label>
-
-			<button type="submit" class="btn-b" {disabled}>Submit</button>
-		</form>
-	</section>
-{/if}
+		<button type="submit" class="btn-b" {disabled}>Save</button>
+	</form>
+</section>
 
 <div class="br-xl" />
 
 <style>
-	h2.thanks {
-		font-family: var(--font-a);
-		font-weight: 300;
-	}
-
 	section {
 		display: flex;
 		flex-direction: column;
@@ -250,12 +190,6 @@
 
 	label span {
 		margin: 0.5rem 0;
-	}
-
-	sup.optional {
-		color: var(--bg-d);
-		font-size: var(--font-xs);
-		font-style: italic;
 	}
 
 	input,

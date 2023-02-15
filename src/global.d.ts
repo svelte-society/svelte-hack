@@ -11,6 +11,9 @@ declare namespace App {
 
 	interface PageData {
 		loggedIn: boolean;
+		user?: {
+			email: string;
+		};
 	}
 }
 
