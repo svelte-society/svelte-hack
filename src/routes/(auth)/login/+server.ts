@@ -14,7 +14,11 @@ export const GET: RequestHandler = async ({ request, locals, cookies }) => {
 	}
 
 	// Get the state and make it a cookie so we can use it in the callback
-	cookies.set('login_state', JSON.stringify(github));
+	cookies.set('login_state', JSON.stringify(github), {
+		path: '/',
+		secure: true,
+		httpOnly: true
+	});
 
 	const url = new URL(github.authUrl);
 	url.searchParams.set('redirect_uri', PB_REDIRECT_URL);

@@ -17,7 +17,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url, setHeaders }) 
 	let github: AuthProviderInfo;
 
 	try {
-		github = JSON.parse(cookies.get('login_state') || '');
+		github = JSON.parse(cookies.get('login_state', { path: '/' }) || '');
 		if (!github) throw new Error('.');
 	} catch {
 		throw error(400, 'Unable to find login state, please try again');
@@ -44,7 +44,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url, setHeaders }) 
 		});
 
 		// We don't need this again
-		cookies.delete('login_state');
+		cookies.delete('login_state', { path: '/' });
 	} catch (e) {
 		throw error(500, (e as any)?.message || e);
 	}
