@@ -23,7 +23,7 @@
 	});
 </script>
 
-<div class="countdown colorful">
+<div class="countdown">
 	{#key now}
 		{#each duration.split(' ') ?? [duration] as text, i}
 			<div class="text">
@@ -37,17 +37,23 @@
 
 <style>
 	.countdown {
-		margin: 0 auto;
-		width: fit-content;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 1rem;
 
-		display: flex;
+		/* width: fit-content; */
+		max-width: 90vw;
+		margin: 0 auto;
+
 		color: var(--fg-b);
 
 		font-size: clamp(1.25rem, 2rem, 4vw);
 		font-family: var(--font-b);
 
-		letter-spacing: 0.25rem;
+		letter-spacing: 0.2rem;
+		word-wrap: break-word;
+		white-space: pre-wrap;
 
 		text-align: center;
 		line-height: 2rem;
