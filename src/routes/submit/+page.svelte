@@ -14,6 +14,12 @@
 		restore: (data) => (form = data)
 	};
 
+	let disabled = false;
+
+	$: if (!form?.success) {
+		disabled = false;
+	}
+
 	let authorTwo = false;
 	let authorThree = false;
 
@@ -49,7 +55,12 @@
 			<p>{form?.error}</p>
 		{/if}
 
-		<form method="POST" use:enhance>
+		<form
+			method="POST"
+			use:enhance={() => {
+				disabled = true;
+			}}
+		>
 			<label>
 				<span>Author Name(s)</span>
 				<input
@@ -57,8 +68,10 @@
 					name="authorOne"
 					type="text"
 					value={form?.fields?.authorOne || ''}
+					{disabled}
 					required
 				/>
+
 				<FieldError error={form?.fieldErrors?.authorOne} />
 
 				<Removable bind:open={authorTwo}>
@@ -67,8 +80,10 @@
 						name="authorTwo"
 						type="text"
 						value={form?.fields?.authorTwo || ''}
+						{disabled}
 						required
 					/>
+
 					<FieldError error={form?.fieldErrors?.authorTwo} />
 				</Removable>
 
@@ -78,8 +93,10 @@
 						name="authorThree"
 						type="text"
 						value={form?.fields?.authorThree || ''}
+						{disabled}
 						required
 					/>
+
 					<FieldError error={form?.fieldErrors?.authorThree} />
 				</Removable>
 
@@ -89,6 +106,7 @@
 					type="button"
 					class="add-author-btn"
 					on:click={addAuthor}
+					{disabled}
 				>
 					+
 				</button>
@@ -96,7 +114,14 @@
 
 			<label>
 				<span>Project Title</span>
-				<input name="title" type="text" value={form?.fields?.title || ''} required />
+				<input
+					name="title"
+					type="text"
+					value={form?.fields?.title || ''}
+					{disabled}
+					required
+				/>
+
 				<FieldError error={form?.fieldErrors?.title} />
 			</label>
 
@@ -105,21 +130,37 @@
 				<textarea
 					name="description"
 					value={form?.fields?.description || ''}
+					{disabled}
 					required
 					rows="4"
 				/>
+
 				<FieldError error={form?.fieldErrors?.description} />
 			</label>
 
 			<label>
 				<span>GitHub Repository</span>
-				<input name="github" type="url" value={form?.fields?.github || ''} required />
+				<input
+					name="github"
+					type="url"
+					value={form?.fields?.github || ''}
+					{disabled}
+					required
+				/>
+
 				<FieldError error={form?.fieldErrors?.github} />
 			</label>
 
 			<label>
 				<span>Demo URL</span>
-				<input name="demo" type="url" value={form?.fields?.demo || ''} required />
+				<input
+					name="demo"
+					type="url"
+					value={form?.fields?.demo || ''}
+					{disabled}
+					required
+				/>
+
 				<FieldError error={form?.fieldErrors?.demo} />
 			</label>
 
@@ -127,11 +168,11 @@
 				<span>
 					Twitter <sup class="optional">optional</sup>
 				</span>
-				<input name="twitter" type="url" value={form?.fields?.twitter || ''} />
+				<input name="twitter" type="url" value={form?.fields?.twitter || ''} {disabled} />
 				<FieldError error={form?.fieldErrors?.twitter} />
 			</label>
 
-			<button type="submit" class="btn-b">Submit</button>
+			<button type="submit" class="btn-b" {disabled}>Submit</button>
 		</form>
 	</section>
 {/if}
@@ -169,6 +210,15 @@
 		box-shadow: var(--shadow-sm);
 
 		text-align: center;
+
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	button:disabled,
+	input:disabled,
+	textarea:disabled {
+		opacity: 0.8;
+		cursor: not-allowed;
 	}
 
 	form {
