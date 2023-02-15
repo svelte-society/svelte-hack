@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Svelte Hack",
+    "short_name": "Svelte Hack",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -8,7 +8,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#ff4700",
+    "background_color": "#0b0e11",
     "display": "standalone"
 }
