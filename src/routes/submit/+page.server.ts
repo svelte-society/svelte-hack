@@ -38,8 +38,6 @@ export const actions: Actions = {
 			await request.formData()
 		);
 
-		console.log({ raw_data });
-
 		const result = await schema.safeParseAsync(raw_data);
 
 		// If the submission is invalid return the errors to the frontend
