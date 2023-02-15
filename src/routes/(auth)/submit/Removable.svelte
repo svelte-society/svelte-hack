@@ -5,7 +5,7 @@
 </script>
 
 {#if open}
-	<div transition:slide={{ duration: 250 }} class="removable">
+	<div transition:slide|local={{ duration: 250 }} class="removable">
 		<slot />
 
 		<button
