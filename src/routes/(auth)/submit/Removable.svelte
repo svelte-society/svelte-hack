@@ -9,7 +9,7 @@
 		<slot />
 
 		<button
-			transition:scale={{ duration: 200, delay: 200 }}
+			transition:scale|local={{ duration: 200, delay: 200 }}
 			class="close"
 			title="remove author"
 			type="button"
