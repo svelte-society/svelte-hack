@@ -6,44 +6,55 @@
 	import { getContext } from 'svelte';
 	import { page } from '$app/stores';
 
-	const links = getContext('links');
+	const links = getContext<[string, string]>('links');
 	export let showMenu = false;
 </script>
 
-<template lang="pug">
+<div class="burger" use:clickOutside on:outclick={() => (showMenu = false)}>
+	<Burger bind:showMenu />
 
-		.burger(use:clickOutside!='{{ whitelist: ["wrapper"] }}' on:outclick!='{() => showMenu = false}')
-			Burger(bind:showMenu)
+	<PageFill bind:showMenu />
 
-		PageFill(bind:showMenu)
+	{#if showMenu}
+		<div class="theme corner">
+			<ThemeToggle />
+		</div>
 
-		+if('showMenu')
-
-			#theme.corner
-				ThemeToggle
-
-			nav(
-				class:showMenu
-				class:mobile='{$mobile}'
-			)
-
-				ul
-
-					+each('links as [path, title], i (title)')
-
-						li(
-							class:active='{$page.url.pathname === path}'
-							in:fly='{{ y: -10 - (5 * i), delay: 100 + (i * 100) }}'
-							out:fade='{{ duration: 50 }}'
-						)
-
-							a(
-								sveltekit:prefetch
-								href='{path}'
-								class:disabled!='{title === "Winners"}'
-							) {title}
-
-</template>
+		<nav class:showMenu class:mobile={$mobile}>
+			<ul>
+				{#each links as [path, title], i (title)}
+					<li
+						class:active={$page.url.pathname === path}
+						in:fly={{ y: -10 - 5 * i, delay: 100 + i * 100 }}
+						out:fade={{ duration: 50 }}
+					>
+						<a
+							data-sveltekit-preload-code
+							href={path}
+							class:disabled={title === 'Winners'}
+							on:click={() => (showMenu = false)}
+						>
+							{title}
+						</a>
+					</li>
+				{/each}
+				<li
+					class:active={$page.url.pathname === '/submit'}
+					in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
+					out:fade={{ duration: 50 }}
+				>
+					<a
+						data-sveltekit-preload-code
+						href="/submit"
+						on:click={() => (showMenu = false)}
+					>
+						Submit
+					</a>
+				</li>
+			</ul>
+		</nav>
+	{/if}
+</div>
 
 <style>
 	nav {
@@ -106,7 +117,7 @@
 		color: var(--brand-a);
 	}
 
-	#theme {
+	.theme {
 		position: fixed;
 		top: 1rem;
 		right: 5rem;

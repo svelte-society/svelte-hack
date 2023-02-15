@@ -16,7 +16,11 @@
 			<Nav />
 		</nav>
 
-		<a class="btn-b submit" href="/submit" class:active={$page.url.pathname === '/submit'}>
+		<a
+			class="btn-b submit"
+			href="/submit"
+			class:active={$mobile || $page.url.pathname === '/submit'}
+		>
 			Submit
 		</a>
 	</div>
@@ -78,6 +82,7 @@
 		letter-spacing: 2px;
 		text-decoration: none;
 	}
+
 	@media only screen and (max-width: 1000px) {
 		.home {
 			margin-right: 1rem;
