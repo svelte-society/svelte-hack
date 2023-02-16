@@ -4,7 +4,7 @@
 	const prizes = [
 		{
 			name: 'Best Application',
-			description: `Applications will be judged based on their quality, accessibility, and utility.  May the best app win!`,
+			description: `Applications will be judged based on their quality, accessibility, utility, and novelty.  May the best app win!`,
 			award: '$3,000',
 			icon: '🏆'
 		},
