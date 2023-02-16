@@ -2,7 +2,9 @@
 	import type { ActionData, PageData } from './$types';
 	import FieldError from './FieldError.svelte';
 	import Removable from './Removable.svelte';
+	import Confetti from './Confetti.svelte';
 	import { enhance } from '$app/forms';
+	import { onDestroy } from 'svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -19,6 +21,9 @@
 
 	let disabled = false;
 
+	let interval: ReturnType<typeof setInterval>;
+	let saveAnimation = false;
+
 	let authorTwo = !!data?.authorTwo;
 	let authorThree = !!data?.authorThree;
 
@@ -29,7 +34,26 @@
 			authorThree = true;
 		}
 	}
+
+	function saved() {
+		if (saveAnimation && !disabled) return;
+
+		disabled = false;
+		saveAnimation = true;
+
+		interval = setInterval(() => {
+			saveAnimation = false;
+		}, 5000);
+	}
+
+	onDestroy(() => {
+		clearInterval(interval);
+	});
 </script>
+
+{#if saveAnimation}
+	<Confetti />
+{/if}
 
 <section>
 	<h2>Your SvelteHack Project</h2>
@@ -54,7 +78,7 @@
 			disabled = true;
 
 			return async ({ update }) => {
-				disabled = false;
+				saved();
 				await update({ reset: false });
 			};
 		}}
@@ -118,7 +142,9 @@
 			<FieldError error={form?.fieldErrors?.demo} />
 		</label>
 
-		<button type="submit" class="btn-b" {disabled}>Save</button>
+		<button type="submit" class="btn-b" {disabled}>
+			{saveAnimation ? 'Saved!' : 'Save'}
+		</button>
 	</form>
 </section>
 
