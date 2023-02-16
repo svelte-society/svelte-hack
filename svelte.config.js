@@ -13,7 +13,11 @@ const config = {
 		mdsvex(mdsvexConfig)
 	],
 	kit: {
-		adapter: vercel()
+		adapter: vercel(),
+
+		csrf: {
+			checkOrigin: process.env['NODE_ENV'] == 'development'
+		}
 	},
 	vitePlugin: {
 		experimental: {
