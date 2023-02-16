@@ -16,16 +16,6 @@
 		<BlobA />
 	</div>
 
-	<div class="card">
-		<h2>🥈 Second Place</h2>
-		<p>
-			The second place winners for each section will be awarded 1 <strong>Vercel Pro</strong>
-			subscription and 1
-			<strong>Stackblitz Pro</strong>
-			subscription courtesy of our sponsors!
-		</p>
-	</div>
-
 	<div class="br-lg" />
 </section>
 
@@ -53,9 +43,5 @@
 		padding-bottom: 5rem;
 
 		overflow: hidden;
-	}
-
-	.card {
-		margin-top: 2rem;
 	}
 </style>
