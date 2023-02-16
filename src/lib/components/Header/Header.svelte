@@ -1,6 +1,7 @@
 <script>
 	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte';
 	import { mobile, scrollY, ThemeToggle } from 'fractils';
+	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import { Nav } from './Nav';
 </script>
@@ -16,13 +17,21 @@
 			<Nav />
 		</nav>
 
-		<a
-			class="btn-b login"
-			class:active={$page.url.pathname == '/submit'}
-			href={$page.data.loggedIn ? '/submit' : '/login'}
-		>
-			{$page.data.loggedIn ? 'Submit' : 'Login'}
-		</a>
+		<div class="row">
+			{#if $page.data.loggedIn}
+				<a class="logout" href="/logout">Logout</a>
+			{/if}
+
+			{#if $page.url.pathname != '/submit'}
+				<a
+					class="btn-b login"
+					transition:fade|local
+					href={$page.data.loggedIn ? '/submit' : '/login'}
+				>
+					{$page.data.loggedIn ? 'Submit' : 'Login'}
+				</a>
+			{/if}
+		</div>
 	</div>
 
 	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>
@@ -47,6 +56,12 @@
 		transition: box-shadow 0.2s ease-in-out;
 
 		z-index: 40;
+	}
+
+	.row {
+		display: flex;
+		align-items: center;
+		gap: 32px;
 	}
 
 	header.top {
@@ -83,6 +98,28 @@
 		text-decoration: none;
 	}
 
+	.logout {
+		display: flex;
+		align-items: center;
+
+		height: 100%;
+
+		color: var(--fg-d);
+
+		font-size: 1.2rem;
+		font-weight: 400;
+		text-decoration: none;
+		letter-spacing: 10%;
+
+		transition: color 0.15s linear;
+	}
+
+	.logout:hover {
+		color: var(--brand-a);
+
+		text-decoration: none;
+	}
+
 	@media only screen and (max-width: 1000px) {
 		.home {
 			margin-right: 1rem;
@@ -98,15 +135,6 @@
 	.login {
 		text-decoration: none;
 		border-radius: var(--radius);
-
-		opacity: 1;
-		transition: opacity 0.5s;
-	}
-
-	.login.active {
-		opacity: 0;
-		pointer-events: none;
-		user-select: none;
 	}
 
 	.theme {

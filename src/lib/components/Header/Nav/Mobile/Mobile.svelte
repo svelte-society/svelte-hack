@@ -38,18 +38,25 @@
 						</a>
 					</li>
 				{/each}
+
 				<li
 					class:active={$page.url.pathname === '/submit'}
 					in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
 					out:fade={{ duration: 50 }}
 				>
 					<a
-						data-sveltekit-preload-code
-						href="/submit"
+						href={$page.data.loggedIn ? '/submit' : '/login'}
 						on:click={() => (showMenu = false)}
 					>
-						Submit
+						{$page.data.loggedIn ? 'Submit' : 'Login'}
 					</a>
+				</li>
+
+				<li
+					in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
+					out:fade={{ duration: 50 }}
+				>
+					<a href="/logout" on:click={() => (showMenu = false)}>Logout</a>
 				</li>
 			</ul>
 		</nav>
