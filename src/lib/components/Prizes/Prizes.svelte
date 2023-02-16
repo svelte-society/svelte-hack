@@ -29,7 +29,7 @@
 		},
 		{
 			name: 'Third Place',
-			description: `The third place winners for <em>each</em> catagory will be awarded 1 <strong><a href="https://vercel.com/pricing">Vercel Pro</a></strong> account and 1 <strong><a href="https://stackblitz.com/membership">Stackblitz Astronaught</a></strong> account courtesy of our sponsors!`,
+			description: `The third place winners for <em>each</em> category will be awarded 1 <strong><a href="https://vercel.com/pricing">Vercel Pro</a></strong> account and 1 <strong><a href="https://stackblitz.com/membership">Stackblitz Astronaught</a></strong> account courtesy of our sponsors!`,
 			award: 'sponsors',
 			icon: '🥉',
 			glow: true
