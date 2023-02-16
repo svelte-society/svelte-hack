@@ -16,7 +16,11 @@
 			<Nav />
 		</nav>
 
-		<a class="btn-b login" href={$page.data.loggedIn ? '/submit' : '/login'}>
+		<a
+			class="btn-b login"
+			class:active={$page.url.pathname == '/submit'}
+			href={$page.data.loggedIn ? '/submit' : '/login'}
+		>
 			{$page.data.loggedIn ? 'Submit' : 'Login'}
 		</a>
 	</div>
@@ -97,6 +101,12 @@
 
 		opacity: 1;
 		transition: opacity 0.5s;
+	}
+
+	.login.active {
+		opacity: 0;
+		pointer-events: none;
+		user-select: none;
 	}
 
 	.theme {
