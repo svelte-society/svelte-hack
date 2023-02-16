@@ -16,14 +16,15 @@
 <div class="container">
 	<div class="card" class:glow>
 		<div class="row">
-			<div class="icon">{icon}</div>
-			<h2>{name}</h2>
 			{#if award === 'sponsors'}
+				<h2 class="small">{name}</h2>
 				<div class="sponsors">
 					<StackblitzIcon />
 					<VercelIcon />
 				</div>
 			{:else}
+				<div class="icon">{icon}</div>
+				<h2>{name}</h2>
 				<div class="award">{award}</div>
 			{/if}
 		</div>
@@ -61,6 +62,10 @@
 		align-items: center;
 		gap: 1rem;
 		margin-left: auto;
+	}
+
+	.small {
+		font-size: var(--font-md);
 	}
 
 	:global(pre) {
