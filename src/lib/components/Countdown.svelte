@@ -2,7 +2,7 @@
 	import { intervalToDuration, formatDuration } from 'date-fns';
 	import { onMount } from 'svelte';
 
-	const HACKATHON_DATE = new Date(2023, 3, 24, 10, 11, 12);
+	const HACKATHON_DATE = new Date(2023, 4, 17, 0, 0, 0);
 
 	let now = Date.now();
 
@@ -11,13 +11,13 @@
 			start: HACKATHON_DATE,
 			end: now
 		}),
-		{ zero: true, format: ['months', 'weeks', 'days', 'hours', 'minutes'] }
+		{ zero: true, format: ['weeks', 'days', 'hours', 'minutes'] }
 	);
 
 	onMount(() => {
 		const interval = setInterval(() => {
 			now = Date.now();
-		}, 5000);
+		}, 20000);
 
 		return () => clearInterval(interval);
 	});
@@ -29,6 +29,7 @@
 			<div class="text">
 				<div class:isWord={i % 2 === 1}>
 					{text + ' '}
+					{i === duration.split(' ').length - 1 ? '' : ''}
 				</div>
 			</div>
 		{/each}
