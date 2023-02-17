@@ -61,7 +61,7 @@
 	<div class="br-sm" />
 
 	<p>
-		You can edit this submission any time until DEADLINE_HERE. Please review the
+		You can edit this submission any time until April 17th. Please review the
 		<a href="/rules">rules</a>
 		before submitting.
 	</p>
