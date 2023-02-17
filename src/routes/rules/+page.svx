@@ -18,6 +18,7 @@
 # Who can't enter?
 
 -   Svelte Society Organizers
+-   Svelte Ambassadors
 -   Svelte Sirens Organizers
 -   Svelte Org Members
 -   Family Members of above orgs
@@ -25,7 +26,10 @@
 # Etc
 
 -   Sveltehack, Svelte Society, and Svelte Org are teams of volunteers who cannot be held liable for any reason, and reserve the right to disqualify any submission for any reason they see fit.
--   To revoke a submission or ask a question, please contact $TODO #1
+-   To revoke a submission or ask a question, please contact kev@sveltesociety.dev
+-   Svelte Society reserves the right to make adjustments to the rules in case of abuse.
+-   All decisions and rulings are final.
+-   Any taxes or other fees are the responsibility of the winner, and will not be paid by us. 
 
 </div>
 </div>
