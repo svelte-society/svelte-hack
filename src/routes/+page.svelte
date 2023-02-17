@@ -17,14 +17,15 @@
 
 <div class="br-xl" />
 
+<span id="about" />
 <About />
 
-<div class="br-xl" />
+<div class="br-lg" />
 
 <Sponsors />
 
-<div class="br-xl" />
-<span id="about" />
+<div class="br-lg" />
+<div class="br-lg" />
 
 <style>
 	section.hero {
