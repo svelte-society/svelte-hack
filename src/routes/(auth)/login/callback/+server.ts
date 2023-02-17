@@ -5,6 +5,12 @@ import type { RequestHandler } from './$types';
 import { parse } from 'cookie';
 
 export const GET: RequestHandler = async ({ cookies, locals, url, setHeaders }) => {
+	const authError = url.searchParams.get('error_description');
+
+	if (typeof authError == 'string' && authError.length) {
+		throw error(500, `AUTH ERROR: ${authError}`);
+	}
+
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
 
