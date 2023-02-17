@@ -4,7 +4,7 @@
 	const prizes = [
 		{
 			name: 'Best Wizzbangery',
-			description: `Applications will be judged based on their quality, accessibility, utility, and novelty.  May the coolest app win!`,
+			description: `Entries will be judged based on their novelty, quality, and ability to inspire delight. May the coolest usage of Svelte win!`,
 			award: '$3,000',
 			icon: '🧙'
 		},
