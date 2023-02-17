@@ -6,7 +6,7 @@
 			name: 'Best Wizzbangery',
 			description: `Applications will be judged based on their quality, accessibility, utility, and novelty.  May the coolest app win!`,
 			award: '$3,000',
-			icon: '🏆'
+			icon: '🧙'
 		},
 		{
 			name: 'Best Library',
