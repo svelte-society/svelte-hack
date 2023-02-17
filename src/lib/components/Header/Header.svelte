@@ -28,7 +28,7 @@
 					transition:fade|local
 					href={$page.data.loggedIn ? '/submit' : '/login'}
 				>
-					{$page.data.loggedIn ? 'Submit' : 'Login'}
+					{$page.data.loggedIn ? 'Submit' : 'Enter'}
 				</a>
 			{/if}
 		</div>
