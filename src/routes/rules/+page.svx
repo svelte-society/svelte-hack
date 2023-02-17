@@ -9,8 +9,8 @@
 -   Your project must use Svelte as its primary dependency!
 -   Team sizes must be between 1 and 3 members.
 -   Submissions must have a demonstration video or working demo included in their README.
--   Submissions must be new. Projects started before July 1st are not eligible.
--   Submissions can't be updated after July 21st.
+-   Submissions must be new. Projects started before `Feb 17th` are not eligible.
+-   Submissions can't be updated after `April 17th`.
 -   If you're below the legal age in your country, you will need to obtain written permission from a parent or legal guardian to enter.
 -   You must be able to provide a link to your project on GitHub.
 -   Closed-source code is not permitted.
