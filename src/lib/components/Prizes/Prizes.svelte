@@ -10,7 +10,7 @@
 		},
 		{
 			name: 'Best Library',
-			description: `With the addition of <a href="https://kit.svelte.dev/docs/packaging" target="_blank"><pre>svelte-package</pre></a>, it's now easier than ever to publish NPM packages with svelte.  This category is for packages that support and enrich the fast-growing ecosystem of tools in the Svelte community.  Examples would be a UI or component Library, a useful wrapper for a third-party library, or a tool for use in Svelte projects.`,
+			description: `With the addition of <a href="https://kit.svelte.dev/docs/packaging" target="_blank"><pre>svelte-package</pre></a>, it's now easier than ever to publish NPM packages with svelte.  This category is for packages that support and enrich the fast-growing ecosystem of tools in the Svelte community.  Examples would be a UI or component Library, a data display component, or a tool for use in Svelte projects.`,
 			award: '$3,000',
 			icon: '📚'
 		},
