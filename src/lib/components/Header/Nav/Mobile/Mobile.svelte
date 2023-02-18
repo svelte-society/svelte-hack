@@ -52,12 +52,14 @@
 					</a>
 				</li>
 
-				<li
-					in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
-					out:fade={{ duration: 50 }}
-				>
-					<a href="/logout" on:click={() => (showMenu = false)}>Logout</a>
-				</li>
+				{#if $page.data.loggedIn}
+					<li
+						in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
+						out:fade={{ duration: 50 }}
+					>
+						<a href="/logout" on:click={() => (showMenu = false)}>Logout</a>
+					</li>
+				{/if}
 			</ul>
 		</nav>
 	{/if}
