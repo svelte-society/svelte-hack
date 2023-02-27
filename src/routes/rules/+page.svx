@@ -14,7 +14,7 @@
 -   If you're below the legal age in your country, you will need to obtain written permission from a parent or legal guardian to enter.
 -   You must be able to provide a link to your project on GitHub.
 -   Closed-source code is not permitted.
--   One submissions per person.
+-   One submission per person.
 
 # Who can't enter?
 
