@@ -3,7 +3,8 @@
 	font-family: 'Inconsolata';
 	font-weight: 100 900;
 	font-style: monospace;
-	src: url('/fonts/Inconsolata/Inconsolata.ttf') format('truetype');
+	src: url('/fonts/Inconsolata/Inconsolata.woff2') format('woff2'), url('/fonts/Inconsolata/Inconsolata.ttf') format('truetype');
+	unicode-range: U+20-7E, U+E4, U+E5, U+F6;
 }
 
 //*	LATO
