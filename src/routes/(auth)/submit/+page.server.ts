@@ -69,6 +69,12 @@ export const actions: Actions = {
 		// Raw data from the form
 		const raw_data: Partial<Submission> = Object.fromEntries(await request.formData());
 
+		return fail(401, {
+			success: false,
+			fields: raw_data ,
+			error: 'Submissions are closed'
+		})
+
 		// Parse data with zod
 		const result = await schema.safeParseAsync(raw_data);
 
