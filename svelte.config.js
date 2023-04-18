@@ -16,7 +16,7 @@ const config = {
 		adapter: vercel(),
 
 		csrf: {
-			checkOrigin: process.env['NODE_ENV'] == 'development'
+			checkOrigin: process.env['NODE_ENV'] != 'development'
 		}
 	},
 	vitePlugin: {
