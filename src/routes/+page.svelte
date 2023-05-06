@@ -13,9 +13,9 @@
 <div class="br-xl" />
 
 <!-- <Countdown /> -->
-<Date />
+<!-- <Date /> -->
 
-<div class="br-xl" />
+<!-- <div class="br-xl" /> -->
 
 <span id="about" />
 <About />
