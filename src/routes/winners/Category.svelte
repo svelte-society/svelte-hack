@@ -5,6 +5,19 @@
 
 	export let category: string;
 	export let winners: Winner[];
+
+	function icon(place: number) {
+		switch (place) {
+			case 1:
+				return '🏆';
+
+			case 2:
+				return '🥈';
+
+			default:
+				return `#${place}`;
+		}
+	}
 </script>
 
 <div class="category">
@@ -12,9 +25,13 @@
 
 	<div class="winners">
 		{#each winners as winner}
-			<div class="card" class:glow={winner.place == 1 || winner.place == 2}>
+			<div
+				class="card"
+				style:--glow-colour={winner.place == 1 ? '218, 165, 32' : '192, 192, 192'}
+				class:glow={winner.place == 1 || winner.place == 2}
+			>
 				<div class="top-row">
-					<h2>{winner.place == 1 ? '🏆' : `#${winner.place}`} {winner.title}</h2>
+					<h2>{icon(winner.place)} {winner.title}</h2>
 
 					<div class="links">
 						<a href={winner.github} target="_blank" rel="noreferrer" class="icon-link">
@@ -70,6 +87,10 @@
 	.card {
 		width: 100%;
 		max-width: 800px;
+
+		&.glow {
+			box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--glow-colour), 0.1) inset;
+		}
 
 		&:not(&.glow) {
 			box-shadow: var(--shadow-sm);
