@@ -13,8 +13,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.pb = pb;
 
 	// Try and log the user in
-	pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
-	event.locals.user = pb.authStore.model;
+	// pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+	// event.locals.user = pb.authStore.model;
 
 	let page = '';
 	return resolve(event, {
