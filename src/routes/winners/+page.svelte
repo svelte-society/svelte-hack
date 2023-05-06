@@ -149,6 +149,7 @@
 	.title {
 		margin: 0px auto;
 		margin-bottom: 48px;
+		padding: 0px 16px;
 	}
 
 	.winners {
