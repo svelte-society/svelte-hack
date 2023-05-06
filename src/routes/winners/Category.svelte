@@ -89,7 +89,7 @@
 		max-width: 800px;
 
 		&.glow {
-			box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--glow-colour), 0.1) inset;
+			box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--glow-colour), 0.2) inset;
 		}
 
 		&:not(&.glow) {
