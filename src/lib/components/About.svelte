@@ -12,7 +12,7 @@
 		<div class="hat">
 			<Hat />
 		</div>
-		<div class="card">
+		<!-- <div class="card">
 			<p>
 				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
 				is excited to bring you
@@ -22,8 +22,10 @@
 				<br />
 				<br />
 				In turn, we're contributing thousands in cash
-				<!-- prettier-ignore -->
-				<span><a href="/prizes">prizes</a>,</span>
+				<span>
+					<a href="/prizes">prizes</a>
+					,
+				</span>
 				and special rewards from our sponsors.
 				<br />
 				<br />
@@ -32,6 +34,31 @@
 				to learn more about how you can participate, and join our
 				<a href="https://svelte.dev/chat">Discord channel</a>
 				to stay tuned.
+			</p>
+		</div> -->
+
+		<div class="card">
+			<p>
+				<strong style:color="var(--brand-a)">SvelteHack</strong>
+				was brought to you on behalf of the Svelte team, by
+				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
+				our generous sponsors, and the amazing Svelte Community. We had
+				<strong>$12,000</strong>
+				in prizes, over
+				<strong>250</strong>
+				submissions, and
+				<strong>15</strong>
+				amazing winners.
+				<br />
+				<br />
+				SvelteHack ran from the 17th of February 2023 to the 17th of April, and the winners were
+				announced at the
+				<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU">Spring Svelte Summit.</a>
+				<br />
+				<br />
+				<a class="button btn-a" href="/winners" style="width: fit-content;">
+					View the SvelteHack winners
+				</a>
 			</p>
 		</div>
 	</div>

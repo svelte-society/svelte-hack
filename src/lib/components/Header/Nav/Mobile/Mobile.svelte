@@ -31,7 +31,6 @@
 						<a
 							data-sveltekit-preload-code
 							href={path}
-							class:disabled={title === 'Winners'}
 							on:click={() => (showMenu = false)}
 						>
 							{title}

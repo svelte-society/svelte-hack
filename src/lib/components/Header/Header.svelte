@@ -17,7 +17,7 @@
 			<Nav />
 		</nav>
 
-		<div class="row">
+		<!-- <div class="row">
 			{#if $page.data.loggedIn}
 				<a class="logout" href="/logout">Logout</a>
 			{/if}
@@ -31,7 +31,7 @@
 					{$page.data.loggedIn ? 'Submit' : 'Enter'}
 				</a>
 			{/if}
-		</div>
+		</div> -->
 	</div>
 
 	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>
