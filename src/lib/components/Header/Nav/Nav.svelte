@@ -9,8 +9,8 @@
 
 	setContext('links', [
 		['/', 'Home'],
-		['/prizes', 'Prizes'],
-		['/rules', 'Rules'],
+		// ['/prizes', 'Prizes'],
+		// ['/rules', 'Rules'],
 		['/winners', 'Winners']
 	]);
 </script>
