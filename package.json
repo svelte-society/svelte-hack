@@ -30,7 +30,6 @@
 		"fractils": "3.1.0",
 		"greset": "2.0.0",
 		"mdsvex": "0.10.6",
-		"pocketbase": "^0.10.1",
 		"postcss": "8.4.21",
 		"postcss-load-config": "4.0.1",
 		"prettier": "2.8.4",
