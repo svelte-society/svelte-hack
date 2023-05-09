@@ -1,1 +1,1 @@
-# [Svelte Hack](https://github.com/fractalhq/sveltehack)
+# Svelte Hack
