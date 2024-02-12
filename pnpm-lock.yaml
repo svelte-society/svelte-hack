@@ -2,6 +2,42 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@neoconfetti/svelte':
+    specifier: ^2.2.1
+    version: 2.2.1
+  '@sveltejs/adapter-vercel':
+    specifier: 5.1.0
+    version: 5.1.0(@sveltejs/kit@2.5.0)
+  '@sveltejs/kit':
+    specifier: 2.5.0
+    version: 2.5.0(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.10)(vite@5.1.1)
+  '@sveltejs/vite-plugin-svelte':
+    specifier: ^3.0.2
+    version: 3.0.2(svelte@4.2.10)(vite@5.1.1)
+  '@tweakpane/core':
+    specifier: ^2.0.3
+    version: 2.0.3
+  '@types/cookie':
+    specifier: ^0.6.0
+    version: 0.6.0
+  '@types/node':
+    specifier: 20.11.17
+    version: 20.11.17
+  '@types/three':
+    specifier: ^0.161.2
+    version: 0.161.2
+  autoprefixer:
+    specifier: 10.4.17
+    version: 10.4.17(postcss@8.4.35)
+  cookie:
+    specifier: ^0.6.0
+    version: 0.6.0
+  cssnano:
+    specifier: 6.0.3
+    version: 6.0.3(postcss@8.4.35)
+  date-fns:
+    specifier: 3.3.1
+    version: 3.3.1
+  esm-env:
     specifier: ^1.0.0
     version: 1.0.0
   '@sveltejs/adapter-vercel':
@@ -74,8 +110,11 @@ devDependencies:
     specifier: 5.0.3
     version: 5.0.3(postcss-load-config@4.0.1)(postcss@8.4.23)(pug@3.0.2)(sass@1.62.1)(svelte@3.59.1)(typescript@5.0.4)
   tslib:
-    specifier: 2.5.0
-    version: 2.5.0
+    specifier: 2.6.2
+    version: 2.6.2
+  tweakpane:
+    specifier: ^4.0.3
+    version: 4.0.3
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -423,8 +462,12 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /@types/cookie@0.5.1:
-    resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
+  /@tweakpane/core@2.0.3:
+    resolution: {integrity: sha512-qHci4XA1Wngpwy8IzsLh5JEdscz8aDti/9YhyOaq01si+cgNDaZfwzTtXdn1+xTxSnCM+pW4Zb2/4eqn+K1ATw==}
+    dev: true
+
+  /@types/cookie@0.6.0:
+    resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
     dev: true
 
   /@types/hast@2.3.4:
@@ -2250,9 +2293,13 @@ packages:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
     dev: true
 
-  /typescript@5.0.4:
-    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
-    engines: {node: '>=12.20'}
+  /tweakpane@4.0.3:
+    resolution: {integrity: sha512-BlcWOAe8oe4c+k9pmLBARGdWB6MVZMszayekkixQXTgkxTaYoTUpHpwVEp+3HkoamZkomodpbBf0CkguIHTgLg==}
+    dev: true
+
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 

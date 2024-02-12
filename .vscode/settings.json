@@ -11,5 +11,8 @@
 	},
 	"[dotenv]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[glsl]": {
+		"editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
 	}
 }
