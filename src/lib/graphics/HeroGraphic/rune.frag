@@ -1,12 +1,6 @@
 varying vec2 vUv;
-uniform vec3 color;
+uniform vec3 tDiffuse;
 uniform float time;
-uniform float speed;
-uniform float brightness;
-uniform float noise_amplitude;
-uniform float noise_speed;
-uniform float noise_scale;
-uniform vec3 noise_color;
 
 vec3 permute(vec3 x) {
     return mod(((x * 34.0) + 1.0) * x, 289.0);
@@ -44,8 +38,8 @@ float snoise(vec2 v) {
 }
 
 void main() {
-    float noiseScale = 1.0 * (noise_scale + 0.5 * sin(time * noise_speed));
+    float noiseScale = 1.0 * (1.0 + 0.5 * sin(time * 0.05));
     vec2 noisePos = vUv * noiseScale;
-    float n = (snoise(noisePos + time * 0.1 * speed)) * noise_amplitude;
-    csm_Emissive = mix(vec3(color), noise_color, n) * brightness;
+    float n = 0.5 * (0.2 + snoise(noisePos + time * 0.1));
+    csm_Emissive = mix(vec3(tDiffuse), vec3(1.0, 1.0, 1.0), n);
 }
