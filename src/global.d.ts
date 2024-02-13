@@ -1,9 +1,16 @@
-/// <reference types="@sveltejs/kit" />
+import type { TypedPocketBase, UsersTable } from '$lib/types/pocketbase'
 
-// See https://kit.svelte.dev/docs#typescript
-// for information about these interfaces
-declare namespace App {
-	interface Locals {
-		theme: 'dark' | 'light' | 'system'
+declare global {
+	namespace App {
+		interface Locals {
+			theme: 'dark' | 'light' | 'system'
+			pb: TypedPocketBase
+			user?: UsersTable
+		}
+
+		interface PageData {
+			loggedIn: boolean
+			user?: UsersTable
+		}
 	}
 }
