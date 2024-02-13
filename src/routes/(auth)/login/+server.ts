@@ -1,12 +1,10 @@
-import { PB_REDIRECT_URL } from '$env/static/private'
 import { error, redirect } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
 
-export const GET: RequestHandler = async ({ request, locals, cookies }) => {
-	// List all auth methods, we can't do this statically as it generates state data
+export async function GET({ url, locals, cookies }) {
+	//? List all auth methods, we can't do this statically as it generates state data
 	const methods = await locals.pb.collection('users').listAuthMethods()
 
-	// We only need GitHub
+	//? We only need GitHub
 	const github = methods.authProviders.find((p) => p.name == 'github')
 
 	if (!github) {
@@ -18,11 +16,13 @@ export const GET: RequestHandler = async ({ request, locals, cookies }) => {
 		path: '/',
 		secure: true,
 		httpOnly: true,
+		// expires in an hour
+		maxAge: 60 * 60,
 	})
 
-	const url = new URL(github.authUrl)
-	url.searchParams.set('redirect_uri', PB_REDIRECT_URL)
+	const oAuthUrl = new URL(github.authUrl)
+	oAuthUrl.searchParams.set('redirect_uri', `${url.origin}/login/callback`)
 
-	// Redirect to GitHub oauth
-	throw redirect(307, url.toString())
+	// Redirect to GitHub
+	throw redirect(307, oAuthUrl)
 }
