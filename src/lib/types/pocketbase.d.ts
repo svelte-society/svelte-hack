@@ -1,3 +1,6 @@
+import type { RecordService } from 'pocketbase'
+import type Pocketbase from 'pocketbase'
+
 export interface BaseTable {
 	id: string
 	created: string
@@ -23,4 +26,9 @@ export interface UsersTable extends BaseTable {
 	listmonkId: number
 	newsletter: boolean
 	customerId: string
+}
+
+export interface TypedPocketBase extends Pocketbase {
+	collection(idOrName: string): RecordService
+	collection(idOrName: 'users'): RecordService<UsersTable>
 }

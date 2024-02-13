@@ -1,10 +1,10 @@
-import type { UsersTable } from '$lib/types/pocketbase'
+import type { TypedPocketBase, UsersTable } from '$lib/types/pocketbase'
 
 declare global {
 	namespace App {
 		interface Locals {
 			theme: 'dark' | 'light' | 'system'
-			pb: import('pocketbase').default
+			pb: TypedPocketBase
 			user?: UsersTable
 		}
 
