@@ -15,8 +15,8 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"lint": "prettier --check . --plugin-search-dir . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"lint": "prettier --check . --plugin-search-dir src && eslint --ignore-path .gitignore .",
+		"format": "prettier --write --plugin-search-dir=. src"
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^2.2.1",
