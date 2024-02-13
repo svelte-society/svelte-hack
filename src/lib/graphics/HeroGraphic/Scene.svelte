@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
-	import { init } from './rune';
+	import { onDestroy, onMount } from 'svelte'
+	import { init } from './rune'
 
-	let canvas: HTMLCanvasElement;
-	let destroy = () => void 0;
+	let canvas: HTMLCanvasElement
+	let destroy = () => void 0
 
 	onMount(() => {
 		init(canvas).then(({ destroy }) => {
-			destroy = destroy;
-		});
-	});
+			destroy = destroy
+		})
+	})
 
 	onDestroy(() => {
-		destroy();
-		globalThis.window?.location.reload();
-	});
+		destroy()
+		globalThis.window?.location.reload()
+	})
 </script>
 
 <canvas width={400} height={500} bind:this={canvas} />
@@ -36,7 +36,12 @@
 
 	#controls {
 		position: fixed;
-		right: 0rem;
+		left: 2rem;
 		top: 5rem;
+
+		width: 20rem;
+
+		z-index: 99;
+		overflow: hidden;
 	}
 </style>

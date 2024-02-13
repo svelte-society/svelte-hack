@@ -6,15 +6,9 @@ import { mdsvex } from 'mdsvex'
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
-	preprocess: [
-		preprocess({
-			postcss: true
-		}),
-		mdsvex(mdsvexConfig)
-	],
+	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 	kit: {
 		adapter: vercel(),
-
 		csrf: {
 			checkOrigin: process.env['NODE_ENV'] != 'development',
 		},
