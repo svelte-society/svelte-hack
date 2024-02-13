@@ -1,3 +1,4 @@
+import type { Submission } from '$lib/server/submissions'
 import type { RecordService } from 'pocketbase'
 import type Pocketbase from 'pocketbase'
 
@@ -19,6 +20,14 @@ export interface BaseTable {
  */
 export type Insert<Table extends BaseTable> = Omit<Table, keyof BaseTable>
 
+export interface TypedPocketBase extends Pocketbase {
+	collection(idOrName: string): RecordService
+	collection(idOrName: 'users'): RecordService<UsersTable>
+	collection(idOrName: 'submissions'): RecordService<SubmissionsTable>
+}
+
+// * Tables
+
 export interface UsersTable extends BaseTable {
 	email: string
 	name: string
@@ -28,7 +37,4 @@ export interface UsersTable extends BaseTable {
 	customerId: string
 }
 
-export interface TypedPocketBase extends Pocketbase {
-	collection(idOrName: string): RecordService
-	collection(idOrName: 'users'): RecordService<UsersTable>
-}
+export type SubmissionsTable = BaseTable & Submission

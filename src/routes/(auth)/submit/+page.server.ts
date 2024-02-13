@@ -1,47 +1,14 @@
-import type { Actions, PageServerLoad } from './$types'
+import { submissionSchema, type Submission } from '$lib/server/submissions'
 import { error, fail, redirect } from '@sveltejs/kit'
-import type { Record } from 'pocketbase'
-import { z } from 'zod'
 
-const schema = z.object({
-	github: z.string({ required_error: 'GitHub is required' }).url(),
-	demo: z.string({ required_error: 'Demo is required' }).url(),
-	authorOne: z.string({ required_error: 'Author is required' }).trim().email(),
-	authorTwo: z
-		.string({ required_error: 'Author is required' })
-		.trim()
-		.email()
-		.optional()
-		.or(z.literal('')),
-	authorThree: z
-		.string({ required_error: 'Author is required' })
-		.trim()
-		.email()
-		.optional()
-		.or(z.literal('')),
-	title: z
-		.string({ required_error: 'Title is required' })
-		.trim()
-		.min(1, "Can't be empty")
-		.max(64, 'Max length is 64 chars'),
-	description: z
-		.string({ required_error: 'Description is required' })
-		.trim()
-		.min(1, "Can't be empty")
-		.max(256, 'Max length is 256 chars'),
-})
-
-type Submission = z.infer<typeof schema>
-type SubmissionRecord = Submission & Record
-
-export const load: PageServerLoad = async ({ parent, locals }) => {
+export async function load({ parent, locals }) {
 	const data = await parent()
 
 	if (!data.loggedIn) {
 		throw redirect(307, '/login')
 	}
 
-	const [record] = await locals.pb.collection('submissions').getFullList<SubmissionRecord>()
+	const [record] = await locals.pb.collection('submissions').getFullList()
 
 	if (record)
 		return {
@@ -59,24 +26,25 @@ export const load: PageServerLoad = async ({ parent, locals }) => {
 	}
 }
 
-export const actions: Actions = {
-	async default({ request, fetch, locals }) {
+export const actions = {
+	async default({ request, locals }) {
 		// If not logged in then exit
 		if (!locals.user) {
 			throw error(401, 'Unauthorised')
 		}
 
 		// Raw data from the form
+		// @ts-expect-error form data complaining
 		const raw_data: Partial<Submission> = Object.fromEntries(await request.formData())
 
-		return fail(401, {
-			success: false,
-			fields: raw_data,
-			error: 'Submissions are closed',
-		})
+		// return fail(401, {
+		// 	success: false,
+		// 	fields: raw_data,
+		// 	error: 'Submissions are closed',
+		// })
 
 		// Parse data with zod
-		const result = await schema.safeParseAsync(raw_data)
+		const result = await submissionSchema.safeParseAsync(raw_data)
 
 		// If the submission is invalid return the errors to the frontend
 		if (!result.success) {
@@ -91,9 +59,7 @@ export const actions: Actions = {
 
 		try {
 			// Find an existing record, if there is one
-			const [record] = await locals.pb
-				.collection('submissions')
-				.getFullList<SubmissionRecord>()
+			const [record] = await locals.pb.collection('submissions').getFullList()
 
 			if (record) {
 				// If there is an existing record then update it

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { ActionData, PageData } from './$types';
-	import FieldError from './FieldError.svelte';
-	import Removable from './Removable.svelte';
-	import Confetti from './Confetti.svelte';
-	import { enhance } from '$app/forms';
-	import { onDestroy } from 'svelte';
+	import type { ActionData, PageData } from './$types'
+	import FieldError from './FieldError.svelte'
+	import Removable from './Removable.svelte'
+	import Confetti from './Confetti.svelte'
+	import { enhance } from '$app/forms'
+	import { onDestroy } from 'svelte'
 
-	export let data: PageData;
-	export let form: ActionData;
+	export let data: PageData
+	export let form: ActionData
 
 	$: fields = {
 		authorOne: form?.fields?.authorOne || data?.authorOne || '',
@@ -16,39 +16,39 @@
 		title: form?.fields?.title || data?.title || '',
 		description: form?.fields?.description || data?.description || '',
 		github: form?.fields?.github || data?.github || '',
-		demo: form?.fields?.demo || data?.demo || ''
-	};
+		demo: form?.fields?.demo || data?.demo || '',
+	}
 
-	let disabled = true;
+	let disabled = false
 
-	let interval: ReturnType<typeof setInterval>;
-	let saveAnimation = false;
+	let interval: ReturnType<typeof setInterval>
+	let saveAnimation = false
 
-	let authorTwo = !!data?.authorTwo;
-	let authorThree = !!data?.authorThree;
+	let authorTwo = !!data?.authorTwo
+	let authorThree = !!data?.authorThree
 
 	function addAuthor() {
 		if (!authorTwo) {
-			authorTwo = true;
+			authorTwo = true
 		} else {
-			authorThree = true;
+			authorThree = true
 		}
 	}
 
 	function saved() {
-		if (saveAnimation && !disabled) return;
+		if (saveAnimation && !disabled) return
 
-		disabled = false;
-		saveAnimation = true;
+		disabled = false
+		saveAnimation = true
 
 		interval = setInterval(() => {
-			saveAnimation = false;
-		}, 5000);
+			saveAnimation = false
+		}, 5000)
 	}
 
 	onDestroy(() => {
-		clearInterval(interval);
-	});
+		clearInterval(interval)
+	})
 </script>
 
 {#if saveAnimation}
@@ -71,22 +71,22 @@
 	<form
 		method="POST"
 		use:enhance={() => {
-			disabled = true;
+			disabled = false
 
 			return async ({ update }) => {
-				saved();
-				await update({ reset: false });
-			};
+				saved()
+				await update({ reset: false })
+			}
 		}}
 	>
 		<label>
 			<span>Author Email(s)</span>
 
-			<input name="authorOne" type="email" value={fields.authorOne} disabled required />
+			<input name="authorOne" type="email" value={fields.authorOne} {disabled} required />
 			<FieldError error={form?.fieldErrors?.authorOne} />
 
 			<Removable bind:open={authorTwo}>
-				<input name="authorTwo" type="email" value={fields.authorTwo} disabled required />
+				<input name="authorTwo" type="email" value={fields.authorTwo} {disabled} required />
 				<FieldError error={form?.fieldErrors?.authorTwo} />
 			</Removable>
 
@@ -95,52 +95,52 @@
 					name="authorThree"
 					type="email"
 					value={fields.authorThree}
-					disabled
+					{disabled}
 					required
 				/>
 
 				<FieldError error={form?.fieldErrors?.authorThree} />
 			</Removable>
 
-			<!-- <button
+			<button
 				title="add author"
 				class:disabled={authorTwo && authorThree}
 				type="button"
 				class="add-author-btn"
 				on:click={addAuthor}
-				disabled
+				{disabled}
 			>
 				+
-			</button> -->
+			</button>
 		</label>
 
 		<label>
 			<span>Project Title</span>
-			<input name="title" type="text" value={fields.title} disabled required />
+			<input name="title" type="text" value={fields.title} {disabled} required />
 			<FieldError error={form?.fieldErrors?.title} />
 		</label>
 
 		<label>
 			<span>Project Description</span>
-			<textarea name="description" value={fields.description} disabled required rows="4" />
+			<textarea name="description" value={fields.description} {disabled} required rows="4" />
 			<FieldError error={form?.fieldErrors?.description} />
 		</label>
 
 		<label>
 			<span>GitHub Repository</span>
-			<input name="github" type="url" value={fields.github} disabled required />
+			<input name="github" type="url" value={fields.github} {disabled} required />
 			<FieldError error={form?.fieldErrors?.github} />
 		</label>
 
 		<label>
 			<span>Demo URL</span>
-			<input name="demo" type="url" value={fields.demo} disabled required />
+			<input name="demo" type="url" value={fields.demo} {disabled} required />
 			<FieldError error={form?.fieldErrors?.demo} />
 		</label>
 
-		<!-- <button type="submit" class="btn-b" disabled>
+		<button type="submit" class="btn-b" {disabled}>
 			{saveAnimation ? 'Saved!' : 'Save'}
-		</button> -->
+		</button>
 	</form>
 </section>
 
