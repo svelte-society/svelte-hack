@@ -10,9 +10,6 @@ function getTheme(cookie: any): 'dark' | 'light' | 'system' {
 }
 
 export async function handle({ event, resolve }) {
-	// Set the page theme
-	event.locals.theme = getTheme(event.cookies.get('theme'))
-
 	event.locals.pb = new Pocketbase(POCKETBASE_URL)
 
 	if (event.cookies.get('pb_auth')) {
@@ -35,6 +32,9 @@ export async function handle({ event, resolve }) {
 		//? Store the user in locals.
 		event.locals.user = event.locals.pb.authStore.model as UsersTable
 	}
+
+	// Set the page theme
+	event.locals.theme = getTheme(event.cookies.get('theme'))
 
 	let page = ''
 	return resolve(event, {
