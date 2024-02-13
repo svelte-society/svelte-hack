@@ -1,12 +1,12 @@
-import autolinkHeadings from 'rehype-autolink-headings';
-import github from 'remark-github';
-import slug from 'rehype-slug';
-import abbr from 'remark-abbr';
+import autolinkHeadings from 'rehype-autolink-headings'
+import github from 'remark-github'
+import slug from 'rehype-slug'
+import abbr from 'remark-abbr'
 
 const mdsvexConfig = {
 	extensions: ['.svelte.md', '.md', '.svx'],
 	smartypants: {
-		dashes: 'oldschool'
+		dashes: 'oldschool',
 	},
 	remarkPlugins: [abbr],
 	rehypePlugins: [
@@ -14,10 +14,10 @@ const mdsvexConfig = {
 		[
 			autolinkHeadings,
 			{
-				behavior: 'wrap'
-			}
-		]
-	]
-};
+				behavior: 'wrap',
+			},
+		],
+	],
+}
 
-export default mdsvexConfig;
+export default mdsvexConfig

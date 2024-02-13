@@ -4,6 +4,6 @@
 // for information about these interfaces
 declare namespace App {
 	interface Locals {
-		theme: 'dark' | 'light' | 'system';
+		theme: 'dark' | 'light' | 'system'
 	}
 }
