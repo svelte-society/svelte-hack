@@ -15,8 +15,9 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write --plugin-search-dir=. src"
+		"lint": "prettier --check src && pnpm check",
+		"format": "prettier --write src",
+		"check": "svelte-check"
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^2.2.1",
@@ -45,6 +46,7 @@
 		"remark-github": "12.0.0",
 		"sass": "1.79.4",
 		"svelte": "4.2.19",
+		"svelte-check": "^4.0.4",
 		"three": "^0.169.0",
 		"three-custom-shader-material": "^5.4.0",
 		"tslib": "2.7.0",
