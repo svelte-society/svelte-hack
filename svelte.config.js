@@ -17,12 +17,7 @@ const config = {
 
 	vitePlugin: {
 		// https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/config.md#inspector
-		inspector: {
-			toggleButtonPos: 'bottom-left',
-			toggleKeyCombo: 'meta-alt',
-			showToggleButton: 'active',
-			holdMode: true,
-		},
+		inspector: {},
 	},
 }
 
