@@ -1,21 +1,20 @@
-<script>
-	import Scene from '$lib/years/2024/HeroGraphic/Scene.svelte'
-	import Sponsors from '$lib/years/2024/Sponsors.svelte'
-	import About from '$lib/years/2024/About.svelte'
-	import Hero from '$lib/years/2024/Hero.svelte'
+<script lang="ts">
+	import HeroGraphic from '$lib/years/2023/hero/HeroGraphic.svelte'
+	import Sponsors from '$lib/years/2023/Sponsors.svelte'
+	import Hero from '$lib/years/2023/hero/Hero.svelte'
+	import About from '$lib/years/2023/About.svelte'
 </script>
 
 <div class="br-md" />
 
 <section class="hero row">
 	<Hero />
-	<Scene />
+	<HeroGraphic />
 </section>
 
 <div class="br-xl" />
 
 <!-- <Countdown /> -->
-
 <!-- <Date /> -->
 
 <!-- <div class="br-xl" /> -->

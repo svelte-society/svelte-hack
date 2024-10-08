@@ -1,5 +1,5 @@
 <script>
-	import { fieldStaticPath } from './paths';
+	import { fieldStaticPath } from './paths'
 </script>
 
 <div class="field-static">

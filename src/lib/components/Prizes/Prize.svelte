@@ -1,16 +1,16 @@
 <script lang="ts">
-	import StackblitzIcon from '$lib/graphics/sponsors/StackblitzIcon.svelte';
-	import VercelIcon from '$lib/graphics/sponsors/VercelIcon.svelte';
+	import StackblitzIcon from '$lib/graphics/sponsors/StackblitzIcon.svelte'
+	import VercelIcon from '$lib/graphics/sponsors/VercelIcon.svelte'
 
 	export let prize: {
-		name: string;
-		description: string;
-		award: string;
-		icon: string;
-		glow?: boolean;
-	};
+		name: string
+		description: string
+		award: string
+		icon: string
+		glow?: boolean
+	}
 
-	const { name, description, award, icon, glow } = prize;
+	const { name, description, award, icon, glow } = prize
 </script>
 
 <div class="container">

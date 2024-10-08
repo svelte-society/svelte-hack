@@ -1,7 +1,7 @@
 <script>
-	import FieldStatic from '$lib/graphics/HeroGraphic/FieldStatic.svelte';
-	import Field from '$lib/graphics/HeroGraphic/Field.svelte';
-	import Connected from './Connected.svelte';
+	import FieldStatic from './FieldStatic.svelte'
+	import Connected from './Connected.svelte'
+	import Field from './Field.svelte'
 </script>
 
 <div class="hero-graphic">
