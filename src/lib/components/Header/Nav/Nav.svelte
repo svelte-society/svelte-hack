@@ -1,18 +1,17 @@
 <script lang="ts">
-	import { setContext } from 'svelte';
-	import { mobile, OnMount } from 'fractils';
+	import Mobile from './Mobile/Mobile.svelte'
+	import { mobile, OnMount } from 'fractils'
+	import Desktop from './Desktop.svelte'
+	import { setContext } from 'svelte'
 
-	import Mobile from './Mobile/Mobile.svelte';
-	import Desktop from './Desktop.svelte';
-
-	let showMenu = false;
+	let showMenu = false
 
 	setContext('links', [
 		['/', 'Home'],
-		// ['/prizes', 'Prizes'],
-		// ['/rules', 'Rules'],
-		['/winners', 'Winners']
-	]);
+		['/2024/prizes', 'Prizes'],
+		['/2024/rules', 'Rules'],
+		['/2024/winners', 'Winners'],
+	])
 </script>
 
 <OnMount>

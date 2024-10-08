@@ -3,7 +3,7 @@
 	import { mobile, scrollY, ThemeToggle } from 'fractils'
 	import { fade } from 'svelte/transition'
 	import { page } from '$app/stores'
-	import { Nav } from './Nav'
+	import Nav from './Nav/Nav.svelte'
 </script>
 
 <header class:top={$scrollY === 0}>
