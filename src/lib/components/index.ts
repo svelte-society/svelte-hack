@@ -1,5 +1,0 @@
-export { default as Prizes } from './Prizes/Prizes.svelte'
-export { default as Countdown } from './Countdown.svelte'
-export { default as Footer } from './Footer.svelte'
-export { default as Date } from '../years/2024/Date.svelte'
-export { Header } from './Header'

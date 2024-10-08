@@ -1,12 +1,16 @@
 <div class="date">
 	<div class="tag start">
-		<span>&lt;</span>february 17<span>&gt;</span>
+		<span>&lt;</span>
+		october 17
+		<span>&gt;</span>
 	</div>
 
 	<div class="middle">SvelteHack</div>
 
 	<div class="tag end">
-		<span>&lt;&#47;</span>april 17<span>&gt;</span>
+		<span>&lt;&#47;</span>
+		december 17
+		<span>&gt;</span>
 	</div>
 </div>
 

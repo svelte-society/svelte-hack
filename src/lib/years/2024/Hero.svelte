@@ -7,9 +7,9 @@
 
 	<div class="br-sm" />
 
-	<!-- <p>With not-so-svelte prizes.</p> -->
+	<p>With not-so-svelte prizes.</p>
 
-	<!-- <div class="br-sm" />
+	<div class="br-sm" />
 
 	<div class="row">
 		<a href="#about">
@@ -21,7 +21,7 @@
 				Learn more about Svelte&nbsp;<TripleChevron />
 			</button>
 		</a>
-	</div> -->
+	</div>
 </div>
 
 <style>

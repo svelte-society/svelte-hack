@@ -11,8 +11,8 @@
 		<div class="hat">
 			<Hat />
 		</div>
-		<!-- <div class="card">
-			<p>
+		{#if true}
+			<div data-present class="card">
 				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
 				is excited to bring you
 				<strong style:color="var(--brand-a)">SvelteHack</strong>
@@ -23,9 +23,8 @@
 				In turn, we're contributing thousands in cash
 				<span>
 					<a href="/prizes">prizes</a>
-					,
 				</span>
-				and special rewards from our sponsors.
+				.
 				<br />
 				<br />
 				Read our
@@ -33,11 +32,9 @@
 				to learn more about how you can participate, and join our
 				<a href="https://svelte.dev/chat">Discord channel</a>
 				to stay tuned.
-			</p>
-		</div> -->
-
-		<div class="card">
-			<p>
+			</div>
+		{:else}
+			<div data-past class="card">
 				<strong style:color="var(--brand-a)">SvelteHack</strong>
 				was brought to you on behalf of the Svelte team, by
 				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
@@ -50,20 +47,26 @@
 				amazing winners.
 				<br />
 				<br />
-				SvelteHack runs from the 17th of October to the 17th of December 2024.
+				SvelteHack ran from the 17th of February 2023 to the 17th of April, and the winners were
+				announced at the
+				<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU">Spring Svelte Summit.</a>
 				<br />
 				<br />
 				<a class="button btn-a" href="/winners" style="width: fit-content;">
 					View the SvelteHack winners
 				</a>
-			</p>
-		</div>
+			</div>
+		{/if}
 	</div>
 </section>
 
 <style>
 	.card-wrapper {
 		position: relative;
+	}
+
+	.card {
+		padding-left: 2.5rem;
 	}
 
 	.society,
@@ -75,11 +78,6 @@
 
 		z-index: 1;
 	}
-
-	p {
-		padding-left: 2.5rem;
-	}
-
 	@media only screen and (max-width: 800px) {
 		.card-wrapper {
 			border-radius: none;
@@ -101,7 +99,7 @@
 			margin: auto auto 0 auto;
 		}
 
-		p {
+		.card {
 			padding: unset;
 		}
 	}

@@ -1,20 +1,21 @@
 <script lang="ts">
-	import 'greset/greset.css';
-	import '../styles/app.scss';
+	import 'greset/greset.css'
+	import '../styles/app.scss'
 
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
 
-	import { Header, Footer } from '$lib/components';
-	import { Fractils, theme } from 'fractils';
-	import { pageTitle } from '$lib/utils';
-	import { parse } from 'cookie';
+	import Header from '$lib/components/Header/Header.svelte'
+	import Footer from '$lib/components/Footer.svelte'
+	import { pageTitle } from '$lib/utils/pageTitle'
+	import { Fractils, theme } from 'fractils'
+	import { parse } from 'cookie'
 
-	$: title = pageTitle($page.url.pathname);
+	$: title = pageTitle($page.url.pathname)
 
 	// Keeps the theme cookie in sync
 	$: if (browser && $theme !== parse(document.cookie).theme) {
-		document.cookie = `theme=${$theme}`;
+		document.cookie = `theme=${$theme}`
 	}
 </script>
 

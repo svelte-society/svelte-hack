@@ -1,6 +1,6 @@
 <script>
-	import BlobA from '$lib/graphics/BlobA.svelte';
-	import { Prizes } from '$lib/components';
+	import Prizes from '$lib/years/2024/Prizes/Prizes.svelte'
+	import BlobA from '$lib/graphics/BlobA.svelte'
 </script>
 
 <section>
