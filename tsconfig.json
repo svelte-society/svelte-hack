@@ -14,6 +14,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"allowJs": true,
 		"checkJs": true,
-		"types": ["node"]
+		"noEmit": true
 	}
 }
