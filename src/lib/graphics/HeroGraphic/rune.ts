@@ -291,7 +291,7 @@ export async function init(canvas: HTMLCanvasElement) {
 
 	//· Controls ·······································································¬
 
-	if (DEV) {
+	async function addGooey() {
 		const { Gooey } = await import('gooey')
 
 		const gui = new Gooey({
@@ -373,6 +373,23 @@ export async function init(canvas: HTMLCanvasElement) {
 				(svelte.material.uniforms.noise_color.value as T.Color).set(v.hexString),
 			)
 	}
+
+	if (DEV) {
+		addGooey()
+	} else {
+		// easter egg
+		let clicked = 0
+
+		function click() {
+			if (++clicked == 5) {
+				addGooey()
+			}
+		}
+
+		canvas.addEventListener('click', click)
+		subs.add(() => canvas.removeEventListener('click', click))
+	}
+
 	//⌟
 
 	return {
