@@ -1,17 +1,10 @@
-<script>
-	import Stackblitz from '$lib/graphics/sponsors/Stackblitz.svelte';
-	import Svelte from '$lib/graphics/sponsors/Svelte.svelte';
-	import Vercel from '$lib/graphics/sponsors/Vercel.svelte';
-</script>
-
 <section>
-	<h5 class="title">Sponsored by</h5>
+	<h5 class="title">Sponsored by:</h5>
 	<div class="br-sm" />
 
 	<div class="sponsors" style="--size: 175px">
-		<Vercel />
-		<Stackblitz />
-		<Svelte />
+		<h1>You!</h1>
+		<a href="https://opencollective.com/svelte">opencollective.com/svelte</a>
 	</div>
 </section>
 
@@ -33,7 +26,7 @@
 
 		.sponsors {
 			display: flex;
-			flex-flow: row wrap;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 			column-gap: 100px;

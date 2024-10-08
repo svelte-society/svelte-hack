@@ -1,7 +1,6 @@
 <script>
-	import Hat from '$lib/graphics/Hat.svelte';
-
-	import Society from '$lib/graphics/Society.svelte';
+	import Society from '$lib/graphics/Society.svelte'
+	import Hat from '$lib/graphics/Hat.svelte'
 </script>
 
 <section>
@@ -51,9 +50,7 @@
 				amazing winners.
 				<br />
 				<br />
-				SvelteHack ran from the 17th of February 2023 to the 17th of April, and the winners were
-				announced at the
-				<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU">Spring Svelte Summit.</a>
+				SvelteHack runs from the 17th of October to the 17th of December 2024.
 				<br />
 				<br />
 				<a class="button btn-a" href="/winners" style="width: fit-content;">

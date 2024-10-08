@@ -1,9 +1,9 @@
 <script>
-	import TripleChevron from '$lib/graphics/TripleChevron.svelte';
+	import TripleChevron from '$lib/graphics/TripleChevron.svelte'
 </script>
 
 <div class="hero">
-	<h1>SvelteHack 2023</h1>
+	<h1>SvelteHack 2024</h1>
 
 	<div class="br-sm" />
 
