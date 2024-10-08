@@ -14,6 +14,11 @@ import { theme } from 'fractils'
 import * as T from 'three'
 
 const params = {
+	tween_duration: 800,
+	camera_sensitivity: {
+		x: -1,
+		y: 0.66,
+	},
 	bloom: {
 		dark: {
 			threshold: 0.29,
@@ -26,11 +31,6 @@ const params = {
 			radius: 0.15,
 		},
 	},
-	camera_sensitivity: {
-		x: -1,
-		y: 0.66,
-	},
-	tween_duration: 800,
 } as const
 
 export async function init(canvas: HTMLCanvasElement) {
@@ -292,88 +292,86 @@ export async function init(canvas: HTMLCanvasElement) {
 	//· Controls ·······································································¬
 
 	if (DEV) {
-		const { Pane } = await import('tweakpane')
+		const { Gooey } = await import('gooey')
 
-		const pane = new Pane({
-			container: document.getElementById('controls')!,
+		const gui = new Gooey({
+			title: 'Rune',
+			storage: true,
 		})
 
-		const sceneFolder = pane.addFolder({ title: 'Scene' })
-		sceneFolder.addBinding(params.camera_sensitivity, 'x', {
-			label: 'Mouse X',
-			min: -2,
-			max: 2,
-		})
-		sceneFolder.addBinding(params.camera_sensitivity, 'y', {
-			label: 'Mouse Y',
-			min: -2,
-			max: 2,
-		})
-		sceneFolder.addBinding(params, 'tween_duration', { min: 0, max: 2000 })
+		gui.bind(params, 'tween_duration', { max: 2000, min: 0 })
+		gui.bind(params.camera_sensitivity, 'x', { title: 'Mouse X', min: -2, max: 2 })
+		gui.bind(params.camera_sensitivity, 'y', { title: 'Mouse Y', min: -2, max: 2 })
 
-		const bloomFolder = sceneFolder.addFolder({ title: 'Bloom' })
-		bloomFolder.addBinding(bloomPass, 'threshold', { min: 0, max: 1 })
-		bloomFolder.addBinding(bloomPass, 'strength', { min: 0, max: 10 })
-		bloomFolder.addBinding(bloomPass, 'radius', { min: 0, max: 1.5 })
+		const bloomFolder = gui.addFolder('Bloom')
+		bloomFolder.bind(bloomPass, 'threshold', { min: 0, max: 1 })
+		bloomFolder.bind(bloomPass, 'strength', { min: 0, max: 10 })
+		bloomFolder.bind(bloomPass, 'radius', { min: 0, max: 1.5 })
 
-		const lightsFolder = pane.addFolder({ title: 'Lights' })
+		const lightsFolder = gui.addFolder('Lights')
 
-		lightsFolder.addBinding(ambientLight, 'color', {
-			label: 'ambient light',
-			color: { type: 'float' },
-		})
+		function float2RGB(c: T.Color) {
+			return {
+				r: c.r * 255,
+				g: c.g * 255,
+				b: c.b * 255,
+			}
+		}
 
-		lightsFolder.addBinding(ambientLight, 'intensity', {
-			label: 'intensity',
+		lightsFolder
+			.addColor('ambient light', float2RGB(ambientLight.color))
+			.on('change', (v) => ambientLight.color.set(v.hexString))
+
+		lightsFolder.bind(ambientLight, 'intensity', {
+			title: 'intensity',
 			min: 0,
 			max: 1,
 		})
 
-		lightsFolder.addBinding(directionalLight, 'color', {
-			label: 'directional light',
-			color: { type: 'float' },
-		})
+		lightsFolder
+			.addColor('directional light', float2RGB(directionalLight.color))
+			.on('change', (v) => directionalLight.color.set(v.hexString))
 
-		lightsFolder.addBinding(directionalLight, 'intensity', {
-			label: 'intensity',
+		lightsFolder.bind(directionalLight, 'intensity', {
+			title: 'intensity',
 			min: 0,
 			max: 1,
 		})
 
-		const shaderFolder = pane.addFolder({ title: 'Shader' })
+		const shaderFolder = gui.addFolder('Shader')
 
-		shaderFolder.addBinding(svelte.material.uniforms.color, 'value', {
-			label: 'color',
-			color: { type: 'float' },
-		})
+		shaderFolder
+			.addColor('color', float2RGB(svelte.material.uniforms.color.value))
+			.on('change', (v) => (svelte.material.uniforms.color.value as T.Color).set(v.hexString))
 
-		shaderFolder.addBinding(svelte.material.uniforms.speed, 'value', { min: 0, max: 2 })
+		shaderFolder.bind(svelte.material.uniforms.speed, 'value', { min: 0, max: 2 })
 
-		shaderFolder.addBinding(svelte.material.uniforms.brightness, 'value', { min: 0, max: 2 })
+		shaderFolder.bind(svelte.material.uniforms.brightness, 'value', { min: 0, max: 2 })
 
-		shaderFolder.addBinding(svelte.material.uniforms.noise_amplitude, 'value', {
-			label: 'noise amplitude',
+		shaderFolder.bind(svelte.material.uniforms.noise_amplitude, 'value', {
+			title: 'noise amplitude',
 			min: 0,
 			max: 1,
 		})
 
-		shaderFolder.addBinding(svelte.material.uniforms.noise_speed, 'value', {
-			label: 'noise speed',
+		shaderFolder.bind(svelte.material.uniforms.noise_speed, 'value', {
+			title: 'noise speed',
 			min: 0,
 			max: 1,
 			step: 0.01,
 		})
 
-		shaderFolder.addBinding(svelte.material.uniforms.noise_scale, 'value', {
-			label: 'noise scale',
+		shaderFolder.bind(svelte.material.uniforms.noise_scale, 'value', {
+			title: 'noise scale',
 			min: 0,
 			max: 10,
 		})
 
-		shaderFolder.addBinding(svelte.material.uniforms.noise_color, 'value', {
-			label: 'noise color',
-			color: { type: 'float' },
-		})
+		shaderFolder
+			.addColor('noise color', float2RGB(svelte.material.uniforms.noise_color.value))
+			.on('change', (v) =>
+				(svelte.material.uniforms.noise_color.value as T.Color).set(v.hexString),
+			)
 	}
 	//⌟
 
