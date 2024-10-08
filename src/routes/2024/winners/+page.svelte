@@ -30,13 +30,13 @@ todo add year selector
 	<a href="http://localhost:5173/login">to enter</a>
 </p>
 
-<!-- <h1 class="title">Svelte Hack 2024 Winners</h1> -->
+<h1 class="title">Svelte Hack 2024 Winners</h1>
 
-<!-- <div class="winners">
+<div class="winners">
 	{#each data as { category, winners }}
 		<Category {category} {winners} />
 	{/each}
-</div> -->
+</div>
 
 <style lang="scss">
 	.title {

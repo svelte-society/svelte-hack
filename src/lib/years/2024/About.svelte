@@ -47,8 +47,8 @@
 				amazing winners.
 				<br />
 				<br />
-				SvelteHack ran from the 17th of February 2023 to the 17th of April, and the winners were
-				announced at the
+				SvelteHack ran from the 17th of February 2023 to the 17th of December, and the winners
+				were announced at the
 				<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU">Spring Svelte Summit.</a>
 				<br />
 				<br />
