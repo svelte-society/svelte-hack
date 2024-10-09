@@ -5,83 +5,97 @@
 
 <section>
 	<div class="card-wrapper">
-		<div class="society">
-			<Society />
+		<div class="svelte-society-logo">
+			<div class="society"><Society /></div>
+			<div class="hat"><Hat /></div>
 		</div>
-		<div class="hat">
-			<Hat />
-		</div>
+
 		{#if true}
 			<div data-present class="card">
-				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
-				is excited to bring you
-				<strong style:color="var(--brand-a)">SvelteHack</strong>
-				on behalf of the Svelte team, our generous sponsors, and the svelte community at large!
-				We're inviting you to compete in this event and share your creations with the community.
-				<br />
-				<br />
-				In turn, we're contributing thousands in cash
-				<span>
-					<a href="/prizes">prizes</a>
-				</span>
-				.
-				<br />
-				<br />
-				Read our
-				<a href="rules">rules</a>
-				to learn more about how you can participate, and join our
-				<a href="https://svelte.dev/chat">Discord channel</a>
-				to stay tuned.
+				<p>
+					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
+					excited to bring you <strong style:color="var(--brand-a)">SvelteHack</strong>
+					<sup>runes</sup>
+				</p>
+
+				<p>
+					On behalf of the Svelte team and the svelte community at large, we're inviting
+					you to compete in this event and share your creations with the community.
+				</p>
+
+				<p>
+					In turn, we're contributing thousands in cash
+					<span><a href="/prizes">prizes</a></span>.
+				</p>
+
+				<p>
+					Read our <a href="rules">rules</a> to learn more about how you can participate,
+					and join our <a href="https://svelte.dev/chat">Discord channel</a> to stay tuned.
+				</p>
 			</div>
 		{:else}
+			<!-- todo: post-event blurb for later -->
 			<div data-past class="card">
-				<strong style:color="var(--brand-a)">SvelteHack</strong>
-				was brought to you on behalf of the Svelte team, by
-				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
-				our generous sponsors, and the amazing Svelte Community. We had
-				<strong>$12,000</strong>
-				in prizes, over
-				<strong>250</strong>
-				submissions, and
-				<strong>15</strong>
-				amazing winners.
-				<br />
-				<br />
-				SvelteHack ran from the 17th of February 2023 to the 17th of December, and the winners
-				were announced at the
-				<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU">Spring Svelte Summit.</a>
-				<br />
-				<br />
-				<a class="button btn-a" href="/winners" style="width: fit-content;">
-					View the SvelteHack winners
-				</a>
+				<p>
+					<strong style:color="var(--brand-a)">SvelteHack</strong> was brought to you on
+					behalf of the Svelte team, by
+					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
+					our generous sponsors, and the amazing Svelte Community. We had
+					<strong>$15,000</strong>
+					in prizes, over <strong>250</strong> submissions, and <strong>15</strong>
+					amazing winners.
+				</p>
+
+				<p>
+					SvelteHack ran from the START_DATE to the END_DATE, and the winners were
+					announced at the
+					<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU"
+						>Spring Svelte Summit. (UPDATE THIS URL)</a
+					>
+				</p>
+
+				<p>
+					<a class="button btn-a" href="/winners" style="width: fit-content;">
+						View the SvelteHack winners
+					</a>
+				</p>
 			</div>
 		{/if}
 	</div>
 </section>
 
-<style>
+<style lang="scss">
 	.card-wrapper {
 		position: relative;
 	}
 
 	.card {
-		padding-left: 2.5rem;
+		padding-left: 4rem;
+	}
+
+	sup {
+		color: color-mix(in hsl, var(--brand-a), var(--fg-a) 30%);
+		font-style: italic;
+		margin-left: -0.5rem;
+	}
+
+	.svelte-society-logo {
+		position: absolute;
+		left: -15%;
+		top: 15%;
+		width: 175px;
+		height: 175px;
 	}
 
 	.society,
 	.hat {
-		--size: 175px;
 		position: absolute;
-		left: -15%;
-		top: 15%;
-
+	}
+	.society {
 		z-index: 1;
 	}
-	@media only screen and (max-width: 800px) {
-		.card-wrapper {
-			border-radius: none;
-		}
+	.hat {
+		z-index: 2;
 	}
 
 	@media only screen and (max-width: 1000px) {
@@ -89,18 +103,15 @@
 			margin-bottom: 12rem;
 		}
 
-		.society,
-		.hat {
-			width: 175px;
-			height: 175px;
-			bottom: -50%;
+		.svelte-society-logo {
+			bottom: -9.5rem;
 			left: 0;
 			right: 0;
 			margin: auto auto 0 auto;
 		}
 
 		.card {
-			padding: unset;
+			padding: 1rem;
 		}
 	}
 </style>
