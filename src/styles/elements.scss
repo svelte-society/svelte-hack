@@ -23,11 +23,12 @@ h2 {
 }
 
 p,
-li {
+li,
+.card {
 	color: var(--fg-b);
-	font-size: 1.25rem;
+	font-size: var(--font-md);
 	word-spacing: 1.5px;
-	line-height: 1.4rem;
+	line-height: 1.25;
 
 	@media screen and (max-width: 560px) {
 		word-wrap: break-word;
