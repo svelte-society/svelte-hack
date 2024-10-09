@@ -1,7 +1,8 @@
 {
 	"svelteSortOrder": "options-scripts-markup-styles",
-	"htmlWhitespaceSensitivity": "ignore",
+	"htmlWhitespaceSensitivity": "css",
 	"trailingComma": "all",
+	"arrowParens": "avoid",
 	"singleQuote": true,
 	"printWidth": 100,
 	"useTabs": true,
