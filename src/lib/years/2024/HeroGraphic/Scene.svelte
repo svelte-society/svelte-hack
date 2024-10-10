@@ -1,31 +1,47 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte'
+	import { device } from '$lib/utils/device.svelte'
 	import { init } from './rune'
 
-	let destroy: (() => any) | null = null
+	let size = $derived(device.mobile ? 400 : 600)
+
+	let destroy = () => void 0 as any
 	let canvas: HTMLCanvasElement
 
-	onMount(async () => {
-		;({ destroy } = await init(canvas))
-	})
+	$effect(() => {
+		device.mobile
 
-	onDestroy(() => {
-		destroy?.()
+		init(canvas).then(res => {
+			if (res) destroy = res.destroy
+		})
+
+		return destroy()
 	})
 </script>
 
-<canvas width={400} height={500} bind:this={canvas} />
+<!-- <canvas width={400} height={500} bind:this={canvas}></canvas> -->
+<canvas
+	bind:this={canvas}
+	width={size}
+	height={size * 1.2}
+	style:max-width="{size}px"
+	style:max-height="{size * 1.2}px"
+></canvas>
 
 <style>
 	canvas {
 		display: flex;
-
-		max-width: 400px;
-		max-height: 500px;
 		margin: 0 auto;
 
 		background-color: #0b0e11;
 
-		/* outline: 1px solid var(--brand-a); */
+		z-index: 1;
+	}
+
+	@media screen and (width >= 1000px) {
+		canvas {
+			position: absolute;
+			right: 5rem;
+			top: -5rem;
+		}
 	}
 </style>
