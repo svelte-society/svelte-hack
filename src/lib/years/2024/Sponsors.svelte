@@ -1,9 +1,16 @@
+<script lang="ts">
+	import SveltebotDWI from '$lib/graphics/SveltebotDWI.svelte'
+</script>
+
 <section>
 	<h5 class="title">Sponsored by:</h5>
-	<div class="br-sm" />
+	<div class="br-sm"></div>
 
 	<div class="sponsors" style="--size: 175px">
 		<h1>You!</h1>
+		<div class="svelte-bot">
+			<SveltebotDWI />
+		</div>
 		<a href="https://opencollective.com/svelte">opencollective.com/svelte</a>
 	</div>
 </section>
@@ -25,12 +32,31 @@
 		}
 
 		.sponsors {
+			position: relative;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			justify-content: center;
-			column-gap: 100px;
-			row-gap: 50px;
+
+			width: fit-content;
+			margin: 0 auto;
+
+			.svelte-bot {
+				position: absolute;
+
+				width: 100px;
+				height: 100px;
+				top: 0;
+				right: -100px;
+				bottom: 0;
+			}
+
+			h1 {
+				font-family: var(--font-b);
+				font-size: 5rem;
+				font-variation-settings:
+					'wght' 900,
+					'wdth' 120;
+			}
 		}
 	}
 </style>
