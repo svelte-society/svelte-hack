@@ -8,11 +8,5 @@
 	"[svelte]": {
 		"editor.defaultFormatter": "svelte.svelte-vscode",
 		"editor.formatOnSave": true
-	},
-	"[dotenv]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	},
-	"[glsl]": {
-		"editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
 	}
 }
