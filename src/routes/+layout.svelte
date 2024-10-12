@@ -6,17 +6,20 @@
 	import { page } from '$app/stores'
 
 	import Header from '$lib/components/Header/Header.svelte'
+	import { themer } from '$lib/themer/themer.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 	import { pageTitle } from '$lib/utils/pageTitle'
-	import { Fractils, theme } from 'fractils'
+	import { Fractils } from 'fractils'
 	import { parse } from 'cookie'
 
-	$: title = pageTitle($page.url.pathname)
+	let title = $derived.by(() => pageTitle($page.url.pathname))
 
 	// Keeps the theme cookie in sync
-	$: if (browser && $theme !== parse(document.cookie).theme) {
-		document.cookie = `theme=${$theme}`
-	}
+	$effect(() => {
+		if (themer.mode !== parse(document.cookie).theme && browser) {
+			document.cookie = `theme=${themer.mode}`
+		}
+	})
 </script>
 
 <svelte:head>
@@ -29,8 +32,9 @@
 
 <Header />
 
-<div class="br-lg" />
+<div class="br-lg"></div>
 
+<!-- svelte-ignore slot_element_deprecated -->
 <slot />
 
 <Footer />
