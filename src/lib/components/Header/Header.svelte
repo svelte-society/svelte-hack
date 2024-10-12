@@ -1,12 +1,13 @@
 <script>
 	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte'
-	import { mobile, scrollY, ThemeToggle } from 'fractils'
+	import ThemeSwitch from '$lib/themer/ThemeSwitch.svelte'
+	import { device } from '$lib/utils/device.svelte'
 	import { fade } from 'svelte/transition'
 	import { page } from '$app/stores'
 	import Nav from './Nav/Nav.svelte'
 </script>
 
-<header class:top={$scrollY === 0}>
+<header class:top={device.scrollY === 0}>
 	<div class="content">
 		<nav>
 			<a class="home" href="/">
@@ -34,7 +35,9 @@
 		</div>
 	</div>
 
-	<div class="theme" class:mobile={$mobile}><ThemeToggle /></div>
+	<div class="theme" class:mobile={device.mobile}>
+		<ThemeSwitch />
+	</div>
 </header>
 
 <style>
