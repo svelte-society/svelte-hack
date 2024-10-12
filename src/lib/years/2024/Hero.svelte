@@ -79,6 +79,8 @@
 		position: relative;
 		display: flex;
 
+		background: none !important;
+
 		font-size: var(--font-md);
 		text-decoration: underline;
 		text-underline-offset: 0.25rem;
