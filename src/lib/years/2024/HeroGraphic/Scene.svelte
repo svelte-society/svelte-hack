@@ -1,24 +1,22 @@
 <script lang="ts">
 	import { device } from '$lib/utils/device.svelte'
-	import { init } from './rune'
+	import { onMount } from 'svelte'
+	import { init } from './rune.svelte'
 
 	let size = $derived(device.mobile ? 400 : 600)
 
 	let destroy = () => void 0 as any
 	let canvas: HTMLCanvasElement
 
-	$effect(() => {
-		device.mobile
-
+	onMount(() => {
 		init(canvas).then(res => {
 			if (res) destroy = res.destroy
 		})
 
-		return destroy()
+		return () => destroy()
 	})
 </script>
 
-<!-- <canvas width={400} height={500} bind:this={canvas}></canvas> -->
 <canvas
 	bind:this={canvas}
 	width={size}
@@ -32,7 +30,7 @@
 		display: flex;
 		margin: 0 auto;
 
-		background-color: #0b0e11;
+		background-color: transparent;
 
 		z-index: 1;
 	}
