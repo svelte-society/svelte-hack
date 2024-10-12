@@ -8,6 +8,7 @@ import {
 	ShaderMaterial,
 	WebGLRenderer,
 	AmbientLight,
+	Vector3,
 	Vector2,
 	Color,
 	Scene,
@@ -20,23 +21,49 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
+import { themer } from '$lib/themer/themer.svelte'
 import fragmentShader from './rune.frag?raw'
+import { object3dGoo } from './object3dGoo'
 import vertexShader from './rune.vert?raw'
 import { UnrealBloomPass } from './Bloom'
-import { get } from 'svelte/store'
-import { theme } from 'fractils' // todo - replace with svelte 5 themer
-import { G3Obj } from './goos'
+import { tweenGoo } from './tweenGoo'
 
-import { device } from '$lib/utils/device.svelte'
 import { cubicOut, quintOut } from 'svelte/easing'
+import { device } from '$lib/utils/device.svelte'
 import { tweened } from 'svelte/motion'
 import { BROWSER, DEV } from 'esm-env'
 
 const params = {
 	tween_duration: 800,
-	camera_sensitivity: {
-		x: -1,
+	/** Camera position sensitivity to mouse xy. */
+	camera: {
+		x: 1,
 		y: 0.66,
+	},
+	/** Rune position sensitivity to mouse xy. */
+	offset: {
+		x: 0.3,
+		y: 0.15,
+	},
+	tweens: {
+		rotation: {
+			duration: 1200,
+			easing: quintOut,
+			x: 1,
+			y: 0.5,
+		},
+		position: {
+			duration: 800,
+			easing: quintOut,
+			x: 0.3,
+			y: 0.15,
+		},
+		clonePosition: {
+			duration: 3000,
+			easing: quintOut,
+			x: 0.3,
+			y: 0.15,
+		},
 	},
 	bloom: {
 		dark: {
@@ -45,21 +72,45 @@ const params = {
 			radius: 0.38,
 		},
 		light: {
-			threshold: 0.01,
-			strength: 0.8,
-			radius: 0.15,
+			threshold: 0.37,
+			strength: 2.875,
+			radius: 0.9,
 		},
 	},
-} as const
+	lights: {
+		light: {
+			ambient: {
+				color: new Color('#40404f'),
+				intensity: 0.74,
+			},
+			directional: {
+				color: new Color('#97aed6'),
+				intensity: 0.72,
+			},
+		},
+		dark: {
+			ambient: {
+				color: new Color('#40404f'),
+				intensity: 0.5,
+			},
+			directional: {
+				color: new Color('#abcdff'),
+				intensity: 0.2,
+			},
+		},
+	},
+}
+
+let gui: Gooey | null = null
 
 export async function init(canvas: HTMLCanvasElement) {
 	if (!BROWSER) return { destroy() {} }
 
-	//· Setup ··········································································¬
+	//#region Setup ··········································································¬
 
-	let activeTheme: 'light' | 'dark' = get(theme) === 'dark' ? 'dark' : 'light'
+	let activeTheme: 'light' | 'dark' = themer.mode === 'dark' ? 'dark' : 'light'
 
-	// Unsubscribe functions.
+	/** Store / rune callbacks for unsubscribe / cleanup. */
 	const subs = new Set<() => void>()
 
 	const scene = new Scene()
@@ -72,13 +123,14 @@ export async function init(canvas: HTMLCanvasElement) {
 
 	const renderer = new WebGLRenderer({
 		canvas,
-		alpha: false,
+		alpha: true,
 		depth: false,
 		stencil: false,
 		antialias: true,
 		powerPreference: 'high-performance',
 	})
 	renderer.setSize(w, h)
+	renderer.setClearColor(0x000000, 0)
 
 	const camera = new PerspectiveCamera(75, w / h, 0.1, 1000)
 	camera.position.z = 2
@@ -90,9 +142,9 @@ export async function init(canvas: HTMLCanvasElement) {
 	const directionalLight = new DirectionalLight('#abcdff', 0.2)
 	directionalLight.position.set(0, 1, 100)
 	scene.add(directionalLight)
-	//⌟
+	//#endregion Setup
 
-	//· Bloom ·········································································¬
+	//#region Bloom ··········································································¬
 
 	const renderScene = new RenderPass(scene, camera)
 
@@ -111,27 +163,49 @@ export async function init(canvas: HTMLCanvasElement) {
 
 	const outputPass = new OutputPass()
 	composer.addPass(outputPass)
-	//⌟
+	//#endregion Bloom
 
-	//· Theme Sync ·····································································¬
+	//#region Theme Sync ·····································································¬
 
-	const { background } = window.getComputedStyle(document.body)
-	scene.background = new Color(background)
+	// fully transparent background
+
+	// const { background } = window.getComputedStyle(document.body)
+	// scene.background = new Color(background)
 
 	// Sync canvas background color / bloom settings on theme change.
 	subs.add(
-		theme.subscribe((v) => {
-			scene.background = new Color(window.getComputedStyle(document.body).background)
+		$effect.root(() => {
+			$effect(() => {
+				bloomPass.threshold = params.bloom[themer.mode].threshold
+				bloomPass.strength = params.bloom[themer.mode].strength
+				bloomPass.radius = params.bloom[themer.mode].radius
 
-			activeTheme = v === 'dark' ? 'dark' : 'light'
-			bloomPass.threshold = params.bloom[activeTheme].threshold
-			bloomPass.strength = params.bloom[activeTheme].strength
-			bloomPass.radius = params.bloom[activeTheme].radius
+				ambientLight.color.set(params.lights[themer.mode].ambient.color)
+				ambientLight.intensity = params.lights[themer.mode].ambient.intensity
+				directionalLight.color.set(params.lights[themer.mode].directional.color)
+				directionalLight.intensity = params.lights[themer.mode].directional.intensity
+
+				for (const [_, input] of gui?.folder?.allInputs ?? []) {
+					if (['ambient', 'light'].includes(input.title)) {
+						input.refresh()
+					}
+				}
+			})
 		}),
 	)
-	//⌟
+	// subs.add(
+	// 	theme.subscribe(v => {
+	// 		scene.background = new Color(window.getComputedStyle(document.body).background)
 
-	//· Runes ··········································································¬
+	// 		activeTheme = v === 'dark' ? 'dark' : 'light'
+	// 		bloomPass.threshold = params.bloom[activeTheme].threshold
+	// 		bloomPass.strength = params.bloom[activeTheme].strength
+	// 		bloomPass.radius = params.bloom[activeTheme].radius
+	// 	}),
+	// )
+	//#endregion Theme Sync
+
+	//#region Runes ··········································································¬
 
 	interface RuneOpts {
 		position: { x: number; y: number; z: number }
@@ -142,7 +216,7 @@ export async function init(canvas: HTMLCanvasElement) {
 	// load the glb
 	const loader = new GLTFLoader()
 	const runes = (
-		await loader.loadAsync('/assets/runes.glb').catch((error) => {
+		await loader.loadAsync('/assets/runes.glb').catch(error => {
 			console.error('Failed to load the glb:', error)
 		})
 	)?.scene
@@ -157,34 +231,39 @@ export async function init(canvas: HTMLCanvasElement) {
 	runes.rotateY(-Math.PI / 2)
 	runeGroup.add(runes)
 
+	/** //* Main, large runestone mesh. */
 	const runestone = runes.children[0] as Mesh
 
-	const runeBLOpts: RuneOpts = {
+	const cloneGroup = new Group()
+	cloneGroup.scale.setScalar(0)
+	scene.add(cloneGroup)
+
+	/** //* Bottom-Left runestone mesh clone. */
+	const runeBL = createRune(runestone, {
 		position: { x: -0.5, y: -0.85, z: 0 },
 		scale: 0.066,
 		rotate: { x: 0.5, y: 0, z: 0.7 },
-	}
-	const runeBL = createRune(runestone, runeBLOpts)
-	runeGroup.add(runeBL)
+	})
+	cloneGroup.add(runeBL)
 
-	const runeTLOpts: RuneOpts = {
+	/** //* Top-Left runestone mesh clone. */
+	const runeTL = createRune(runestone, {
 		position: { x: -0.6, y: 0.35, z: 0 },
 		scale: 0.033,
 		rotate: { x: -0.1, y: Math.PI, z: -2.8 },
-	}
-	const runeTL = createRune(runestone, runeTLOpts)
-	runeGroup.add(runeTL)
+	})
+	cloneGroup.add(runeTL)
 
-	const runeBROpts: RuneOpts = {
+	/** //* Bottom-Right runestone mesh clone. */
+	const runeBR = createRune(runestone, {
 		position: { x: 0.5, y: -0.75, z: 0 },
 		scale: 0.05,
 		rotate: { x: 0.4, y: 0, z: 2.8 },
-	}
-	const runeBR = createRune(runestone, runeBROpts)
-	runeGroup.add(runeBR)
-	//⌟
+	})
+	cloneGroup.add(runeBR)
+	//#endregion Runes
 
-	//· Svelte Logo ····································································¬
+	//#region Svelte Logo ····································································¬
 
 	const svelte = scene.getObjectByName('svelte-outer') as Mesh<any, ShaderMaterial>
 
@@ -204,21 +283,21 @@ export async function init(canvas: HTMLCanvasElement) {
 		fragmentShader,
 		silent: true, // Extraneous warnings.
 	}) as any as ShaderMaterial
-	//⌟
+	//#endregion Svelte Logo
 
-	//· Camera Animation ·······························································¬
+	//#region Tween Animation ·······························································¬
 
-	const cameraPosition = tweened(
-		{ x: 0, y: 0 },
-		{ duration: params.tween_duration, easing: cubicOut },
-	)
+	// const cameraPosition = tweened({ x: 0, y: 0 })
+	const runeRotation = tweened({ x: 0, y: 0 })
+	const runePosition = tweened({ x: 0, y: 0 })
+	const clonePosition = tweened({ x: 0, y: 0 })
 
 	const rect = canvas.getBoundingClientRect()
 	let mouseX = rect.left + rect.width / 2
 	let mouseY = 0
 	let scrollY = 0
 
-	const updateScroll = (e: Event) => {
+	const updateScroll = () => {
 		scrollY = window.scrollY
 		update()
 	}
@@ -233,6 +312,11 @@ export async function init(canvas: HTMLCanvasElement) {
 	addEventListener('pointermove', updatePointer, false)
 	subs.add(() => removeEventListener('pointermove', updatePointer, false))
 
+	// Create a target rotation based on mouse position
+	const targetRotation = new Vector3()
+	const lerp = 0.5
+
+	// todo - add tween params to set calls below
 	function update() {
 		if (device.mobile) {
 			// todo -- maybe do more with scroll since we don't have a mouse?
@@ -245,40 +329,92 @@ export async function init(canvas: HTMLCanvasElement) {
 			const middle = rect.top + rect.height / 2
 			const y = totalY - middle
 
-			// Invert the x and y values to make the rune lean towards the mouse
-			cameraPosition.set(
+			const relative_x = -x / window.innerWidth
+			const relative_y = y / rect.height
+
+			// wip
+			targetRotation.x = relative_y * lerp * params.tweens.rotation.y
+			targetRotation.y = -relative_x * lerp * params.tweens.rotation.x
+
+			runeRotation.set(
 				{
-					x: (x / window.innerWidth) * params.camera_sensitivity.x,
-					y: (y / rect.height) * params.camera_sensitivity.y,
+					x: targetRotation.x,
+					y: targetRotation.y,
 				},
-				{ duration: params.tween_duration },
+				{
+					duration: params.tween_duration,
+					easing: cubicOut,
+				},
+			)
+
+			runePosition.set(
+				{
+					x: relative_x * params.tweens.position.x,
+					y: relative_y * params.tweens.position.y,
+				},
+				{
+					duration: params.tween_duration * 0.75,
+					easing: cubicOut,
+				},
+			)
+
+			clonePosition.set(
+				{
+					x: relative_x * params.tweens.clonePosition.x,
+					y: relative_y * params.tweens.clonePosition.y,
+				},
+				{
+					duration: params.tweens.clonePosition.duration,
+					easing: params.tweens.clonePosition.easing,
+					// easing: (t: number) =>
+					// 	params.debug.amp *
+					// 		Math.sin((-13.0 * (t + 1.0) * Math.PI) / 2) *
+					// 		Math.pow(2.0, -params.debug.decay * t) +
+					// 	1.0,
+				},
 			)
 		}
 	}
 
-	cameraPosition.subscribe(({ x, y }) => {
-		camera.position.x = x
-		camera.position.y = y * params.camera_sensitivity.y
-		camera.lookAt(0, 0, 0)
-	})
-	//⌟
+	subs.add(
+		runeRotation.subscribe(({ x, y }) => {
+			runeGroup.rotation.x = x
+			runeGroup.rotation.y = y
+			cloneGroup.rotation.x = x
+			cloneGroup.rotation.y = y
+		}),
+	)
 
-	//· Animation ······································································¬
+	subs.add(
+		runePosition.subscribe(({ x, y }) => {
+			runeGroup.position.x = -x
+			runeGroup.position.y = -y
+		}),
+	)
 
-	// Scale in the runes.
-	scale.subscribe((v) => {
+	subs.add(
+		clonePosition.subscribe(({ x, y }) => {
+			cloneGroup.position.x = -x
+			cloneGroup.position.y = -y
+		}),
+	)
+	//#endregion Tween Animation
+
+	//#region Scene Animation ································································¬
+
+	// Scale-in animation.
+	scale.subscribe(v => {
 		runeGroup.scale.setScalar(v)
+		cloneGroup.scale.setScalar(v)
 	})
-	setTimeout(() => {
-		requestAnimationFrame(() => scale.set(1))
-	}, 600)
+	setTimeout(() => requestAnimationFrame(() => scale.set(1)), 600)
 
-	let running = true
-	let previousTimestamp = 0
-	let fpsLimit = 60
-	let frame = 0
-	let fps = 0
 	let t = 0
+	let running = true
+
+	let frame = 0
+	let fpsLimit = 60
+	let previousTimestamp = 0
 
 	function loop(timestamp: DOMHighResTimeStamp) {
 		if (!running) return
@@ -294,18 +430,25 @@ export async function init(canvas: HTMLCanvasElement) {
 			return
 		}
 
-		fps = fps_time
 		previousTimestamp = timestamp
 		animate(delta)
 		frame = requestAnimationFrame(loop)
 	}
 
+	const initial = {
+		runestone: { position: runestone.position.clone() },
+		svelte: { position: svelte.position.clone() },
+		runeBL: { position: runeBL.position.clone() },
+		runeBR: { position: runeBR.position.clone() },
+		runeTL: { position: runeTL.position.clone() },
+	}
+
 	const animate = (delta: number) => {
 		t += delta
 
-		runeBL.position.y = runeBLOpts.position.y + Math.sin(t / 1000) * 0.05
-		runeBR.position.y = runeBROpts.position.y + Math.sin(5 + t / 1100) * 0.033
-		runeTL.position.y = runeTLOpts.position.y + Math.sin(15 + t / 900) * 0.05
+		runeBL.position.y = Math.sin(t / 1000) * 0.05 + initial.runeBL.position.y
+		runeBR.position.y = Math.sin(5 + t / 1100) * 0.033 + initial.runeBR.position.y
+		runeTL.position.y = Math.sin(15 + t / 900) * 0.05 + initial.runeTL.position.y
 
 		svelte.material.uniforms.time.value = t / 1000
 
@@ -313,10 +456,9 @@ export async function init(canvas: HTMLCanvasElement) {
 	}
 
 	loop(Date.now())
-	// animate(0)
-	//⌟
+	//#endregion Scene Ann
 
-	//· Utils ··········································································¬
+	//#region Utils ··········································································¬
 
 	function createRune(mesh: Mesh, opts: RuneOpts) {
 		const rune = mesh.clone()
@@ -333,16 +475,16 @@ export async function init(canvas: HTMLCanvasElement) {
 
 		return rune
 	}
-	//⌟
+	//#endregion Utils
 
-	//· Controls ·······································································¬
+	//#region Gooey ·······································································¬
 
-	let gui: Gooey | null = null
 	async function addGooey() {
 		const { Gooey } = await import('gooey')
 
 		gui = new Gooey({
 			title: 'Rune',
+			margin: { x: 16 * 7, y: 16 },
 			storage: {
 				key: 'sveltehack-2024-rune-gooey',
 				position: true,
@@ -351,16 +493,25 @@ export async function init(canvas: HTMLCanvasElement) {
 		})
 
 		const mesh_f = gui.addFolder('Objects', { closed: true })
-		new G3Obj(mesh_f, scene, runeBL, 'Rune BL')
-		new G3Obj(mesh_f, scene, runeBR, 'Rune BR')
-		new G3Obj(mesh_f, scene, runeTL, 'Rune TL')
-		new G3Obj(mesh_f, scene, svelte, 'Svelte')
+		object3dGoo(mesh_f, runeBL, 'Rune BL')
+		object3dGoo(mesh_f, runeBR, 'Rune BR')
+		object3dGoo(mesh_f, runeTL, 'Rune TL')
+		object3dGoo(mesh_f, svelte, 'Svelte')
 
 		const mouse_f = gui.addFolder('Mouse', { closed: true })
 
-		mouse_f.bind(params, 'tween_duration', { max: 2000, min: 0 })
-		mouse_f.bind(params.camera_sensitivity, 'x', { title: 'Mouse X', min: -2, max: 2 })
-		mouse_f.bind(params.camera_sensitivity, 'y', { title: 'Mouse Y', min: -2, max: 2 })
+		tweenGoo('rotation', params.tweens.rotation, mouse_f, runeRotation, {
+			name: 'quint',
+			type: 'Out',
+		})
+		tweenGoo('position', params.tweens.position, mouse_f, runePosition, {
+			name: 'quint',
+			type: 'Out',
+		})
+		tweenGoo('clone position', params.tweens.clonePosition, mouse_f, clonePosition, {
+			name: 'elastic',
+			type: 'Out',
+		})
 
 		const bloom_f = gui.addFolder('Bloom', { closed: true })
 		bloom_f.bind(bloomPass, 'threshold', { min: 0, max: 1 })
@@ -379,7 +530,7 @@ export async function init(canvas: HTMLCanvasElement) {
 
 		lights_f
 			.addColor('ambient color', float2RGB(ambientLight.color))
-			.on('change', (v) => ambientLight.color.set(v.hexString))
+			.on('change', v => ambientLight.color.set(v.hexString))
 		lights_f.bind(ambientLight, 'intensity', {
 			title: 'ambient amt',
 			min: 0,
@@ -387,7 +538,7 @@ export async function init(canvas: HTMLCanvasElement) {
 		})
 		lights_f
 			.addColor('light color', float2RGB(directionalLight.color))
-			.on('change', (v) => directionalLight.color.set(v.hexString))
+			.on('change', v => directionalLight.color.set(v.hexString))
 
 		lights_f.bind(directionalLight, 'intensity', {
 			title: 'light amt',
@@ -399,7 +550,7 @@ export async function init(canvas: HTMLCanvasElement) {
 
 		shader_f
 			.addColor('color', float2RGB(svelte.material.uniforms.color.value))
-			.on('change', (v) => (svelte.material.uniforms.color.value as Color).set(v.hexString))
+			.on('change', v => (svelte.material.uniforms.color.value as Color).set(v.hexString))
 		shader_f.bind(svelte.material.uniforms.speed, 'value', { title: 'speed', min: 0, max: 2 })
 		shader_f.bind(svelte.material.uniforms.brightness, 'value', {
 			title: 'brightness',
@@ -424,19 +575,17 @@ export async function init(canvas: HTMLCanvasElement) {
 		})
 		shader_f
 			.addColor('noise color', float2RGB(svelte.material.uniforms.noise_color.value))
-			.on('change', (v) =>
+			.on('change', v =>
 				(svelte.material.uniforms.noise_color.value as Color).set(v.hexString),
 			)
 	}
 
-	if (DEV && !device.mobile) {
+	if (DEV && !device.mobile && globalThis?.window?.location?.search?.includes('gui')) {
 		const defer =
 			typeof globalThis.requestIdleCallback !== 'undefined'
 				? requestIdleCallback
-				: typeof globalThis.setTimeout !== 'undefined'
-					? setTimeout
-					: undefined
-		defer?.(addGooey)
+				: requestAnimationFrame
+		defer(addGooey)
 	} else {
 		// easter egg
 		let clicked = 0
@@ -458,7 +607,7 @@ export async function init(canvas: HTMLCanvasElement) {
 		subs.add(() => canvas.removeEventListener('click', click))
 	}
 
-	//⌟
+	//#endregion Gooey
 
 	return {
 		destroy() {
@@ -467,17 +616,17 @@ export async function init(canvas: HTMLCanvasElement) {
 			running = false
 			cancelAnimationFrame(frame)
 
-			// Clear the canvas immediately
-			const ctx = canvas.getContext('2d')
-			ctx?.clearRect(0, 0, canvas.width, canvas.height)
+			// Clear the canvas
+			const ctx = canvas.getContext('webgl2')
+			ctx?.clearColor(0, 0, 0, 0)
 
 			// Cleanup materials / geometries / textures
-			scene.traverse((object) => {
+			scene.traverse(object => {
 				if (object instanceof Mesh) {
 					if ((object.material as Material).isMaterial) {
 						object.material.dispose()
 					} else if (Array.isArray(object.material)) {
-						object.material.forEach((material) => material.dispose())
+						object.material.forEach(material => material.dispose())
 					}
 					if (object.geometry) {
 						object.geometry.dispose()
@@ -486,21 +635,19 @@ export async function init(canvas: HTMLCanvasElement) {
 			})
 
 			// Cleanup postprocessing
-			composer.passes.forEach((pass) => {
+			composer.passes.forEach(pass => {
 				if (pass.dispose) pass.dispose()
 			})
 			composer.dispose()
 			renderer.dispose()
 
-			// Clear the scene
+			// Clear scene objects
 			while (scene.children.length > 0) {
 				scene.remove(scene.children[0])
 			}
 
 			// Unsubscribe from all subscriptions
-			subs.forEach((sub) => sub())
-
-			console.warn('destroyed')
+			subs.forEach(sub => sub())
 		},
 	}
 }
