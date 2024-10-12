@@ -14,13 +14,17 @@
 			<div data-present class="card">
 				<p>
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
-					excited to bring you <strong style:color="var(--brand-a)">SvelteHack</strong>
-					<sup>runes-edition</sup>
+					excited to bring you
+					<span class="sveltehack">
+						<strong style:color="var(--brand-a)">SvelteHack</strong>
+						<sup>runes-edition</sup>
+					</span>
 				</p>
 
 				<p>
-					On behalf of the Svelte team and the svelte community at large, we're inviting
-					you to compete in this event and share your creations with the community.
+					On behalf of the Svelte team and community at large, we're inviting you to
+					compete in this event and share your creations with the official release of
+					Svelte 5.
 				</p>
 
 				<p>
@@ -71,6 +75,24 @@
 
 	.card {
 		padding-left: 4rem;
+	}
+
+	p {
+		font-family: var(--font-a);
+		// font-size: 1.25rem;
+		font-variation-settings:
+			'wght' 333,
+			'wdth' 105;
+
+		font-family: var(--font-mono);
+	}
+
+	.sveltehack {
+		font-family: var(--font-mono);
+		font-variation-settings:
+			'wght' 500,
+			'wdth' 105,
+			'slnt' -10;
 	}
 
 	sup {

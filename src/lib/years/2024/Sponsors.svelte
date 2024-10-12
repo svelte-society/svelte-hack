@@ -51,7 +51,7 @@
 			}
 
 			h1 {
-				font-family: var(--font-b);
+				font-family: var(--font-a);
 				font-size: 5rem;
 				font-variation-settings:
 					'wght' 900,

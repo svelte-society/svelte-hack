@@ -5,7 +5,7 @@
 
 <div class="hero">
 	<h1>
-		SvelteHack 2024
+		<span class="sveltehack">SvelteHack</span> <span class="year">2024</span>
 		<div class="runes-edition"><RunesEdition /></div>
 	</h1>
 
@@ -43,6 +43,20 @@
 		border-left: 3px solid var(--brand-a);
 
 		font-size: min(6rem, 15vw);
+
+		.sveltehack {
+			font-variation-settings:
+				'wght' 800,
+				'wdth' 90,
+				'slnt' -10;
+		}
+
+		.year {
+			font-variation-settings:
+				'wght' 100,
+				'wdth' 150,
+				'slnt' -10;
+		}
 	}
 
 	.runes-edition {
