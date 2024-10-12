@@ -430,14 +430,27 @@ export async function init(canvas: HTMLCanvasElement) {
 	}
 
 	if (DEV && !device.mobile) {
-		addGooey()
+		const defer =
+			typeof globalThis.requestIdleCallback !== 'undefined'
+				? requestIdleCallback
+				: typeof globalThis.setTimeout !== 'undefined'
+					? setTimeout
+					: undefined
+		defer?.(addGooey)
 	} else {
 		// easter egg
 		let clicked = 0
+		let max = 10
 
 		function click() {
-			if (++clicked == 5) {
-				addGooey()
+			if (++clicked >= max) {
+				if (!gui) {
+					addGooey()
+					max = 2
+				} else {
+					gui.toggleHidden()
+				}
+				clicked = 0
 			}
 		}
 
