@@ -122,6 +122,7 @@ class Themer {
 
 		this.css.replaceSync(str)
 
+		document.documentElement.setAttribute('theme', this.mode)
 		document.documentElement.style.setProperty('color-scheme', this.mode)
 
 		this.#updateStorage()
