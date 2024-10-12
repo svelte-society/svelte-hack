@@ -54,16 +54,17 @@ a {
 	}
 }
 
-pre {
-	padding: 0.5em;
+code {
+	padding: 0.1rem 0.5rem;
 
 	color: var(--fg-a);
-	border-radius: 3px;
+	background: var(--bg-d);
+	border-radius: var(--radius-sm);
 
-	font-size: 0.8em;
-	font-weight: 600;
-
-	overflow-x: auto;
+	font-weight: 800;
+	font-variation-settings:
+		'wght' 600,
+		'wdth' 90;
 }
 
 input,

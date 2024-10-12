@@ -153,7 +153,7 @@
 		pointer-events: none;
 		transition: var(--transition);
 
-		font-size: var(--font-sm);
+		font-size: var(--font-xs);
 		font-family: var(--font-a);
 		font-variation-settings:
 			'wght' 400,

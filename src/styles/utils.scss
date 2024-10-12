@@ -4,6 +4,11 @@
 	align-items: center;
 }
 
+.col {
+	display: flex;
+	flex-direction: column;
+}
+
 .br-xs {
 	height: 0.5rem;
 }
