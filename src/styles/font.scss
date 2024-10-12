@@ -9,101 +9,20 @@
 	unicode-range: U+20-7E, U+E4, U+E5, U+F6;
 }
 
-//*	LATO
+/* MONA SANS - Variable Font (wght, wdth) */
 @font-face {
-	font-family: 'Lato';
-	font-weight: 100;
-	font-style: regular;
+	font-family: 'Mona Sans';
 	src:
-		url('/fonts/Lato/Lato-Thin.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-Thin.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 100;
-	font-style: italic;
-	src:
-		url('/fonts/Lato/Lato-ThinItalic.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 300;
-	font-style: regular;
-	src:
-		url('/fonts/Lato/Lato-Light.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-Light.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 300;
-	font-style: italic;
-	src:
-		url('/fonts/Lato/Lato-LightItalic.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 400;
-	font-style: regular;
-	src:
-		url('/fonts/Lato/Lato-Regular.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-Regular.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 400;
-	font-style: italic;
-	src:
-		url('/fonts/Lato/Lato-Italic.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-Italic.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 700;
-	font-style: regular;
-	src:
-		url('/fonts/Lato/Lato-Bold.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-Bold.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 700;
-	font-style: italic;
-	src:
-		url('/fonts/Lato/Lato-BoldItalic.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 900;
-	font-style: regular;
-	src:
-		url('/fonts/Lato/Lato-Black.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-Black.ttf') format('truetype');
-	unicode-range: U+20-7E;
-}
-@font-face {
-	font-family: 'Lato';
-	font-weight: 900;
-	font-style: italic;
-	src:
-		url('/fonts/Lato/Lato-BlackItalic.woff2') format('woff2'),
-		url('/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
-	unicode-range: U+20-7E;
+		url('/fonts/mona_sans/Mona-Sans.woff2') format('woff2 supports variations'),
+		url('/fonts/mona_sans/Mona-Sans.woff2') format('woff2-variations');
+	font-weight: 200 900;
+	font-stretch: 75% 125%;
+	font-display: auto;
 }
 
 :root {
-	--font-a: 'Lato', sans-serif;
-	--font-mono: 'inconsolata', monospace;
+	--font-a: 'Mona Sans', sans-serif;
+	--font-mono: 'Inconsolata', monospace;
 }
 
 h1,
@@ -112,13 +31,25 @@ h3,
 h4,
 h5 {
 	font-family: var(--font-a);
+	font-variation-settings:
+		'wght' 600,
+		'wdth' 110;
+}
+
+p {
+	font-family: var(--font-mono);
+	font-size: 1.33rem;
+	font-variation-settings:
+		'wght' 333,
+		'wdth' 105;
 }
 
 a,
-p,
+// p,
 li,
 section {
 	font-family: var(--font-mono);
+	// font-family: var(--font-a);
 }
 
 pre,
