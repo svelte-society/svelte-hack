@@ -15,7 +15,7 @@
 				<p>
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
 					excited to bring you <strong style:color="var(--brand-a)">SvelteHack</strong>
-					<sup>runes</sup>
+					<sup>runes-edition</sup>
 				</p>
 
 				<p>
