@@ -1,18 +1,21 @@
 <script lang="ts">
-	import type { ActionData, PageData, SubmitFunction } from './$types'
+	import type { SubmissionsTable, UsersTable } from '$lib/types/pocketbase'
+	import type { ActionData, SubmitFunction } from './$types'
 	import FieldError from './FieldError.svelte'
 	import Removable from './Removable.svelte'
+	import { fade } from 'svelte/transition'
 	import Confetti from './Confetti.svelte'
 	import { enhance } from '$app/forms'
 	import { onDestroy } from 'svelte'
 
-	export let data: PageData
+	export let submission: Partial<SubmissionsTable>
+	export let user: UsersTable
 	export let form: ActionData
 
 	let disabled = false
 
-	let authorTwo = !!data.submission?.authorTwo
-	let authorThree = !!data.submission?.authorThree
+	let authorTwo = !!submission.authorTwo
+	let authorThree = !!submission.authorThree
 
 	function addAuthor() {
 		if (!authorTwo) {
@@ -52,24 +55,24 @@
 	<Confetti />
 {/if}
 
-<section>
+<section transition:fade>
 	<h2>Your SvelteHack Submission</h2>
 	<div class="br-sm"></div>
 
 	<!-- <p>Submissions are closed</p>
 	<div class="br-md" /> -->
 
-	<form method="POST" use:enhance={submit}>
+	<form method="POST" action="?/updateSubmission" use:enhance={submit}>
 		<label>
 			<span>Author Email(s)</span>
 
-			<input type="email" value={data.userEmail} disabled required />
+			<input type="email" value={user.email} disabled required />
 
 			<Removable bind:open={authorTwo}>
 				<input
 					name="authorTwo"
 					type="email"
-					value={data.submission?.authorTwo}
+					value={submission.authorTwo}
 					{disabled}
 					required
 				/>
@@ -80,7 +83,7 @@
 				<input
 					name="authorThree"
 					type="email"
-					value={data.submission?.authorThree}
+					value={submission.authorThree}
 					{disabled}
 					required
 				/>
@@ -102,31 +105,26 @@
 
 		<label>
 			<span>Project Title</span>
-			<input name="title" type="text" value={data.submission?.title} {disabled} required />
+			<input name="title" type="text" value={submission.title} {disabled} required />
 			<FieldError error={form?.error?.title} />
 		</label>
 
 		<label>
 			<span>Project Description</span>
-			<textarea
-				name="description"
-				value={data.submission?.description}
-				{disabled}
-				required
-				rows="4"
+			<textarea name="description" value={submission.description} {disabled} required rows="4"
 			></textarea>
 			<FieldError error={form?.error?.description} />
 		</label>
 
 		<label>
 			<span>GitHub Repository</span>
-			<input name="github" type="url" value={data.submission?.github} {disabled} required />
+			<input name="github" type="url" value={submission.github} {disabled} required />
 			<FieldError error={form?.error?.github} />
 		</label>
 
 		<label>
 			<span>Demo URL</span>
-			<input name="demo" type="url" value={data.submission?.demo} {disabled} required />
+			<input name="demo" type="url" value={submission.demo} {disabled} required />
 			<FieldError error={form?.error?.demo} />
 		</label>
 
@@ -160,16 +158,8 @@
 	}
 
 	h2,
-	p,
 	.center {
 		text-align: center;
-	}
-
-	p {
-		font-style: italic;
-		font-size: var(--font-sm);
-
-		color: var(--fg-d);
 	}
 
 	button {

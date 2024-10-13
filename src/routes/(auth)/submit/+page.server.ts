@@ -21,13 +21,12 @@ export async function load({ parent, locals }) {
 	const submission = await getSubmission(locals.pb)
 
 	return {
-		userEmail: locals.user?.email,
 		submission,
 	}
 }
 
 export const actions = {
-	async default({ request, locals }) {
+	async updateSubmission({ request, locals }) {
 		// If not logged in then exit
 		if (!locals.user) {
 			throw error(401, 'Unauthorised')

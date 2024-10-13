@@ -14,7 +14,8 @@
 			<div data-present class="card">
 				<p>
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
-					excited to bring you <strong style:color="var(--brand-a)">SvelteHack</strong>
+					excited to bring you
+					<strong style:color="var(--brand-a)">SvelteHack 2024</strong>
 					<sup>runes-edition</sup>
 				</p>
 
@@ -71,12 +72,6 @@
 
 	.card {
 		padding-left: 4rem;
-	}
-
-	sup {
-		color: color-mix(in hsl, var(--brand-a), var(--fg-a) 30%);
-		font-style: italic;
-		margin-left: -0.5rem;
 	}
 
 	.svelte-society-logo {
