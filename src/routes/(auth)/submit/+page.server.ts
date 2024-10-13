@@ -69,6 +69,7 @@ export const actions = {
 				// If no record exists then create one
 				await locals.pb.collection('submissions').create({
 					...result.data,
+					authorOne: locals.user.email,
 					account: locals.user.id,
 				})
 			}
