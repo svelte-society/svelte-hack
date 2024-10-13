@@ -174,15 +174,14 @@
 		flex-grow: 1;
 	}
 
-	h2,
-	.center {
+	h2 {
 		text-align: center;
 	}
 
 	button {
 		margin: auto;
 
-		box-shadow: var(--shadow-sm);
+		box-shadow: var(--shadow);
 
 		text-align: center;
 
@@ -205,7 +204,7 @@
 		padding: 2rem;
 
 		background: var(--bg-b);
-		box-shadow: var(--shadow-sm);
+		box-shadow: var(--shadow);
 		border-radius: var(--radius);
 
 		font-family: var(--font-a);
@@ -231,7 +230,6 @@
 	textarea {
 		min-width: min(25rem, 90vw);
 		max-width: 90vw;
-		width: 100%;
 		max-height: 10rem;
 
 		border: none;
@@ -263,7 +261,7 @@
 		background: var(--bg-a);
 		border-radius: var(--radius);
 
-		box-shadow: var(--shadow-xs);
+		box-shadow: var(--shadow-sm);
 		transition: 0.2s;
 	}
 
