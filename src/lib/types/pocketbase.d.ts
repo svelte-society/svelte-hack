@@ -1,5 +1,5 @@
-import type { Submission } from '$lib/server/submissions'
 import type { RecordService, BaseModel } from 'pocketbase'
+import type { Submission } from '$lib/server/submissions'
 import type Pocketbase from 'pocketbase'
 
 export interface TypedPocketbase extends Pocketbase {

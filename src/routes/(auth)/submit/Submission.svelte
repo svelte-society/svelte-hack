@@ -9,11 +9,13 @@
 	import { enhance } from '$app/forms'
 	import { onDestroy } from 'svelte'
 
-	export let submission: Partial<SubmissionsTable>
+	export let submission: Partial<SubmissionsTable> = {}
+	export let isSubmitter: boolean | null
 	export let user: UsersTable
 	export let form: ActionData
 
-	let disabled = !SUBMISSIONS_OPEN
+	let locked = isSubmitter === false || !SUBMISSIONS_OPEN
+	let disabled = locked
 
 	let authorTwo = !!submission.authorTwo
 	let authorThree = !!submission.authorThree
@@ -64,12 +66,19 @@
 		<label>
 			<span>Author Email(s)</span>
 
-			<input type="email" value={user.email} disabled required />
+			<input
+				type="email"
+				name="authorOne"
+				value={submission.authorOne || user.email}
+				{disabled}
+				required
+			/>
+			<FieldError error={form?.error?.authorOne} />
 
-			<Removable bind:open={authorTwo}>
+			<Removable bind:open={authorTwo} {disabled}>
 				<input
-					name="authorTwo"
 					type="email"
+					name="authorTwo"
 					value={submission.authorTwo}
 					{disabled}
 					required
@@ -77,10 +86,10 @@
 				<FieldError error={form?.error?.authorTwo} />
 			</Removable>
 
-			<Removable bind:open={authorThree}>
+			<Removable bind:open={authorThree} {disabled}>
 				<input
-					name="authorThree"
 					type="email"
+					name="authorThree"
 					value={submission.authorThree}
 					{disabled}
 					required
@@ -89,16 +98,18 @@
 				<FieldError error={form?.error?.authorThree} />
 			</Removable>
 
-			<button
-				title="add author"
-				class:disabled={authorTwo && authorThree}
-				type="button"
-				class="add-author-btn"
-				on:click={addAuthor}
-				{disabled}
-			>
-				+
-			</button>
+			{#if !locked}
+				<button
+					title="add author"
+					class:disabled={authorTwo && authorThree}
+					type="button"
+					class="add-author-btn"
+					on:click={addAuthor}
+					{disabled}
+				>
+					+
+				</button>
+			{/if}
 		</label>
 
 		<label>
@@ -126,16 +137,22 @@
 			<FieldError error={form?.error?.demo} />
 		</label>
 
-		<label>
-			<span>
-				I have read and agree to the
-				<a href="/2024/rules">SvelteHack 2024 rules</a>
-			</span>
-			<input name="rulesAccepted" type="checkbox" {disabled} required />
-			<FieldError error={form?.error?.rulesAccepted} />
-		</label>
+		{#if !isSubmitter}
+			<p style="font-size: var(--font-xs);">
+				Only the member of your team that made the submission can make edits
+			</p>
+		{/if}
 
-		{#if SUBMISSIONS_OPEN}
+		{#if !locked}
+			<label>
+				<span>
+					I have read and agree to the
+					<a href="/2024/rules">SvelteHack 2024 rules</a>
+				</span>
+				<input name="rulesAccepted" type="checkbox" {disabled} required />
+				<FieldError error={form?.error?.rulesAccepted} />
+			</label>
+
 			<button type="submit" class="btn-b" {disabled}>
 				{confettiPlaying ? 'Saved!' : 'Save'}
 			</button>
@@ -214,6 +231,7 @@
 	textarea {
 		min-width: min(25rem, 90vw);
 		max-width: 90vw;
+		width: 100%;
 		max-height: 10rem;
 
 		border: none;

@@ -1,15 +1,22 @@
-import type { TypedPocketbase } from '$lib/types/pocketbase'
+import { dangerously_get_pb_admin } from '$lib/server/pb-admin'
 import { submissionSchema } from '$lib/server/submissions'
+import type { ClientResponseError } from 'pocketbase'
 import { error, fail, redirect } from '@sveltejs/kit'
 import { SUBMISSIONS_OPEN } from '$lib/vars.js'
 
-async function getSubmission(pb: TypedPocketbase) {
-	const result = await pb.collection('submissions').getList(1, 1, {
-		skipTotal: true,
-		fields: '',
-	})
+async function getSubmission(locals: App.Locals) {
+	const submission = await locals.pb
+		.collection('submissions')
+		.getFirstListItem('')
+		.catch((e: ClientResponseError) => {
+			if (e.status == 404) return null
+			error(500, e.message)
+		})
 
-	return result.items.at(0) || null
+	return {
+		isSubmitter: submission ? submission.account == locals.user?.id : null,
+		submission,
+	}
 }
 
 export async function load({ parent, locals }) {
@@ -19,10 +26,11 @@ export async function load({ parent, locals }) {
 		throw redirect(307, '/login')
 	}
 
-	const submission = await getSubmission(locals.pb)
+	const { submission, isSubmitter } = await getSubmission(locals)
 
 	return {
 		submission,
+		isSubmitter,
 	}
 }
 
@@ -58,20 +66,28 @@ export const actions = {
 
 		try {
 			// Find an existing record, if there is one
-			const record = await getSubmission(locals.pb)
+			const { submission, isSubmitter } = await getSubmission(locals)
 
-			if (record) {
-				// If there is an existing record then update it
-				await locals.pb.collection('submissions').update(record.id, {
+			if (submission && !isSubmitter) {
+				return fail(400, {
+					error: 'Only the member of your team that made the submission can make edits',
+					success: false,
+				})
+			}
+
+			const pbAdmin = await dangerously_get_pb_admin()
+
+			if (submission) {
+				// If there is an existing submission then update it
+				await pbAdmin.collection('submissions').update(submission.id, {
 					authorTwo: '',
 					authorThree: '',
 					...result.data,
 				})
 			} else {
 				// If no record exists then create one
-				await locals.pb.collection('submissions').create({
+				await pbAdmin.collection('submissions').create({
 					...result.data,
-					authorOne: locals.user.email,
 					account: locals.user.id,
 				})
 			}

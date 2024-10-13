@@ -2,46 +2,49 @@
 	import { slide, scale } from 'svelte/transition'
 
 	export let open = false
+	export let disabled = false
 </script>
 
 {#if open}
 	<div transition:slide|local={{ duration: 250 }} class="removable">
 		<slot />
 
-		<button
-			transition:scale|local={{ duration: 200, delay: 200 }}
-			class="close"
-			title="remove author"
-			aria-label="remove author"
-			type="button"
-			on:click={() => (open = !open)}
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="100%"
-				height="100%"
-				fill="none"
-				viewBox="0 0 26 26"
+		{#if !disabled}
+			<button
+				transition:scale|local={{ duration: 200, delay: 200 }}
+				class="close"
+				title="remove author"
+				aria-label="remove author"
+				type="button"
+				on:click={() => (open = !open)}
 			>
-				<circle cx="13" cy="13" r="12" fill="var(--bg-a)" />
-				<path
-					class="x"
-					stroke="var(--fg-d)"
-					stroke-linecap="round"
-					stroke-width="1"
-					d="m8 8 10 10m0-10L8 18"
-				/>
-			</svg>
-		</button>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="100%"
+					height="100%"
+					fill="none"
+					viewBox="0 0 26 26"
+				>
+					<circle cx="13" cy="13" r="12" fill="var(--bg-a)" />
+					<path
+						class="x"
+						stroke="var(--fg-d)"
+						stroke-linecap="round"
+						stroke-width="1"
+						d="m8 8 10 10m0-10L8 18"
+					/>
+				</svg>
+			</button>
+		{/if}
 	</div>
 {/if}
 
 <style>
 	.removable {
+		overflow: visible;
 		position: relative;
 		margin-top: 0.8rem;
-
-		overflow: visible;
+		width: 100%;
 	}
 
 	.close {
