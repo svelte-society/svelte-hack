@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { confetti } from '@neoconfetti/svelte';
-	import { fade } from 'svelte/transition';
+	import { confetti } from '@neoconfetti/svelte'
+	import { fade } from 'svelte/transition'
 </script>
 
 <div
@@ -14,9 +14,9 @@
 		particleSize: 5,
 		particleShape: 'mix',
 		particleCount: 200,
-		force: 0.5
+		force: 0.5,
 	}}
-/>
+></div>
 
 <style>
 	.confetti {

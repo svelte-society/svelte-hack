@@ -5,29 +5,29 @@
 	import About from '$lib/years/2023/About.svelte'
 </script>
 
-<div class="br-md" />
+<div class="br-md"></div>
 
 <section class="hero row">
 	<Hero />
 	<HeroGraphic />
 </section>
 
-<div class="br-xl" />
+<div class="br-xl"></div>
 
 <!-- <Countdown /> -->
 <!-- <Date /> -->
 
-<!-- <div class="br-xl" /> -->
+<!-- <div class="br-xl" ></div> -->
 
-<span id="about" />
+<span id="about"></span>
 <About />
 
-<div class="br-lg" />
+<div class="br-lg"></div>
 
 <Sponsors />
 
-<div class="br-lg" />
-<div class="br-lg" />
+<div class="br-lg"></div>
+<div class="br-lg"></div>
 
 <style>
 	section.hero {

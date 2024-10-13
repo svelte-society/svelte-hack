@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { getContext } from 'svelte';
-	import { page } from '$app/stores';
+	import { fly } from 'svelte/transition'
+	import { getContext } from 'svelte'
+	import { page } from '$app/stores'
 
-	const links: string[][] = getContext('links');
+	const links: string[][] = getContext('links')
 </script>
 
 <ul>
@@ -57,11 +57,5 @@
 
 	.active {
 		color: var(--brand-a);
-	}
-
-	.disabled {
-		user-select: none;
-		pointer-events: none;
-		opacity: 0.25;
 	}
 </style>

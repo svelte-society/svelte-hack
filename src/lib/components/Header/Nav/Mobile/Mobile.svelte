@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { clickOutside, mobile, ThemeToggle } from 'fractils';
-	import { fly, fade } from 'svelte/transition';
-	import PageFill from './PageFill.svelte';
-	import Burger from './Burger.svelte';
-	import { getContext } from 'svelte';
-	import { page } from '$app/stores';
+	import { clickOutside, mobile, ThemeToggle } from 'fractils'
+	import { fly, fade } from 'svelte/transition'
+	import PageFill from './PageFill.svelte'
+	import Burger from './Burger.svelte'
+	import { getContext } from 'svelte'
+	import { page } from '$app/stores'
 
-	const links = getContext<[string, string]>('links');
-	export let showMenu = false;
+	const links = getContext<[string, string]>('links')
+	export let showMenu = false
 </script>
 
 <div class="burger" use:clickOutside on:outclick={() => (showMenu = false)}>
@@ -107,12 +107,6 @@
 		z-index: 60;
 
 		transition: color 0.15s linear;
-	}
-
-	.disabled {
-		user-select: none;
-		pointer-events: none;
-		opacity: 0.25;
 	}
 
 	a:hover {

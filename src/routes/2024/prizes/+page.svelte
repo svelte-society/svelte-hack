@@ -4,11 +4,11 @@
 </script>
 
 <section>
-	<div class="br-sm" />
+	<div class="br-sm"></div>
 
 	<h1>Prizes</h1>
 
-	<div class="br-md" />
+	<div class="br-md"></div>
 
 	<Prizes />
 
@@ -16,7 +16,7 @@
 		<BlobA />
 	</div>
 
-	<div class="br-lg" />
+	<div class="br-lg"></div>
 </section>
 
 <style>

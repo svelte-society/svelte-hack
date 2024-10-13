@@ -6,7 +6,7 @@
 
 <section>
 	<h5 class="title">Sponsored by</h5>
-	<div class="br-sm" />
+	<div class="br-sm"></div>
 
 	<div class="sponsors" style="--size: 175px">
 		<Vercel />
