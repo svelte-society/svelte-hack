@@ -76,3 +76,9 @@ button {
 button:focus:not(:focus-visible) {
 	outline: none;
 }
+
+sup {
+	color: color-mix(in hsl, var(--brand-a), var(--fg-a) 30%);
+	font-style: italic;
+	margin-left: -0.5rem;
+}

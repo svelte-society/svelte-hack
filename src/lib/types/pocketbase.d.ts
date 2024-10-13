@@ -1,34 +1,14 @@
 import type { Submission } from '$lib/server/submissions'
-import type { RecordService } from 'pocketbase'
+import type { RecordService, BaseModel } from 'pocketbase'
 import type Pocketbase from 'pocketbase'
 
-export interface BaseTable {
-	id: string
-	created: string
-	updated: string
-}
-
-/**
- * When creating a row in pocket base wrap the type in this to remove specific fields
- *
- * @example
- * ```ts
- * await pb_admin.collection('table').create<TableType>({
- *     something: true
- * } satisfies Insert<TableType>);
- * ```
- */
-export type Insert<Table extends BaseTable> = Omit<Table, keyof BaseTable>
-
-export interface TypedPocketBase extends Pocketbase {
+export interface TypedPocketbase extends Pocketbase {
 	collection(idOrName: string): RecordService
 	collection(idOrName: 'users'): RecordService<UsersTable>
 	collection(idOrName: 'submissions'): RecordService<SubmissionsTable>
 }
 
-// * Tables
-
-export interface UsersTable extends BaseTable {
+export interface UsersTable extends BaseModel {
 	email: string
 	name: string
 	verified: boolean
@@ -37,4 +17,13 @@ export interface UsersTable extends BaseTable {
 	customerId: string
 }
 
-export type SubmissionsTable = BaseTable & Submission
+export interface SubmissionsTable extends BaseModel {
+	account: UsersTable['id']
+	title: string
+	description: string
+	github: string
+	demo: string
+	authorOne: string | undefined
+	authorTwo?: string | undefined
+	authorThree?: string | undefined
+}

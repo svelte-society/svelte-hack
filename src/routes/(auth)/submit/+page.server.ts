@@ -1,5 +1,16 @@
-import { submissionSchema, type Submission } from '$lib/server/submissions'
+import type { TypedPocketbase } from '$lib/types/pocketbase'
+import { submissionSchema } from '$lib/server/submissions'
 import { error, fail, redirect } from '@sveltejs/kit'
+import { SUBMISSIONS_OPEN } from '$lib/vars.js'
+
+async function getSubmission(pb: TypedPocketbase) {
+	const result = await pb.collection('submissions').getList(1, 1, {
+		skipTotal: true,
+		fields: '',
+	})
+
+	return result.items.at(0) || null
+}
 
 export async function load({ parent, locals }) {
 	const data = await parent()
@@ -8,58 +19,46 @@ export async function load({ parent, locals }) {
 		throw redirect(307, '/login')
 	}
 
-	const [record] = await locals.pb.collection('submissions').getFullList()
-
-	if (record)
-		return {
-			authorOne: record.authorOne,
-			authorTwo: record.authorTwo,
-			authorThree: record.authorThree,
-			title: record.title,
-			description: record.description,
-			github: record.github,
-			demo: record.demo,
-		}
+	const submission = await getSubmission(locals.pb)
 
 	return {
-		authorOne: data.user?.email || '',
+		submission,
 	}
 }
 
 export const actions = {
-	async default({ request, locals }) {
+	async updateSubmission({ request, locals }) {
 		// If not logged in then exit
 		if (!locals.user) {
 			throw error(401, 'Unauthorised')
 		}
 
-		// Raw data from the form
-		// @ts-expect-error form data complaining
-		const raw_data: Partial<Submission> = Object.fromEntries(await request.formData())
-
-		// return fail(401, {
-		// 	success: false,
-		// 	fields: raw_data,
-		// 	error: 'Submissions are closed',
-		// })
+		if (!SUBMISSIONS_OPEN) {
+			return fail(401, {
+				success: false,
+				error: 'Submissions are closed',
+			})
+		}
 
 		// Parse data with zod
-		const result = await submissionSchema.safeParseAsync(raw_data)
+		const result = await submissionSchema.safeParseAsync(
+			// @ts-expect-error form data complaining
+			Object.fromEntries(await request.formData()),
+		)
 
 		// If the submission is invalid return the errors to the frontend
 		if (!result.success) {
 			const errors = result.error.flatten()
 
 			return fail(400, {
-				fieldErrors: errors.fieldErrors,
+				error: errors.fieldErrors,
 				success: false,
-				fields: raw_data,
 			})
 		}
 
 		try {
 			// Find an existing record, if there is one
-			const [record] = await locals.pb.collection('submissions').getFullList()
+			const record = await getSubmission(locals.pb)
 
 			if (record) {
 				// If there is an existing record then update it
@@ -72,6 +71,7 @@ export const actions = {
 				// If no record exists then create one
 				await locals.pb.collection('submissions').create({
 					...result.data,
+					authorOne: locals.user.email,
 					account: locals.user.id,
 				})
 			}
@@ -79,13 +79,11 @@ export const actions = {
 			return fail(400, {
 				error: (e as any)?.message || 'Failed to save',
 				success: false,
-				fields: raw_data,
 			})
 		}
 
 		return {
 			success: true,
-			fields: result.data,
 		}
 	},
 }

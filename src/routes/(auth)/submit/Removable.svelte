@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { slide, scale } from 'svelte/transition';
+	import { slide, scale } from 'svelte/transition'
 
-	export let open = false;
+	export let open = false
 </script>
 
 {#if open}
@@ -12,6 +12,7 @@
 			transition:scale|local={{ duration: 200, delay: 200 }}
 			class="close"
 			title="remove author"
+			aria-label="remove author"
 			type="button"
 			on:click={() => (open = !open)}
 		>

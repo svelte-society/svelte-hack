@@ -1,5 +1,6 @@
 <script>
 	import Society from '$lib/graphics/Society.svelte'
+	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import Hat from '$lib/graphics/Hat.svelte'
 </script>
 
@@ -10,15 +11,13 @@
 			<div class="hat"><Hat /></div>
 		</div>
 
-		{#if true}
+		{#if SUBMISSIONS_OPEN}
 			<div data-present class="card">
 				<p>
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
 					excited to bring you
-					<span class="sveltehack">
-						<strong style:color="var(--theme-a)">SvelteHack</strong>
-						<sup>runes-edition</sup>
-					</span>
+					<strong style:color="var(--brand-a)">SvelteHack 2024</strong>
+					<sup>runes-edition</sup>
 				</p>
 
 				<p>
