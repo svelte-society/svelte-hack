@@ -16,7 +16,7 @@
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
 					excited to bring you
 					<span class="sveltehack">
-						<strong style:color="var(--brand-a)">SvelteHack</strong>
+						<strong style:color="var(--theme-a)">SvelteHack</strong>
 						<sup>runes-edition</sup>
 					</span>
 				</p>
@@ -41,7 +41,7 @@
 			<!-- todo: post-event blurb for later -->
 			<div data-past class="card">
 				<p>
-					<strong style:color="var(--brand-a)">SvelteHack</strong> was brought to you on
+					<strong style:color="var(--theme-a)">SvelteHack</strong> was brought to you on
 					behalf of the Svelte team, by
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
 					our generous sponsors, and the amazing Svelte Community. We had
@@ -96,7 +96,7 @@
 	}
 
 	sup {
-		color: color-mix(in hsl, var(--brand-a), var(--fg-a) 30%);
+		color: color-mix(in hsl, var(--theme-a), var(--fg-a) 30%);
 		font-style: italic;
 		margin-left: -0.5rem;
 	}

@@ -43,7 +43,7 @@
 	}
 
 	.card:not(.glow) {
-		box-shadow: var(--shadow-sm);
+		box-shadow: var(--shadow);
 	}
 
 	.icon {
@@ -72,7 +72,7 @@
 		display: inline;
 		padding: 4px;
 
-		color: var(--brand-a);
+		color: var(--theme-a);
 		background: var(--bg-b);
 
 		font-weight: 700;

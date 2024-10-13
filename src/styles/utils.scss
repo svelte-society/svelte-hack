@@ -48,7 +48,7 @@
 	border: 1px solid var(--bg-b);
 	border-radius: var(--radius-lg);
 
-	box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--brand-a-rgb), 0.1) inset;
+	box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--theme-a-rgb), 0.1) inset;
 
 	@media screen and (max-width: 560px) {
 		padding: 1rem;
@@ -64,7 +64,7 @@
 	margin: 0 auto;
 
 	border-radius: var(--radius);
-	background: var(--brand-a);
+	background: var(--theme-a);
 	border-color: var(--bg-d);
 	border: 1px solid var(--bg-b);
 

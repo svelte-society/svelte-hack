@@ -18,7 +18,7 @@
 		margin: 0;
 		padding: 0 0 0 1rem;
 
-		border-left: 3px solid var(--brand-a);
+		border-left: 3px solid var(--theme-a);
 
 		font-size: min(6rem, 15vw);
 	}

@@ -50,18 +50,11 @@
 	}
 
 	a:hover {
-		color: var(--brand-a);
-
+		color: var(--theme-b);
 		text-decoration: none;
 	}
 
 	.active {
-		color: var(--brand-a);
-	}
-
-	.disabled {
-		user-select: none;
-		pointer-events: none;
-		opacity: 0.25;
+		color: var(--theme-a);
 	}
 </style>

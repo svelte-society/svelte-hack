@@ -40,7 +40,7 @@
 		margin: 0;
 		padding: 0 0 0 1rem;
 
-		border-left: 3px solid var(--brand-a);
+		border-left: 3px solid var(--theme-a);
 
 		font-size: min(6rem, 15vw);
 
@@ -112,7 +112,7 @@
 			width: 1px;
 			height: 80%;
 
-			background-color: color-mix(in hsl, var(--brand-a), transparent 60%);
+			background-color: color-mix(in hsl, var(--theme-a), transparent 60%);
 
 			transform: scaleX(1);
 			transform-origin: center left;

@@ -118,7 +118,7 @@
 	}
 
 	.logout:hover {
-		color: var(--brand-a);
+		color: var(--theme-a);
 
 		text-decoration: none;
 	}

@@ -1,49 +1,35 @@
-@mixin variables($map) {
-	@each $variable, $colour in $map {
-		--#{$variable}: #{$colour};
-		--#{$variable}-rgb: #{red($colour) + ', ' + green($colour) + ', ' + blue($colour)};
-	}
-}
-
 :root {
-	--always-dark: #0b0e11;
-	@include variables(
-		(
-			brand-a: #ff4700,
-			brand-b: #ffcebe,
-			brand-c: #ffece6,
-		)
-	);
+	--theme-a: #ff4700;
+	--theme-b: #ffcebe;
+	--theme-c: #ffece6;
 
-	&[theme='light'] {
-		color-scheme: light;
-		@include variables(
-			(
-				fg-a: #0b0e11,
-				fg-b: #1c1e21,
-				fg-c: #1d252e,
-				fg-d: #4a4a55,
-				bg-a: #ffffff,
-				bg-b: #dfe1e9,
-				bg-c: #c3c4c7,
-				bg-d: #acacb4,
-			)
-		);
-	}
+	--warn: #ff8888;
 
-	&[theme='dark'] {
-		color-scheme: dark;
-		@include variables(
-			(
-				bg-a: #0b0e11,
-				bg-b: #1c1e21,
-				bg-c: #1d252e,
-				bg-d: #4a4a55,
-				fg-a: #ffffff,
-				fg-b: #dfe1e9,
-				fg-c: #c3c4c7,
-				fg-d: #acacb4,
-			)
-		);
-	}
+	--dark-a: #0b0e11;
+	--dark-b: #1c1e21;
+	--dark-c: #1d252e;
+	--dark-d: #4a4a55;
+	--dark-e: #5a5a65;
+	--light-a: #ffffff;
+	--light-b: #dfe1e9;
+	--light-c: #c3c4c7;
+	--light-d: #acacb4;
+	--light-e: #9c9ca4;
+
+	--bw: light-dark(white, black);
+
+	--bg-a: light-dark(var(--light-a), var(--dark-a));
+	--bg-b: light-dark(var(--light-b), var(--dark-b));
+	--bg-c: light-dark(var(--light-c), var(--dark-c));
+	--bg-d: light-dark(var(--light-d), var(--dark-d));
+	--bg-e: light-dark(var(--light-e), var(--dark-e));
+	--fg-a: light-dark(var(--dark-a), var(--light-a));
+	--fg-b: light-dark(var(--dark-b), var(--light-b));
+	--fg-c: light-dark(var(--dark-c), var(--light-c));
+	--fg-d: light-dark(var(--dark-d), var(--light-d));
+	--fg-e: light-dark(var(--dark-e), var(--light-e));
+
+	--bg-ab: color-mix(in lab, var(--bg-a), var(--bg-b) 20%);
+	--primary: light-dark(var(--bg-ab), var(--bg-a));
+	--secondary: color-mix(in hsl, var(--bg-a), var(--bg-b) 37%);
 }

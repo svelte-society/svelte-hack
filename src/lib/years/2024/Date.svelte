@@ -58,7 +58,7 @@
 	.middle {
 		padding-left: 3rem;
 
-		color: var(--brand-a);
+		color: var(--theme-a);
 		opacity: 0;
 
 		font-size: var(--font-lg);

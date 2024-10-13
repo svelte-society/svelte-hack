@@ -16,14 +16,14 @@ button,
 
 .btn-a {
 	color: black;
-	background: var(--brand-a);
+	background: var(--theme-a);
 	border: 1px solid transparent;
 
 	&:hover,
 	&:focus {
 		background: var(--bg-a);
-		color: var(--brand-a);
-		border-color: var(--brand-a);
+		color: var(--theme-a);
+		border-color: var(--theme-a);
 	}
 }
 
@@ -32,24 +32,22 @@ button,
 
 	color: var(--fg-d);
 	background: var(--bg-a);
-	border: 1px solid var(--brand-a);
+	border: 1px solid var(--theme-a);
 
 	&:hover,
 	&:focus {
-		background: var(--brand-a);
-		color: var(--bg-a);
-	}
+		background: var(--theme-a);
 }
 
 .btn-c {
 	padding: 0.75rem 2rem;
 
-	color: var(--brand-a);
+	color: var(--fg-b);
 	background: var(--bg-a);
 	border: 1px solid transparent;
 
 	&:hover,
 	&:focus {
-		border-color: var(--brand-a);
+		border-color: var(--theme-a);
 	}
 }

@@ -15,7 +15,7 @@
 
 		<div class="card">
 			<p>
-				<strong style:color="var(--brand-a)">SvelteHack</strong>
+				<strong style:color="var(--theme-a)">SvelteHack</strong>
 				was brought to you on behalf of the Svelte team, by
 				<strong><a href="https://sveltesociety.dev">Svelte Society,</a></strong>
 				our generous sponsors, and the amazing Svelte Community. We had

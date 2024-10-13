@@ -1,5 +1,5 @@
 <script>
-	import { fieldPaths } from './paths';
+	import { fieldPaths } from './paths'
 </script>
 
 <div class="field">
@@ -18,7 +18,7 @@
 				{d}
 				stroke-width={ab ? 0.5 : 1}
 				stroke-linecap="round"
-				stroke="var(--brand-a)"
+				stroke="var(--theme-a)"
 			/>
 		{/each}
 		<defs>
@@ -30,8 +30,8 @@
 				gradientUnits="userSpaceOnUse"
 				gradientTransform="translate(191 194) scale(175 175)"
 			>
-				<stop stop-color="var(--brand-a)" stop-opacity="0.6" />
-				<stop offset="0.95" stop-color="var(--brand-a)" stop-opacity="0" />
+				<stop stop-color="var(--theme-a)" stop-opacity="0.6" />
+				<stop offset="0.95" stop-color="var(--theme-a)" stop-opacity="0" />
 			</radialGradient>
 		</defs>
 	</svg>
