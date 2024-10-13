@@ -10,7 +10,7 @@
 	--font-xxs: 0.75rem;
 	--font-xs: 0.9rem;
 	--font-sm: 1rem;
-	--font: 1.1rem;
+	--font: clamp(1rem, 3vw, 1.2rem);
 	--font-md: clamp(1rem, 3.5vw, 1.4rem);
 	--font-lg: clamp(1.25rem, 5vw, 1.75rem);
 	--font-xl: clamp(1.5rem, 6vw, 2.25rem);
