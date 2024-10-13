@@ -191,6 +191,11 @@ export async function init(canvas: HTMLCanvasElement) {
 					}
 				}
 			})
+			$effect(() => {
+				device.mobile
+				onResize()
+				alert('resize effect')
+			})
 		}),
 	)
 	// subs.add(
@@ -224,7 +229,7 @@ export async function init(canvas: HTMLCanvasElement) {
 	if (!runes) return
 
 	const runeGroup = new Group()
-	const scale = tweened(0, { duration: 2000, easing: quintOut })
+	const animateIn = tweened(0, { duration: 2000, easing: quintOut })
 	runeGroup.scale.setScalar(0)
 	scene.add(runeGroup)
 
@@ -402,12 +407,20 @@ export async function init(canvas: HTMLCanvasElement) {
 
 	//#region Scene Animation ································································¬
 
+	function mapRange(v: number, x1: number, x2: number, y1: number, y2: number) {
+		return ((v - x1) * (y2 - y1)) / (x2 - x1) + y1
+	}
+
 	// Scale-in animation.
-	scale.subscribe(v => {
+	animateIn.subscribe(v => {
 		runeGroup.scale.setScalar(v)
 		cloneGroup.scale.setScalar(v)
+
+		bloomPass.radius = mapRange(v, 0, 1, 2, params.bloom[themer.mode].radius)
+		bloomPass.strength = mapRange(v, 0, 1, 10, params.bloom[themer.mode].strength)
+		bloomPass.threshold = mapRange(v, 0, 1, 0.1, params.bloom[themer.mode].threshold)
 	})
-	setTimeout(() => requestAnimationFrame(() => scale.set(1)), 600)
+	setTimeout(() => requestAnimationFrame(() => animateIn.set(1)), 600)
 
 	let t = 0
 	let running = true
@@ -608,6 +621,18 @@ export async function init(canvas: HTMLCanvasElement) {
 	}
 
 	//#endregion Gooey
+
+	//#region Resize
+
+	const onResize = () => {
+		composer.setSize(window.innerWidth, window.innerHeight)
+		renderer.setSize(window.innerWidth, window.innerHeight)
+	}
+
+	// globalThis.window?.removeEventListener('resize', onResize)
+	// globalThis.window?.addEventListener('resize', onResize)
+
+	//#endregion Resize
 
 	return {
 		destroy() {
