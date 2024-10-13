@@ -169,7 +169,7 @@
 	button {
 		margin: auto;
 
-		box-shadow: var(--shadow-sm);
+		box-shadow: var(--shadow);
 
 		text-align: center;
 
@@ -192,7 +192,7 @@
 		padding: 2rem;
 
 		background: var(--bg-b);
-		box-shadow: var(--shadow-sm);
+		box-shadow: var(--shadow);
 		border-radius: var(--radius);
 
 		font-family: var(--font-a);
@@ -249,7 +249,7 @@
 		background: var(--bg-a);
 		border-radius: var(--radius);
 
-		box-shadow: var(--shadow-xs);
+		box-shadow: var(--shadow-sm);
 		transition: 0.2s;
 	}
 

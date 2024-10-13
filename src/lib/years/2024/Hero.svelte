@@ -76,17 +76,23 @@
 		text-align: left;
 
 		margin: 0;
-		color: var(--fg-d);
+		color: var(--fg-c);
+		font-variation-settings:
+			'wght' 300,
+			'wdth' 100;
 
-		font-size: 1.5rem;
+		font-size: clamp(1.25rem, 1.25rem + 0.5vw, 1.5rem);
 
 		transform: translateY(4px);
 	}
 
 	p.em {
-		font-size: 1.25rem;
-		color: var(--bg-d);
-		font-style: italic;
+		font-size: 1.15rem;
+		color: var(--bg-e);
+		font-style: oblique 20deg;
+		font-variation-settings:
+			'wght' 300,
+			'wdth' 100;
 	}
 
 	.btn-c {

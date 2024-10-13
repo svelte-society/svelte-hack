@@ -78,8 +78,6 @@
 	}
 
 	p {
-		font-family: var(--font-a);
-		// font-size: 1.25rem;
 		font-variation-settings:
 			'wght' 333,
 			'wdth' 105;
