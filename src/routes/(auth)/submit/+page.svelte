@@ -73,7 +73,13 @@
 			<input type="email" value={data.userEmail} disabled required />
 
 			<Removable bind:open={authorTwo}>
-				<input name="authorTwo" type="email" value={data.authorTwo} {disabled} required />
+				<input
+					name="authorTwo"
+					type="email"
+					value={data.submission?.authorTwo}
+					{disabled}
+					required
+				/>
 				<FieldError error={form?.error?.authorTwo} />
 			</Removable>
 
@@ -81,7 +87,7 @@
 				<input
 					name="authorThree"
 					type="email"
-					value={data.authorThree}
+					value={data.submission?.authorThree}
 					{disabled}
 					required
 				/>
@@ -103,26 +109,31 @@
 
 		<label>
 			<span>Project Title</span>
-			<input name="title" type="text" value={data?.title} {disabled} required />
+			<input name="title" type="text" value={data.submission?.title} {disabled} required />
 			<FieldError error={form?.error?.title} />
 		</label>
 
 		<label>
 			<span>Project Description</span>
-			<textarea name="description" value={data?.description} {disabled} required rows="4"
+			<textarea
+				name="description"
+				value={data.submission?.description}
+				{disabled}
+				required
+				rows="4"
 			></textarea>
 			<FieldError error={form?.error?.description} />
 		</label>
 
 		<label>
 			<span>GitHub Repository</span>
-			<input name="github" type="url" value={data?.github} {disabled} required />
+			<input name="github" type="url" value={data.submission?.github} {disabled} required />
 			<FieldError error={form?.error?.github} />
 		</label>
 
 		<label>
 			<span>Demo URL</span>
-			<input name="demo" type="url" value={data?.demo} {disabled} required />
+			<input name="demo" type="url" value={data.submission?.demo} {disabled} required />
 			<FieldError error={form?.error?.demo} />
 		</label>
 
