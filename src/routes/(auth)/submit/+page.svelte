@@ -126,6 +126,15 @@
 			<FieldError error={form?.error?.demo} />
 		</label>
 
+		<label>
+			<span>
+				I have read and agree to the SvelteHack
+				<a href="/2024/rules">rules</a>
+			</span>
+			<input name="rulesAccepted" type="checkbox" {disabled} required />
+			<FieldError error={form?.error?.rulesAccepted} />
+		</label>
+
 		<button type="submit" class="btn-b" {disabled}>
 			{saveAnimation ? 'Saved!' : 'Save'}
 		</button>

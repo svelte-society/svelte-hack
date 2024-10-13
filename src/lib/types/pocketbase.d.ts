@@ -37,4 +37,4 @@ export interface UsersTable extends BaseTable {
 	customerId: string
 }
 
-export type SubmissionsTable = BaseTable & Submission
+export type SubmissionsTable = BaseTable & Omit<Submission, 'rulesAccepted'>
