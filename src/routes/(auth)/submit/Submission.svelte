@@ -128,8 +128,8 @@
 
 		<label>
 			<span>
-				I have read and agree to the SvelteHack
-				<a href="/2024/rules">rules</a>
+				I have read and agree to the
+				<a href="/2024/rules">SvelteHack 2024 rules</a>
 			</span>
 			<input name="rulesAccepted" type="checkbox" {disabled} required />
 			<FieldError error={form?.error?.rulesAccepted} />
