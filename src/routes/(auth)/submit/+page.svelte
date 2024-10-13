@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ActionData, PageData } from './$types'
+	import type { ActionData, PageData, SubmitFunction } from './$types'
 	import FieldError from './FieldError.svelte'
 	import Removable from './Removable.svelte'
 	import Confetti from './Confetti.svelte'
@@ -11,11 +11,8 @@
 
 	let disabled = false
 
-	let interval: ReturnType<typeof setInterval>
-	let saveAnimation = false
-
-	let authorTwo = !!data?.authorTwo
-	let authorThree = !!data?.authorThree
+	let authorTwo = !!data.submission?.authorTwo
+	let authorThree = !!data.submission?.authorThree
 
 	function addAuthor() {
 		if (!authorTwo) {
@@ -25,23 +22,35 @@
 		}
 	}
 
-	function saved() {
-		if ((saveAnimation && !disabled) || form?.error) return
+	let confettiInterval: ReturnType<typeof setInterval>
+	let confettiPlaying = false
 
-		disabled = false
-		saveAnimation = true
-
-		interval = setInterval(() => {
-			saveAnimation = false
-		}, 5000)
+	function triggerConfetti() {
+		confettiPlaying = true
+		confettiInterval = setInterval(() => (confettiPlaying = false), 5000)
 	}
 
 	onDestroy(() => {
-		clearInterval(interval)
+		clearInterval(confettiInterval)
 	})
+
+	const submit: SubmitFunction = () => {
+		disabled = true
+
+		return async ({ result, update }) => {
+			await update({ reset: false })
+			disabled = false
+
+			console.log('x', result)
+
+			if (result.type == 'success') {
+				triggerConfetti()
+			}
+		}
+	}
 </script>
 
-{#if saveAnimation}
+{#if confettiPlaying}
 	<Confetti />
 {/if}
 
@@ -56,17 +65,7 @@
 		<p>{form?.error}</p>
 	{/if}
 
-	<form
-		method="POST"
-		use:enhance={() => {
-			disabled = false
-
-			return async ({ update }) => {
-				saved()
-				await update({ reset: false })
-			}
-		}}
-	>
+	<form method="POST" use:enhance={submit}>
 		<label>
 			<span>Author Email(s)</span>
 
@@ -147,7 +146,7 @@
 		</label>
 
 		<button type="submit" class="btn-b" {disabled}>
-			{saveAnimation ? 'Saved!' : 'Save'}
+			{confettiPlaying ? 'Saved!' : 'Save'}
 		</button>
 	</form>
 </section>
