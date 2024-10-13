@@ -1,26 +1,30 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { getContext } from 'svelte';
-	import { page } from '$app/stores';
+	import { fly } from 'svelte/transition'
+	import { getContext } from 'svelte'
+	import { page } from '$app/stores'
 
-	const links: string[][] = getContext('links');
+	const links: string[][] = getContext('links')
 </script>
 
 <ul>
 	{#each links as [path, title], i (title)}
-		<li class:active={$page.url.pathname === path} transition:fly={{ y: -10 - 5 * i }}>
-			<a data-sveltekit-preload-code href={path}>
+		<li
+			class="nav-item"
+			class:active={$page.url.pathname === path}
+			transition:fly={{ y: -10 - 5 * i }}
+		>
+			<a class="nav-link" href={path} data-sveltekit-preload-code>
 				{title}
 			</a>
 		</li>
 	{/each}
 </ul>
 
-<style>
+<style lang="scss">
 	ul {
 		display: flex;
 		justify-content: flex-start;
-		gap: 2rem;
+		gap: 3rem;
 
 		padding: 2rem;
 
@@ -28,8 +32,11 @@
 	}
 
 	li {
-		list-style: none;
+		display: flex;
+		justify-content: center;
+		// width: 4.5rem;
 
+		list-style: none;
 		color: var(--fg-d);
 	}
 
@@ -40,11 +47,10 @@
 		height: 100%;
 
 		color: currentColor;
-
-		font-size: 1.2rem;
-		font-weight: 400;
 		text-decoration: none;
-		letter-spacing: 10%;
+		font-variation-settings:
+			'wght' 250,
+			'wdth' 105;
 
 		transition: color 0.15s linear;
 	}
@@ -56,5 +62,8 @@
 
 	.active {
 		color: var(--theme-a);
+		font-variation-settings:
+			'wght' 500,
+			'wdth' 108;
 	}
 </style>

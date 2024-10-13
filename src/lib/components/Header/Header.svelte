@@ -23,7 +23,7 @@
 				<a class="logout" href="/logout">Logout</a>
 			{/if}
 
-			{#if $page.url.pathname != '/submit'}
+			{#if $page.url.pathname !== '/submit'}
 				<a
 					class="btn-b login"
 					transition:fade|local
@@ -82,6 +82,12 @@
 		z-index: 50;
 	}
 
+	@media (width <= 1000px) {
+		.content {
+			justify-content: flex-start;
+		}
+	}
+
 	nav {
 		display: flex;
 	}
@@ -96,8 +102,8 @@
 
 		color: var(--fg-a);
 
-		font-weight: 600;
-		letter-spacing: 2px;
+		/* font-weight: 600; */
+		/* letter-spacing: 2px; */
 		text-decoration: none;
 	}
 
@@ -132,19 +138,32 @@
 	.sveltehack {
 		margin-left: 3px;
 
-		font-size: 1.2rem;
+		font-family: var(--font-mono);
+		font-size: clamp(1.25rem, 3vw, 1.5rem);
+		font-variation-settings:
+			'wght' 400,
+			'wdth' 110;
 	}
 
 	.login {
+		transform: translateY(-3px);
+		margin-right: 1.5rem;
 		text-decoration: none;
 		border-radius: var(--radius);
 	}
 
+	@media (width <= 1000px) {
+		.login {
+			padding: 0.5rem 1.5rem;
+		}
+	}
+
 	.theme {
+		display: flex;
 		position: absolute;
 
-		right: 1.5rem;
-		top: 1.25rem;
+		right: 1rem;
+		top: 1rem;
 
 		font-size: 1.25rem;
 

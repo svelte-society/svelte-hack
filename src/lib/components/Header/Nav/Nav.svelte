@@ -1,23 +1,28 @@
 <script lang="ts">
+	import { device } from '$lib/utils/device.svelte'
 	import Mobile from './Mobile/Mobile.svelte'
-	import { mobile, OnMount } from 'fractils'
 	import Desktop from './Desktop.svelte'
-	import { setContext } from 'svelte'
+	import { onMount, setContext } from 'svelte'
 
 	let showMenu = false
 
 	setContext('links', [
-		['/', 'Home'],
+		['/2024', 'Home'],
 		['/2024/prizes', 'Prizes'],
 		['/2024/rules', 'Rules'],
 		['/2024/winners', 'Winners'],
 	])
+
+	let mounted = false
+	onMount(() => {
+		mounted = true
+	})
 </script>
 
-<OnMount>
-	{#if $mobile}
+{#if mounted}
+	{#if device.mobile}
 		<Mobile bind:showMenu />
 	{:else}
 		<Desktop />
 	{/if}
-</OnMount>
+{/if}
