@@ -61,10 +61,6 @@
 	<!-- <p>Submissions are closed</p>
 	<div class="br-md" /> -->
 
-	{#if typeof form?.error == 'string'}
-		<p>{form?.error}</p>
-	{/if}
-
 	<form method="POST" use:enhance={submit}>
 		<label>
 			<span>Author Email(s)</span>
@@ -148,6 +144,12 @@
 		<button type="submit" class="btn-b" {disabled}>
 			{confettiPlaying ? 'Saved!' : 'Save'}
 		</button>
+
+		{#if typeof form?.error == 'string'}
+			<div class="center">
+				<FieldError error={form.error} />
+			</div>
+		{/if}
 	</form>
 </section>
 
@@ -162,7 +164,8 @@
 	}
 
 	h2,
-	p {
+	p,
+	.center {
 		text-align: center;
 	}
 

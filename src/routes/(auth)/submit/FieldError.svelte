@@ -1,10 +1,11 @@
 <script lang="ts">
-	export let error: string[] | undefined;
+	export let error: string[] | string | undefined
+	$: errorMessage = Array.isArray(error) ? error[0] : error
 </script>
 
-{#if error?.length}
+{#if errorMessage}
 	<p class="error">
-		{error[0]}
+		{errorMessage}
 	</p>
 {/if}
 
