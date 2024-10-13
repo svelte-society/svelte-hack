@@ -32,11 +32,28 @@ button,
 
 	color: var(--fg-d);
 	background: var(--bg-a);
-	border: 1px solid var(--theme-a);
+
+	color: var(--fg-b);
+	border: 1px solid var(--fg-e);
+	outline: 1px solid transparent;
+
+	font-size: var(--font-sm);
+	font-variation-settings:
+		'wght' 300,
+		'wdth' 112;
+	letter-spacing: 1.5px;
+	
+	transition: all 0.2s;
 
 	&:hover,
 	&:focus {
-		background: var(--theme-a);
+		color: var(--fg-a);
+		background: var(--bg-a);
+		border-color: var(--theme-a);
+		outline-width: 3px;
+		outline-offset: -3px;
+		outline-color: var(--theme-a);
+	}
 }
 
 .btn-c {

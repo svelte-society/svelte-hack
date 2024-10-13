@@ -1,4 +1,4 @@
-//*	INCONSOLATA  -  Variable Font (wght, wdth)
+/* INCONSOLATA  -  Variable Font (wght, wdth) */
 @font-face {
 	font-family: 'Inconsolata';
 	font-weight: 100 900;
@@ -25,34 +25,31 @@
 	--font-mono: 'Inconsolata', monospace;
 }
 
+body {
+	font-family: var(--font-mono);
+	font-variation-settings:
+		'wght' 200,
+		'wdth' 98;
+}
+
 h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+.heading {
 	font-family: var(--font-a);
 	font-variation-settings:
-		'wght' 600,
+		'wght' 550,
 		'wdth' 110;
 }
 
-p {
-	font-family: var(--font-mono);
-	font-size: 1.33rem;
-	font-variation-settings:
-		'wght' 333,
-		'wdth' 105;
+.nav-link,
+.button {
+	font-size: var(--font-md);
+	text-decoration: none;
 }
 
-a,
-// p,
-li,
-section {
-	font-family: var(--font-mono);
-	// font-family: var(--font-a);
-}
-
-pre,
-code {
-	font-family: var(--font-mono);
+:root[theme='light'] p {
+	font-weight: 400;
 }

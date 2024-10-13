@@ -26,20 +26,19 @@ p,
 li,
 .card {
 	color: var(--fg-b);
-	font-size: var(--font-md);
-	word-spacing: 1.5px;
-	line-height: 1.25;
+	font-size: var(--font);
 
 	@media screen and (max-width: 560px) {
 		word-wrap: break-word;
 	}
 
-	& a {
+	a {
 		color: var(--fg-c);
 	}
 }
 
 a {
+	font-family: var(--font-mono);
 	color: var(--fg-a);
 
 	&:not(h1, h2) {
@@ -55,16 +54,17 @@ a {
 }
 
 code {
-	padding: 0.1rem 0.5rem;
+	padding: 0.1rem 0.4rem;
 
 	color: var(--fg-a);
 	background: var(--bg-d);
 	border-radius: var(--radius-sm);
+	box-shadow: var(--shadow-sm);
 
-	font-weight: 800;
 	font-variation-settings:
-		'wght' 600,
+		'wght' 400,
 		'wdth' 90;
+	white-space: nowrap;
 }
 
 input,
