@@ -1,16 +1,21 @@
 <script lang="ts">
-	import { clickOutside, mobile, ThemeToggle } from 'fractils';
-	import { fly, fade } from 'svelte/transition';
-	import PageFill from './PageFill.svelte';
-	import Burger from './Burger.svelte';
-	import { getContext } from 'svelte';
-	import { page } from '$app/stores';
+	import { clickoutside } from '$lib/utils/clickoutside'
+	import { mobile, ThemeToggle } from 'fractils'
+	import { fly, fade } from 'svelte/transition'
+	import PageFill from './PageFill.svelte'
+	import Burger from './Burger.svelte'
+	import { getContext } from 'svelte'
+	import { page } from '$app/stores'
 
-	const links = getContext<[string, string]>('links');
-	export let showMenu = false;
+	const links = getContext<[string, string]>('links')
+	export let showMenu = false
 </script>
 
-<div class="burger" use:clickOutside on:outclick={() => (showMenu = false)}>
+<div
+	class="burger"
+	use:clickoutside={{ whitelist: ['.burger'] }}
+	onoutclick={() => (showMenu = false)}
+>
 	<Burger bind:showMenu />
 
 	<PageFill bind:showMenu />
@@ -29,9 +34,10 @@
 						out:fade={{ duration: 50 }}
 					>
 						<a
+							class="nav-link"
 							data-sveltekit-preload-code
 							href={path}
-							on:click={() => (showMenu = false)}
+							onclick={() => (showMenu = false)}
 						>
 							{title}
 						</a>
@@ -44,8 +50,9 @@
 					out:fade={{ duration: 50 }}
 				>
 					<a
+						class="nav-link"
 						href={$page.data.loggedIn ? '/submit' : '/login'}
-						on:click={() => (showMenu = false)}
+						onclick={() => (showMenu = false)}
 					>
 						{$page.data.loggedIn ? 'Submit' : 'Login'}
 					</a>
@@ -56,7 +63,9 @@
 						in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
 						out:fade={{ duration: 50 }}
 					>
-						<a href="/logout" on:click={() => (showMenu = false)}>Logout</a>
+						<a class="nav-link" href="/logout" onclick={() => (showMenu = false)}>
+							Logout
+						</a>
 					</li>
 				{/if}
 			</ul>
@@ -64,7 +73,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	nav {
 		display: flex;
 		justify-content: center;
@@ -79,7 +88,7 @@
 		align-items: center;
 		position: absolute;
 		inset: 0;
-		top: 30vh;
+		top: 40vh;
 		gap: 3rem;
 
 		margin: 0 auto;
@@ -99,20 +108,12 @@
 		color: var(--fg-a);
 
 		font-size: 2rem;
-		font-weight: 700;
 		text-transform: uppercase;
 		text-decoration: none;
-		letter-spacing: 10%;
 
 		z-index: 60;
 
 		transition: color 0.15s linear;
-	}
-
-	.disabled {
-		user-select: none;
-		pointer-events: none;
-		opacity: 0.25;
 	}
 
 	a:hover {
