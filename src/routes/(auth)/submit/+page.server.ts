@@ -1,8 +1,8 @@
-import type { TypedPocketBase } from '$lib/types/pocketbase'
+import type { TypedPocketbase } from '$lib/types/pocketbase'
 import { submissionSchema } from '$lib/server/submissions'
 import { error, fail, redirect } from '@sveltejs/kit'
 
-async function getSubmission(pb: TypedPocketBase) {
+async function getSubmission(pb: TypedPocketbase) {
 	const result = await pb.collection('submissions').getList(1, 1, {
 		skipTotal: true,
 		fields: '',
