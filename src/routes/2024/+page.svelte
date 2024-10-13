@@ -12,7 +12,7 @@
 	<Scene />
 </section>
 
-<div class="br-xl"></div>
+<div class="br-xxl"></div>
 
 <!-- <Countdown /> -->
 
@@ -21,12 +21,12 @@
 <span id="about"></span>
 <About />
 
-<div class="br-lg"></div>
+<div class="br-xl"></div>
 
 <Sponsors />
 
-<div class="br-lg"></div>
-<div class="br-lg"></div>
+<div class="br-xl"></div>
+<div class="br-xl"></div>
 
 <style>
 	section.hero {
@@ -43,7 +43,7 @@
 			max-width: min(95vw, var(--max-w));
 		}
 
-		.br-xl {
+		.br-xxl {
 			height: 25rem;
 		}
 	}

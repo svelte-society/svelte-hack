@@ -1,21 +1,21 @@
 <script lang="ts">
-	import GitHub from '$lib/graphics/GitHub.svelte';
-	import Website from '$lib/graphics/Website.svelte';
-	import type { Winner } from './types';
+	import GitHub from '$lib/graphics/GitHub.svelte'
+	import Website from '$lib/graphics/Website.svelte'
+	import type { Winner } from './types'
 
-	export let category: string;
-	export let winners: Winner[];
+	export let category: string
+	export let winners: Winner[]
 
 	function icon(place: number) {
 		switch (place) {
 			case 1:
-				return '🏆';
+				return '🏆'
 
 			case 2:
-				return '🥈';
+				return '🥈'
 
 			default:
-				return `#${place}`;
+				return `#${place}`
 		}
 	}
 </script>
@@ -93,7 +93,7 @@
 		}
 
 		&:not(&.glow) {
-			box-shadow: var(--shadow-sm);
+			box-shadow: var(--shadow);
 		}
 	}
 
@@ -108,15 +108,17 @@
 		padding: 8px;
 
 		opacity: 0.6;
-		transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition:
+			opacity 0.2s ease-in-out,
+			color 0.2s ease-in-out;
 
 		cursor: pointer;
 
 		&:hover,
 		&:focus {
 			opacity: 1;
-			fill: var(--brand-a);
-			color: var(--brand-a);
+			fill: var(--theme-a);
+			color: var(--theme-a);
 		}
 
 		@media (max-width: 400px) {

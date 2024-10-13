@@ -68,7 +68,7 @@
 		max-width: 100%;
 		max-height: 100%;
 
-		border-radius: 0.5rem;
+		border-radius: var(--radius-md);
 
 		cursor: pointer;
 
@@ -93,7 +93,7 @@
 
 		outline-width: 1.5px;
 		outline-style: solid;
-		border-radius: 0.5rem;
+		border-radius: var(--radius-md);
 		box-shadow:
 			-1px 1px 0.33rem rgba(0, 0, 0, 0.33) inset,
 			0px 1px 0.1rem rgba(0, 0, 0, 0.33) inset;
@@ -157,7 +157,7 @@
 		font-family: var(--font-a);
 		font-variation-settings:
 			'wght' 400,
-			'wdth' 95;
+			'wdth' 104;
 		letter-spacing: 0.1rem;
 
 		&.light {
