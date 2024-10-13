@@ -17,20 +17,20 @@
 }
 .br-md {
 	height: 4rem;
-	@media screen and (max-width: 560px) {
+	@media screen and (width < 1000px) {
 		height: 2.5rem;
 	}
 }
 .br-lg {
 	height: 6.5rem;
-	@media screen and (max-width: 560px) {
+	@media screen and (width < 1000px) {
 		height: 5rem;
 	}
 }
 .br-xl {
 	height: 10rem;
-	@media screen and (max-width: 560px) {
-		height: 6rem;
+	@media screen and (width < 1000px) {
+		height: 8rem;
 	}
 }
 
@@ -50,7 +50,7 @@
 
 	box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--theme-a-rgb), 0.1) inset;
 
-	@media screen and (max-width: 560px) {
+	@media screen and (width < 1000px) {
 		padding: 1rem;
 	}
 }
@@ -68,12 +68,13 @@
 	border-color: var(--bg-d);
 	border: 1px solid var(--bg-b);
 
-	& ul {
+	ul {
 		margin-bottom: 1.75rem;
 		padding-left: 2rem;
 
-		& li {
+		li {
 			margin-bottom: 0.75rem;
+			font-size: var(--font);
 		}
 	}
 }
