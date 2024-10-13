@@ -6,4 +6,6 @@ export default defineConfig({
 	ssr: {
 		noExternal: ['three'],
 	},
+	// silence warnings - https://sass-lang.com/documentation/breaking-changes/legacy-js-api
+	css: { preprocessorOptions: { scss: { api: 'modern' } } },
 })
