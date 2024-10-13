@@ -66,7 +66,7 @@ class Themer {
 	constructor(options?: ThemerOptions) {
 		this.#storage = options?.storage !== false
 
-		this.preference = this.#resolveStorage(options?.defaultMode ?? 'dark')
+		this.preference = this.#resolveStorage(options?.defaultMode ?? 'system')
 
 		if (globalThis.window) {
 			this.init()
