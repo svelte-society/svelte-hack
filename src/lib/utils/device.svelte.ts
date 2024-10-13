@@ -1,26 +1,32 @@
-export const device = new (class {
-	breakpoint = 1000
+function boilerplate() {
+	const breakpoint =
+		Number(globalThis.document?.documentElement.style.getPropertyValue('--mobile')) || 1000
 
-	width = $state(globalThis.window?.innerWidth || 0)
-	height = $state(globalThis.window?.innerHeight || 0)
-	mobile = $state(globalThis.window?.innerWidth < this.breakpoint)
-	scrollY = $state(globalThis.window?.scrollY || 0)
+	let state = $state({
+		width: globalThis.window?.innerWidth || 0,
+		height: globalThis.window?.innerHeight || 0,
+		mobile: globalThis.window?.innerWidth < breakpoint,
+		scrollY: globalThis.window?.scrollY || 0,
+	})
 
-	constructor() {
-		globalThis.removeEventListener?.('resize', this.onResize)
-		globalThis.addEventListener?.('resize', this.onResize)
-
-		globalThis.removeEventListener?.('scroll', this.onScroll)
-		globalThis.addEventListener?.('scroll', this.onScroll)
+	function onResize() {
+		state.width = globalThis.window?.innerWidth || 0
+		state.height = globalThis.window?.innerHeight || 0
+		state.scrollY = globalThis.window?.scrollY || 0
+		if (state.mobile !== state.width < breakpoint) {
+			state.mobile = state.width < breakpoint
+		}
 	}
+	globalThis.removeEventListener?.('resize', onResize)
+	globalThis.addEventListener?.('resize', onResize)
 
-	onResize() {
-		this.width = globalThis.window?.innerWidth || 0
-		this.height = globalThis.window?.innerHeight || 0
-		this.scrollY = globalThis.window?.scrollY || 0
+	function onScroll() {
+		state.scrollY = globalThis.window?.scrollY || 0
 	}
+	globalThis.removeEventListener?.('scroll', onScroll)
+	globalThis.addEventListener?.('scroll', onScroll)
 
-	onScroll() {
-		this.scrollY = globalThis.window?.scrollY || 0
-	}
-})()
+	return state
+}
+
+export const device = boilerplate()
