@@ -9,16 +9,6 @@
 	export let data: PageData
 	export let form: ActionData
 
-	$: fields = {
-		authorOne: form?.fields?.authorOne || data?.authorOne || '',
-		authorTwo: form?.fields?.authorTwo || data?.authorTwo || '',
-		authorThree: form?.fields?.authorThree || data?.authorThree || '',
-		title: form?.fields?.title || data?.title || '',
-		description: form?.fields?.description || data?.description || '',
-		github: form?.fields?.github || data?.github || '',
-		demo: form?.fields?.demo || data?.demo || '',
-	}
-
 	let disabled = false
 
 	let interval: ReturnType<typeof setInterval>
@@ -36,7 +26,7 @@
 	}
 
 	function saved() {
-		if (saveAnimation && !disabled) return
+		if ((saveAnimation && !disabled) || form?.error) return
 
 		disabled = false
 		saveAnimation = true
@@ -56,15 +46,13 @@
 {/if}
 
 <section>
-	<h2>Your SvelteHack Project</h2>
+	<h2>Your SvelteHack Submission</h2>
+	<div class="br-sm"></div>
 
-	<div class="br-sm" />
+	<!-- <p>Submissions are closed</p>
+	<div class="br-md" /> -->
 
-	<p>Submissions are closed</p>
-
-	<div class="br-md" />
-
-	{#if form?.error}
+	{#if typeof form?.error == 'string'}
 		<p>{form?.error}</p>
 	{/if}
 
@@ -82,24 +70,23 @@
 		<label>
 			<span>Author Email(s)</span>
 
-			<input name="authorOne" type="email" value={fields.authorOne} {disabled} required />
-			<FieldError error={form?.fieldErrors?.authorOne} />
+			<input type="email" value={data.userEmail} disabled required />
 
 			<Removable bind:open={authorTwo}>
-				<input name="authorTwo" type="email" value={fields.authorTwo} {disabled} required />
-				<FieldError error={form?.fieldErrors?.authorTwo} />
+				<input name="authorTwo" type="email" value={data.authorTwo} {disabled} required />
+				<FieldError error={form?.error?.authorTwo} />
 			</Removable>
 
 			<Removable bind:open={authorThree}>
 				<input
 					name="authorThree"
 					type="email"
-					value={fields.authorThree}
+					value={data.authorThree}
 					{disabled}
 					required
 				/>
 
-				<FieldError error={form?.fieldErrors?.authorThree} />
+				<FieldError error={form?.error?.authorThree} />
 			</Removable>
 
 			<button
@@ -116,26 +103,27 @@
 
 		<label>
 			<span>Project Title</span>
-			<input name="title" type="text" value={fields.title} {disabled} required />
-			<FieldError error={form?.fieldErrors?.title} />
+			<input name="title" type="text" value={data?.title} {disabled} required />
+			<FieldError error={form?.error?.title} />
 		</label>
 
 		<label>
 			<span>Project Description</span>
-			<textarea name="description" value={fields.description} {disabled} required rows="4" />
-			<FieldError error={form?.fieldErrors?.description} />
+			<textarea name="description" value={data?.description} {disabled} required rows="4"
+			></textarea>
+			<FieldError error={form?.error?.description} />
 		</label>
 
 		<label>
 			<span>GitHub Repository</span>
-			<input name="github" type="url" value={fields.github} {disabled} required />
-			<FieldError error={form?.fieldErrors?.github} />
+			<input name="github" type="url" value={data?.github} {disabled} required />
+			<FieldError error={form?.error?.github} />
 		</label>
 
 		<label>
 			<span>Demo URL</span>
-			<input name="demo" type="url" value={fields.demo} {disabled} required />
-			<FieldError error={form?.fieldErrors?.demo} />
+			<input name="demo" type="url" value={data?.demo} {disabled} required />
+			<FieldError error={form?.error?.demo} />
 		</label>
 
 		<button type="submit" class="btn-b" {disabled}>
@@ -144,7 +132,7 @@
 	</form>
 </section>
 
-<div class="br-xl" />
+<div class="br-xl"></div>
 
 <style>
 	section {

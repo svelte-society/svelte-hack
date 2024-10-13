@@ -5,7 +5,7 @@ export async function GET({ url, locals, cookies }) {
 	const methods = await locals.pb.collection('users').listAuthMethods()
 
 	//? We only need GitHub
-	const github = methods.authProviders.find((p) => p.name == 'github')
+	const github = methods.authProviders.find(p => p.name == 'github')
 
 	if (!github) {
 		throw error(500, 'Unable to find GitHub login config')

@@ -25,7 +25,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 	let provider: AuthProviderInfo
 
 	try {
-		provider = JSON.parse(cookies.get('login_state') || '') as AuthProviderInfo
+		provider = JSON.parse(cookies.get('login_state')!)
 		if (!provider) throw new Error('.')
 	} catch {
 		error(400, 'Unable to parse login state, please try again')
@@ -56,6 +56,7 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 
 	//? Sync the auth state
 	syncAuthState(locals.pb, cookies)
+	cookies.delete('login_state', { path: '/' })
 
 	//? Redirect to the correct page
 	redirect(307, '/submit')
