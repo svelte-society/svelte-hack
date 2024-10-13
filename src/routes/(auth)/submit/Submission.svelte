@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SubmissionsTable, UsersTable } from '$lib/types/pocketbase'
 	import type { ActionData, SubmitFunction } from './$types'
+	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import FieldError from './FieldError.svelte'
 	import Removable from './Removable.svelte'
 	import { fade } from 'svelte/transition'
@@ -12,7 +13,7 @@
 	export let user: UsersTable
 	export let form: ActionData
 
-	let disabled = false
+	let disabled = !SUBMISSIONS_OPEN
 
 	let authorTwo = !!submission.authorTwo
 	let authorThree = !!submission.authorThree
@@ -58,9 +59,6 @@
 <section transition:fade>
 	<h2>Your SvelteHack Submission</h2>
 	<div class="br-sm"></div>
-
-	<!-- <p>Submissions are closed</p>
-	<div class="br-md" /> -->
 
 	<form method="POST" action="?/updateSubmission" use:enhance={submit}>
 		<label>
@@ -137,9 +135,11 @@
 			<FieldError error={form?.error?.rulesAccepted} />
 		</label>
 
-		<button type="submit" class="btn-b" {disabled}>
-			{confettiPlaying ? 'Saved!' : 'Save'}
-		</button>
+		{#if SUBMISSIONS_OPEN}
+			<button type="submit" class="btn-b" {disabled}>
+				{confettiPlaying ? 'Saved!' : 'Save'}
+			</button>
+		{/if}
 
 		{#if typeof form?.error == 'string'}
 			<div class="center">

@@ -1,6 +1,7 @@
 import type { TypedPocketbase } from '$lib/types/pocketbase'
 import { submissionSchema } from '$lib/server/submissions'
 import { error, fail, redirect } from '@sveltejs/kit'
+import { SUBMISSIONS_OPEN } from '$lib/vars.js'
 
 async function getSubmission(pb: TypedPocketbase) {
 	const result = await pb.collection('submissions').getList(1, 1, {
@@ -32,10 +33,12 @@ export const actions = {
 			throw error(401, 'Unauthorised')
 		}
 
-		// return fail(401, {
-		// 	success: false,
-		// 	error: 'Submissions are closed',
-		// })
+		if (!SUBMISSIONS_OPEN) {
+			return fail(401, {
+				success: false,
+				error: 'Submissions are closed',
+			})
+		}
 
 		// Parse data with zod
 		const result = await submissionSchema.safeParseAsync(

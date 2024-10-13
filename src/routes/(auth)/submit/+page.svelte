@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import Submission from './Submission.svelte'
 	import { slide } from 'svelte/transition'
 
@@ -10,7 +11,7 @@
 
 {#if showSubmissionForm}
 	<Submission submission={data.submission || {}} user={data.user!} {form} />
-{:else}
+{:else if SUBMISSIONS_OPEN}
 	<div class="card" transition:slide>
 		<p>
 			Welcome to
@@ -24,6 +25,18 @@
 		<button class="button btn-b" onclick={() => (showSubmissionForm = true)}>
 			Let's do it
 		</button>
+	</div>
+{:else}
+	<div class="card" transition:slide>
+		<p>
+			Submissions for
+			<strong style:color="var(--brand-a)">SvelteHack 2024</strong>
+			<sup>runes-edition</sup> are closed. Thanks to everyone who entered.
+			Keep an eye on the <a href="/2024/winners">winners</a> page, to see
+			what incredible projects have won this year! You can also join us on
+			<a href="https://svelte.dev/chat">Discord</a> to chat with fellow
+			community members, and learn about any future events.
+		</p>
 	</div>
 {/if}
 
