@@ -146,11 +146,11 @@
 
 		{#if !locked}
 			<label>
+				<input name="rulesAccepted" type="checkbox" {disabled} required />
 				<span>
 					I have read and agree to the
 					<a href="/2024/rules">SvelteHack 2024 rules</a>
 				</span>
-				<input name="rulesAccepted" type="checkbox" {disabled} required />
 				<FieldError error={form?.error?.rulesAccepted} />
 			</label>
 
@@ -219,6 +219,12 @@
 		font-weight: 300;
 	}
 
+	label:has(input[type='checkbox']) {
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+	}
+
 	label:first-of-type {
 		margin: 0;
 	}
@@ -227,7 +233,7 @@
 		margin: 0.5rem 0;
 	}
 
-	input,
+	input:not([type='checkbox']),
 	textarea {
 		min-width: min(25rem, 90vw);
 		max-width: 90vw;
