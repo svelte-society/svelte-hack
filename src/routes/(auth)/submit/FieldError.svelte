@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let error: string[] | string | undefined
-	$: errorMessage = Array.isArray(error) ? error[0] : error
+	interface Props {
+		error: string[] | string | undefined
+	}
+
+	const { error }: Props = $props()
+	const errorMessage = $derived(Array.isArray(error) ? error[0] : error)
 </script>
 
 {#if errorMessage}

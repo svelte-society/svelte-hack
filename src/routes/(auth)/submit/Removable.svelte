@@ -1,13 +1,17 @@
 <script lang="ts">
 	import { slide, scale } from 'svelte/transition'
+	import type { Snippet } from 'svelte'
 
-	export let open = false
-	export let disabled = false
+	let { open = $bindable(false), disabled = false, children }: {
+		disabled?: boolean;
+		open?: boolean;
+		children: Snippet;
+	} = $props()
 </script>
 
 {#if open}
 	<div transition:slide|local={{ duration: 250 }} class="removable">
-		<slot />
+		{@render children()}
 
 		{#if !disabled}
 			<button
@@ -16,7 +20,7 @@
 				title="remove author"
 				aria-label="remove author"
 				type="button"
-				on:click={() => (open = !open)}
+				onclick={() => (open = !open)}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

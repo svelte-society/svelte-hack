@@ -9,16 +9,23 @@
 	import { enhance } from '$app/forms'
 	import { onDestroy } from 'svelte'
 
-	export let submission: Partial<SubmissionsTable> = {}
-	export let isSubmitter: boolean | null
-	export let user: UsersTable
-	export let form: ActionData
+	const {
+		submission = {},
+		isSubmitter,
+		user,
+		form,
+	}: {
+		submission?: Partial<SubmissionsTable>
+		isSubmitter: boolean | null
+		user: UsersTable
+		form: ActionData
+	} = $props()
 
-	let locked = isSubmitter === false || !SUBMISSIONS_OPEN
-	let disabled = locked
+	const locked = isSubmitter === false || !SUBMISSIONS_OPEN
+	let disabled = $state(locked)
 
-	let authorTwo = !!submission.authorTwo
-	let authorThree = !!submission.authorThree
+	let authorTwo = $state(!!submission.authorTwo)
+	let authorThree = $state(!!submission.authorThree)
 
 	function addAuthor() {
 		if (!authorTwo) {
@@ -29,7 +36,7 @@
 	}
 
 	let confettiInterval: ReturnType<typeof setInterval>
-	let confettiPlaying = false
+	let confettiPlaying = $state(false)
 
 	function triggerConfetti() {
 		confettiPlaying = true
@@ -105,7 +112,7 @@
 					class:disabled={authorTwo && authorThree}
 					type="button"
 					class="add-author-btn"
-					on:click={addAuthor}
+					onclick={addAuthor}
 					{disabled}
 				>
 					+

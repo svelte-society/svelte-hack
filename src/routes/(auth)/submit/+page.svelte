@@ -3,10 +3,9 @@
 	import Submission from './Submission.svelte'
 	import { slide } from 'svelte/transition'
 
-	export let data
-	export let form
+	const { data, form } = $props();
 
-	let showSubmissionForm = !!data.submission
+	let showSubmissionForm = $state(!!data.submission)
 </script>
 
 {#if !SUBMISSIONS_OPEN}
