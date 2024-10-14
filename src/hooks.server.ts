@@ -40,7 +40,7 @@ export async function handle({ event, resolve }) {
 	return resolve(event, {
 		transformPageChunk: ({ html, done }) => {
 			page += html
-			if (done) return page.replace('%sveltehack.theme%', event.locals.theme)
+			if (done) return page.replace('__THEME__', event.locals.theme)
 		},
 	})
 }

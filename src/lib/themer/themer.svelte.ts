@@ -57,7 +57,7 @@ class Themer {
 	/**
 	 * The key to use in local/cookie storage.
 	 */
-	#storageKey = 'themer-mode'
+	#storageKey = 'theme'
 	/**
 	 * Used for OS-level preference change events.
 	 */
@@ -70,16 +70,10 @@ class Themer {
 
 		if (globalThis.window) {
 			this.init()
-		} else {
-			// todo - what could be done server-side?
-			console.warn(
-				'\x1b[96mthemer.svelte.ts\x1b[39m: window object not found - \x1b[33maborting\x1b[39m',
-			)
 		}
 
 		this.dispose = $effect.root(() => {
 			$effect(() => {
-				this.#updateStorage()
 				this.applyTheme()
 			})
 		})
@@ -122,10 +116,15 @@ class Themer {
 
 		this.css.replaceSync(str)
 
-		document.documentElement.setAttribute('theme', this.mode)
 		document.documentElement.style.setProperty('color-scheme', this.mode)
 
-		this.#updateStorage()
+		if (this.#storage) {
+			globalThis.localStorage?.setItem(this.#storageKey, this.preference)
+
+			if (typeof document !== 'undefined') {
+				document.cookie = `${this.#storageKey}=${this.#resolveMode(this.preference)}; path=/;`
+			}
+		}
 	}
 
 	/**
@@ -164,19 +163,6 @@ class Themer {
 		}
 
 		return fallback
-	}
-
-	#updateStorage(): void {
-		if (!this.#storage) throw new Error('Storage is disabled')
-
-		globalThis.localStorage?.setItem(this.#storageKey, this.preference)
-		const newMode = this.#resolveMode(this.preference)
-
-		if (typeof globalThis.document !== 'undefined') {
-			document.cookie = `${this.#storageKey}=${newMode}; path=/;`
-			document.documentElement.setAttribute('theme', newMode)
-			document.documentElement.setAttribute('color-scheme', newMode)
-		}
 	}
 
 	#resolveMode(preference = this.preference): 'light' | 'dark' {
