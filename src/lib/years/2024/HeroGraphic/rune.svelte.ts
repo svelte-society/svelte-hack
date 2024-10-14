@@ -165,6 +165,20 @@ export async function init(canvas: HTMLCanvasElement) {
 	composer.addPass(outputPass)
 	//#endregion Bloom
 
+	//#endregion Gooey
+
+	//#region Resize
+
+	const onResize = () => {
+		composer.setSize(window.innerWidth, window.innerHeight)
+		renderer.setSize(window.innerWidth, window.innerHeight)
+	}
+
+	// globalThis.window?.removeEventListener('resize', onResize)
+	// globalThis.window?.addEventListener('resize', onResize)
+
+	//#endregion Resize
+
 	//#region Theme Sync ·····································································¬
 
 	// fully transparent background
@@ -191,10 +205,10 @@ export async function init(canvas: HTMLCanvasElement) {
 					}
 				}
 			})
+
 			$effect(() => {
 				device.mobile
 				onResize()
-				alert('resize effect')
 			})
 		}),
 	)
@@ -619,20 +633,6 @@ export async function init(canvas: HTMLCanvasElement) {
 		canvas.addEventListener('click', click)
 		subs.add(() => canvas.removeEventListener('click', click))
 	}
-
-	//#endregion Gooey
-
-	//#region Resize
-
-	const onResize = () => {
-		composer.setSize(window.innerWidth, window.innerHeight)
-		renderer.setSize(window.innerWidth, window.innerHeight)
-	}
-
-	// globalThis.window?.removeEventListener('resize', onResize)
-	// globalThis.window?.addEventListener('resize', onResize)
-
-	//#endregion Resize
 
 	return {
 		destroy() {
