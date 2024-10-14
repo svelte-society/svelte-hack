@@ -222,6 +222,7 @@
 		display: flex;
 		flex-direction: column;
 		position: relative;
+		width: 100%;
 
 		font-weight: 300;
 	}
@@ -242,6 +243,7 @@
 	textarea {
 		min-width: min(25rem, 90vw);
 		max-width: 90vw;
+		width: 100%;
 		max-height: 10rem;
 
 		border: none;
