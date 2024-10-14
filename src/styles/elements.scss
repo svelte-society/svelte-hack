@@ -78,7 +78,7 @@ button:focus:not(:focus-visible) {
 }
 
 sup {
-	color: color-mix(in hsl, var(--brand-a), var(--fg-a) 30%);
+	color: color-mix(in hsl, var(--theme-a), var(--fg-a) 30%);
 	font-style: italic;
 	margin-left: -0.5rem;
 }

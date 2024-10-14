@@ -16,7 +16,7 @@
 				<p>
 					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
 					excited to bring you
-					<strong style:color="var(--brand-a)">SvelteHack 2024</strong>
+					<strong style:color="var(--theme-a)">SvelteHack 2024</strong>
 					<sup>runes-edition</sup>
 				</p>
 
@@ -90,12 +90,6 @@
 			'wght' 500,
 			'wdth' 105,
 			'slnt' -10;
-	}
-
-	sup {
-		color: color-mix(in hsl, var(--theme-a), var(--fg-a) 30%);
-		font-style: italic;
-		margin-left: -0.5rem;
 	}
 
 	.svelte-society-logo {

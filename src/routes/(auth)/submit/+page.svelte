@@ -13,7 +13,7 @@
 	<div class="card" transition:slide>
 		<p>
 			Submissions for
-			<strong style:color="var(--brand-a)">SvelteHack 2024</strong>
+			<strong style:color="var(--theme-a)">SvelteHack 2024</strong>
 			<sup>runes-edition</sup> are closed.
 			{#if data.submission}
 				Thanks for participating! You'll still be able to see your submission here, but you
@@ -41,7 +41,7 @@
 	<div class="card" transition:slide>
 		<p>
 			Welcome to
-			<strong style:color="var(--brand-a)">SvelteHack 2024</strong>
+			<strong style:color="var(--theme-a)">SvelteHack 2024</strong>
 			<sup>runes-edition</sup>. To get started take a look at the
 			<a href="/2024/prizes">categories</a>, and read the
 			<a href="/2024/rules">rules</a>. Then you can create your submission below! If you're
