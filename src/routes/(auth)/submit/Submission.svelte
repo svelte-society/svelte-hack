@@ -59,8 +59,9 @@
 {/if}
 
 <section transition:fade>
-	<h2>Your SvelteHack Submission</h2>
 	<div class="br-sm"></div>
+	<h2>Your SvelteHack Submission</h2>
+	<div class="br-md"></div>
 
 	<form method="POST" action="?/updateSubmission" use:enhance={submit}>
 		<label>
