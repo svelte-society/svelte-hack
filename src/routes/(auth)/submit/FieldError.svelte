@@ -13,5 +13,6 @@
 	.error {
 		color: tomato;
 		font-size: var(--font-sm);
+		margin-top: 6px;
 	}
 </style>

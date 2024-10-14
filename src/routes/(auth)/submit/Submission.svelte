@@ -220,9 +220,7 @@
 	}
 
 	label:has(input[type='checkbox']) {
-		flex-direction: row;
-		align-items: center;
-		gap: 8px;
+		display: block;
 	}
 
 	label:first-of-type {
