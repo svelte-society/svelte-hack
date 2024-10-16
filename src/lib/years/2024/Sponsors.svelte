@@ -4,7 +4,7 @@
 
 <section>
 	<h5 class="title">Sponsored by</h5>
-	<div class="br-md"></div>
+	<div class="br-sm"></div>
 
 	<div class="sponsors" style="--size: 175px">
 		<div class="row">
@@ -14,11 +14,10 @@
 				<SveltebotDWI />
 			</div>
 		</div>
-		<div class="br-md"></div>
-		<a href="https://opencollective.com/svelte"
-			>https://<span class="oc">opencollective</span>.com/<span class="svelte">svelte</span
-			></a
-		>
+		<!-- <div class="br-md"></div> -->
+		<a href="https://opencollective.com/svelte">
+			<span class="oc">opencollective</span>.com/<span class="svelte">svelte</span>
+		</a>
 	</div>
 </section>
 
@@ -51,20 +50,25 @@
 			margin: 0 auto;
 
 			.svelte-bot {
+				// position: absolute;
+				display: block;
+				right: -110px;
+				bottom: 30px;
 				width: 100px;
 				height: 100px;
+				z-index: -1;
 			}
 
 			h1 {
-				font-family: var(--font-a);
-				font-size: 6rem;
+				// font-family: var(--font-a);
+				font-size: 7rem;
 				font-variation-settings:
 					'wght' 900,
 					'wdth' 120;
 			}
 
 			a {
-				font-size: var(--font-md);
+				// font-size: var(--font);
 				color: var(--fg-d);
 			}
 

@@ -4,75 +4,111 @@
 	import Hat from '$lib/graphics/Hat.svelte'
 </script>
 
-<section>
-	<div class="card-wrapper">
-		<div class="svelte-society-logo">
-			<div class="society"><Society /></div>
-			<div class="hat"><Hat /></div>
+<div class="section-wrapper">
+	<section>
+		<div class="above-text">
+			<p>
+				<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is excited
+				to bring you
+				<strong class="sveltehack">SvelteHack <span class="year">2024</span></strong>
+				<!-- <sup class="runes-edition">runes-edition</sup> -->
+			</p>
 		</div>
 
-		{#if SUBMISSIONS_OPEN}
-			<div data-present class="card">
-				<p>
-					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong> is
-					excited to bring you
-					<strong style:color="var(--theme-a)">SvelteHack 2024</strong>
-					<sup>runes-edition</sup>
-				</p>
+		<div class="br-lg"></div>
 
-				<p>
-					On behalf of the Svelte team and community at large, we're inviting you to
-					compete in this event and share your creations with the official release of
-					Svelte 5.
-				</p>
-
-				<p>
-					In turn, we're contributing thousands in cash
-					<span><a href="/prizes">prizes</a></span>.
-				</p>
-
-				<p>
-					Read our <a href="rules">rules</a> to learn more about how you can participate,
-					and join our <a href="https://svelte.dev/chat">Discord channel</a> to stay tuned.
-				</p>
+		<div class="card-wrapper">
+			<div class="svelte-society-logo">
+				<div class="society"><Society /></div>
+				<div class="hat"><Hat /></div>
 			</div>
-		{:else}
-			<!-- todo: post-event blurb for later -->
-			<div data-past class="card">
-				<p>
-					<strong style:color="var(--theme-a)">SvelteHack</strong> was brought to you on
-					behalf of the Svelte team, by
-					<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
-					our generous sponsors, and the amazing Svelte Community. We had
-					<strong>$15,000</strong>
-					in prizes, over <strong>250</strong> submissions, and <strong>15</strong>
-					amazing winners.
-				</p>
 
-				<p>
-					SvelteHack ran from the START_DATE to the END_DATE, and the winners were
-					announced at the
-					<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU"
-						>Spring Svelte Summit. (UPDATE THIS URL)</a
-					>
-				</p>
+			{#if SUBMISSIONS_OPEN}
+				<div data-present class="about card">
+					<p>
+						On behalf of the Svelte team and community at large, we're inviting you to
+						compete in this event and share your creations with the official release of
+						Svelte 5.
+					</p>
 
-				<p>
-					<a class="button btn-a" href="/winners" style="width: fit-content;">
-						View the SvelteHack winners
-					</a>
-				</p>
-			</div>
-		{/if}
-	</div>
-</section>
+					<p>
+						In turn, we're contributing thousands in cash
+						<span><a href="/prizes">prizes</a></span>.
+					</p>
+
+					<p>
+						Read our <a href="rules">rules</a> to learn more about how you can
+						participate, and join our
+						<a href="https://svelte.dev/chat">Discord channel</a> to stay tuned.
+					</p>
+				</div>
+			{:else}
+				<!-- todo: post-event blurb for later -->
+				<div data-past class="card">
+					<p>
+						<strong style:color="var(--theme-a)">SvelteHack</strong> was brought to you
+						on behalf of the Svelte team, by
+						<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
+						our generous sponsors, and the amazing Svelte Community. We had
+						<strong>$15,000</strong>
+						in prizes, over <strong>250</strong> submissions, and <strong>15</strong>
+						amazing winners.
+					</p>
+
+					<p>
+						SvelteHack ran from the START_DATE to the END_DATE, and the winners were
+						announced at the
+						<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU"
+							>Spring Svelte Summit. (UPDATE THIS URL)</a
+						>
+					</p>
+
+					<p>
+						<a class="button btn-a" href="/winners" style="width: fit-content;">
+							View the SvelteHack winners
+						</a>
+					</p>
+				</div>
+			{/if}
+		</div>
+	</section>
+</div>
 
 <style lang="scss">
+	strong a {
+		color: var(--fg-a);
+		font-weight: 400;
+	}
+
+	.section-wrapper {
+		padding: 4rem 0;
+		background: var(--bg-b);
+		outline: 1px solid color-mix(in hsl, var(--theme-a), transparent 75%);
+	}
+
+	.above-text {
+		position: relative;
+
+		width: fit-content;
+		margin: 0 auto;
+
+		box-shadow: none;
+
+		overflow: visible;
+
+		p {
+			max-width: 95vw;
+			text-align: center;
+			text-wrap: balance;
+			font-size: var(--font-lg);
+		}
+	}
+
 	.card-wrapper {
 		position: relative;
 	}
 
-	.card {
+	.about {
 		padding-left: 4rem;
 	}
 
@@ -80,16 +116,20 @@
 		font-variation-settings:
 			'wght' 333,
 			'wdth' 105;
-
-		font-family: var(--font-mono);
 	}
 
 	.sveltehack {
-		font-family: var(--font-mono);
+		font-family: var(--font-b);
+		color: var(--theme-a);
 		font-variation-settings:
 			'wght' 500,
-			'wdth' 105,
-			'slnt' -10;
+			'wdth' 105;
+	}
+
+	.year {
+		font-variation-settings:
+			'wght' 200,
+			'wdth' 105;
 	}
 
 	.svelte-society-logo {

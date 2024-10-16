@@ -5,14 +5,17 @@
 
 <div class="hero">
 	<h1>
-		<span class="sveltehack">SvelteHack</span> <span class="year">2024</span>
+		<span class="sveltehack">
+			<span class="svelte">Svelte</span><span class="hack">Hack</span>
+		</span>
+		<span class="year">2024</span>
 		<div class="runes-edition"><RunesEdition /></div>
 	</h1>
 
 	<div class="br-sm"></div>
 
 	<p class="a-svelte-hackathon">A Svelte Hackathon</p>
-	<p class="em">(with not-so-svelte prizes)</p>
+	<p class="em">[ with not-so-svelte prizes ]</p>
 
 	<div class="br-sm"></div>
 
@@ -64,11 +67,13 @@
 		position: relative;
 		display: inline-flex;
 
-		width: 200px;
-		max-width: 33vw;
+		// width: 200px;
+		width: 155px;
+		max-width: 28vw;
 		height: 75px;
 
-		transform: translateY(-10%);
+		// transform: translateY(-10%);
+		transform: translate(-13%, -38%);
 	}
 
 	p {
@@ -81,18 +86,30 @@
 			'wght' 300,
 			'wdth' 100;
 
-		font-size: clamp(1.25rem, 1.25rem + 0.5vw, 1.5rem);
+		// font-size: clamp(1.25rem, 1.25rem + 0.5vw, 1.5rem);
+		font-size: var(--font-lg);
 
 		transform: translateY(4px);
 	}
 
 	p.em {
+		// display: block;
 		font-size: 1.15rem;
 		color: var(--bg-e);
-		font-style: oblique 20deg;
+		// font-family: var(--font-b);
+		font-style: oblique 13deg;
+		// padding-left: 1.9rem;
+		padding-left: 0.5rem;
+		// padding-top: 0.2rem;
 		font-variation-settings:
 			'wght' 300,
 			'wdth' 100;
+	}
+
+	@media (width <= 1000px) {
+		p.em {
+			padding-left: 0;
+		}
 	}
 
 	.btn-c {
@@ -101,7 +118,7 @@
 
 		background: none !important;
 
-		font-size: var(--font-md);
+		font-size: var(--font);
 		text-decoration: underline;
 		text-underline-offset: 0.25rem;
 		text-decoration-thickness: 0.5px;
