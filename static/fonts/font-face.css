@@ -1,0 +1,100 @@
+/* INCONSOLATA  -  Variable Font (wght, wdth) */
+@font-face {
+	font-family: 'Inconsolata';
+	font-weight: 100 900;
+	font-style: monospace;
+	src:
+		url('/fonts/Inconsolata/Inconsolata.woff2') format('woff2'),
+		url('/fonts/Inconsolata/Inconsolata.ttf') format('truetype');
+	unicode-range: U+20-7E, U+E4, U+E5, U+F6;
+}
+
+/* MONA SANS - Variable Font (wght, wdth) */
+@font-face {
+	font-family: 'Mona Sans';
+	src:
+		url('/fonts/mona_sans/Mona-Sans.woff2') format('woff2 supports variations'),
+		url('/fonts/mona_sans/Mona-Sans.woff2') format('woff2-variations');
+	font-weight: 200 900;
+	font-stretch: 75% 125%;
+	font-display: auto;
+}
+
+/* NIRAIMT - Variable Font (wght, wdth) */
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-ExtraLight.woff2') format('woff2');
+	font-weight: 200;
+	font-style: normal;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-ExtraLightItalic.woff2') format('woff2');
+	font-weight: 200;
+	font-style: italic;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-Light.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-LightItalic.woff2') format('woff2');
+	font-weight: 300;
+	font-style: italic;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-MediumItalic.woff2') format('woff2');
+	font-weight: 500;
+	font-style: italic;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: auto;
+}
+@font-face {
+	font-family: 'Niramit';
+	src: url('/fonts/niramit/Niramit-BoldItalic.woff2') format('woff2');
+	font-weight: 700;
+	font-style: italic;
+	font-display: auto;
+}

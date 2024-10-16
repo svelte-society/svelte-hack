@@ -1,35 +1,35 @@
-/* INCONSOLATA  -  Variable Font (wght, wdth) */
-@font-face {
-	font-family: 'Inconsolata';
-	font-weight: 100 900;
-	font-style: monospace;
-	src:
-		url('/fonts/Inconsolata/Inconsolata.woff2') format('woff2'),
-		url('/fonts/Inconsolata/Inconsolata.ttf') format('truetype');
-	unicode-range: U+20-7E, U+E4, U+E5, U+F6;
-}
-
-/* MONA SANS - Variable Font (wght, wdth) */
-@font-face {
-	font-family: 'Mona Sans';
-	src:
-		url('/fonts/mona_sans/Mona-Sans.woff2') format('woff2 supports variations'),
-		url('/fonts/mona_sans/Mona-Sans.woff2') format('woff2-variations');
-	font-weight: 200 900;
-	font-stretch: 75% 125%;
-	font-display: auto;
+:root {
+	--font-xxs: 0.75rem;
+	--font-xs: 0.9rem;
+	--font-sm: 1rem;
+	--font: clamp(1rem, 3vw, 1.2rem);
+	--font-md: clamp(1rem, 3.5vw, 1.4rem);
+	--font-lg: clamp(1.25rem, 5vw, 1.75rem);
+	--font-xl: clamp(1.5rem, 6vw, 2.25rem);
+	--font-xxl: clamp(1.75rem, 7vw, 3rem);
 }
 
 :root {
-	--font-a: 'Mona Sans', sans-serif;
-	--font-mono: 'Inconsolata', monospace;
+	//? Original fonts
+	// --font-a: 'Mona Sans', sans-serif;
+	// --font-mono: 'Inconsolata', monospace;
+
+	--font-a: 'Niramit', sans-serif;
+	--font-mono: 'Inconsolata', sans-serif;
+
+	--font-b: 'Mona Sans', sans-serif;
 }
 
 body {
-	font-family: var(--font-mono);
+	font-family: var(--font-a);
+	font-weight: 200;
 	font-variation-settings:
-		'wght' 200,
-		'wdth' 98;
+	'wght' 200,
+	'wdth' 95;
+	letter-spacing: 0.2px;
+	line-height: 1.3;
+	line-height: 1.25;
+	text-wrap: pretty;
 }
 
 h1,
@@ -38,7 +38,7 @@ h3,
 h4,
 h5,
 .heading {
-	font-family: var(--font-a);
+	font-family: var(--font-b);
 	font-variation-settings:
 		'wght' 550,
 		'wdth' 110;
