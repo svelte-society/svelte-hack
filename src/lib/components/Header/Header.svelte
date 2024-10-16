@@ -2,7 +2,6 @@
 	import SvelteHackLogo from '$lib/graphics/SvelteHackLogo.svelte'
 	import ThemeSwitch from '$lib/themer/ThemeSwitch.svelte'
 	import { device } from '$lib/utils/device.svelte'
-	import { fade } from 'svelte/transition'
 	import { page } from '$app/stores'
 	import Nav from './Nav/Nav.svelte'
 </script>
@@ -24,11 +23,7 @@
 			{/if}
 
 			{#if $page.url.pathname !== '/submit'}
-				<a
-					class="btn-b login"
-					transition:fade|local
-					href={$page.data.loggedIn ? '/submit' : '/login'}
-				>
+				<a class="btn-b login" href={$page.data.loggedIn ? '/submit' : '/login'}>
 					{$page.data.loggedIn ? 'Submit' : 'Enter'}
 				</a>
 			{/if}
@@ -78,6 +73,7 @@
 
 		width: var(--max-w);
 		margin: 0 auto;
+		padding-right: 1.5rem;
 
 		z-index: 50;
 	}
@@ -124,7 +120,7 @@
 	}
 
 	.logout:hover {
-		color: var(--theme-a);
+		color: var(--theme-b);
 
 		text-decoration: none;
 	}
@@ -146,10 +142,12 @@
 	}
 
 	.login {
-		transform: translateY(-1px);
-		margin-right: 1.5rem;
 		text-decoration: none;
 		border-radius: var(--radius);
+	}
+
+	.logout {
+		font-size: var(--font-sm);
 	}
 
 	@media (width <= 1000px) {
@@ -163,7 +161,7 @@
 		position: absolute;
 
 		right: 1rem;
-		top: 1rem;
+		top: 1.4rem;
 
 		font-size: 1.25rem;
 
