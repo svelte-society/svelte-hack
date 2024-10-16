@@ -67,9 +67,12 @@ const params = {
 	},
 	bloom: {
 		dark: {
-			threshold: 0.29,
-			strength: 4.57,
-			radius: 0.38,
+			// threshold: 0.29,
+			// strength: 4.57,
+			// radius: 0.38,
+			threshold: 0.33,
+			strength: 3.5,
+			radius: 0.31,
 		},
 		light: {
 			threshold: 0.37,
@@ -434,7 +437,7 @@ export async function init(canvas: HTMLCanvasElement) {
 		bloomPass.strength = mapRange(v, 0, 1, 10, params.bloom[themer.mode].strength)
 		bloomPass.threshold = mapRange(v, 0, 1, 0.1, params.bloom[themer.mode].threshold)
 	})
-	setTimeout(() => requestAnimationFrame(() => animateIn.set(1)), 600)
+	setTimeout(() => requestAnimationFrame(() => animateIn.set(0.9)), 600)
 
 	let t = 0
 	let running = true
