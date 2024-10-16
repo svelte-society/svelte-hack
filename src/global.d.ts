@@ -9,7 +9,6 @@ declare global {
 		}
 
 		interface PageData {
-			loggedIn: boolean
 			user?: UsersTable
 		}
 	}

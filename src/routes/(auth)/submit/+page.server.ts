@@ -22,7 +22,7 @@ async function getSubmission(locals: App.Locals) {
 export async function load({ parent, locals }) {
 	const data = await parent()
 
-	if (!data.loggedIn) {
+	if (!data.user) {
 		throw redirect(307, '/login')
 	}
 

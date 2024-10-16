@@ -51,14 +51,14 @@
 				>
 					<a
 						class="nav-link"
-						href={$page.data.loggedIn ? '/submit' : '/login'}
+						href={$page.data.user ? '/submit' : '/login'}
 						onclick={() => (showMenu = false)}
 					>
-						{$page.data.loggedIn ? 'Submit' : 'Login'}
+						{$page.data.user ? 'Submit' : 'Login'}
 					</a>
 				</li>
 
-				{#if $page.data.loggedIn}
+				{#if $page.data.user}
 					<li
 						in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
 						out:fade={{ duration: 50 }}

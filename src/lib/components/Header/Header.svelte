@@ -18,13 +18,13 @@
 		</nav>
 
 		<div class="row">
-			{#if $page.data.loggedIn}
+			{#if $page.data.user}
 				<a class="logout" href="/logout">Logout</a>
 			{/if}
 
 			{#if $page.url.pathname !== '/submit'}
-				<a class="btn-b login" href={$page.data.loggedIn ? '/submit' : '/login'}>
-					{$page.data.loggedIn ? 'Submit' : 'Enter'}
+				<a class="btn-b login" href={$page.data.user ? '/submit' : '/login'}>
+					{$page.data.user ? 'Submit' : 'Enter'}
 				</a>
 			{/if}
 		</div>
