@@ -45,9 +45,9 @@
 	<div class="br-md"></div>
 
 	{#if new Date() < new Date(data.date.end)}
-		<p class="subtitle">
-			Svelte Hack isn't over yet! There's still time to <a href="/login">enter</a>
-		</p>
+		<p class="subtitle">Svelte Hack isn't over yet!</p>
+		<div class="br-sm"></div>
+		<p><a class="btn-b" href="/login">Enter</a></p>
 	{:else}
 		<div class="winners">
 			{#each categories as { category, winners, rune }}
@@ -60,6 +60,22 @@
 </section>
 
 <style lang="scss">
+	section {
+		max-width: min(var(--max-w), 95vw);
+	}
+
+	p:has(.btn-b) {
+		text-align: center;
+	}
+
+	.btn-b {
+		border-radius: var(--radius-sm);
+		box-sizing: border-box;
+		margin: 0 auto;
+		display: inline-flex;
+		text-decoration: none;
+	}
+
 	.title {
 		font-size: var(--font-xxl);
 		text-align: center;
@@ -82,16 +98,6 @@
 		text-align: center;
 		font-size: var(--font-lg);
 		color: var(--fg-b);
-
-		a {
-			color: var(--theme-a);
-			text-decoration: none;
-			font-weight: 500;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
 	}
 
 	.winners {
