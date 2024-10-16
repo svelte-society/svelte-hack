@@ -30,7 +30,7 @@ interface ThemerOptions {
  */
 class Themer {
 	activeTheme = $state<Theme>(vanilla)
-	preference = $state<'light' | 'dark' | 'system'>('system')
+	preference = $state<'light' | 'dark' | 'system'>('dark')
 	mode = $derived.by(() => this.#resolveMode())
 	colors = $derived.by(() =>
 		Object.fromEntries(
