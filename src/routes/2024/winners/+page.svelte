@@ -1,58 +1,110 @@
 <script lang="ts">
-	import Category from './Category.svelte'
 	import type { Winner } from './types'
+
+	import YearSelector from '$lib/components/YearSelector.svelte'
+	import W from '$lib/years/2024/runes/W.svelte'
+	import R from '$lib/years/2024/runes/R.svelte'
+	import M from '$lib/years/2024/runes/M.svelte'
+	import { data } from '$lib/years/2024/data'
+	import Category from './Category.svelte'
 
 	interface Data {
 		category: string
 		winners: Winner[]
+		rune: typeof W | typeof R | typeof M
 	}
 
-	const data: Data[] = [
+	const categories: Data[] = [
 		{
-			category: '🧙 Best Wizzbangery',
+			category: 'Wizzbangery Wizard',
 			winners: [],
+			rune: W,
 		},
 		{
-			category: '📚 Best Library',
+			category: 'Rune Revolutionary',
 			winners: [],
+			rune: R,
 		},
 		{
-			category: '🔌 Best Ecosystem Integration',
+			category: 'Migration Master',
 			winners: [],
+			rune: M,
 		},
 	]
 </script>
 
-todo add year selector
+<section>
+	<YearSelector activeYear="2024" />
 
-<p style="margin: 0 auto;">
-	Svelte Hack isn't over yet! There's still time
-	<a href="http://localhost:5173/login">to enter</a>
-</p>
+	<div class="br-md"></div>
 
-<h1 class="title">Svelte Hack 2024 Winners</h1>
+	<h1 class="title">
+		<strong class="sveltehack">SvelteHack <span class="year">2024</span></strong> Winners
+	</h1>
 
-<div class="winners">
-	{#each data as { category, winners }}
-		<Category {category} {winners} />
-	{/each}
-</div>
+	<div class="br-md"></div>
+
+	{#if new Date() < new Date(data.date.end)}
+		<p class="subtitle">
+			Svelte Hack isn't over yet! There's still time to <a href="/login">enter</a>
+		</p>
+	{:else}
+		<div class="winners">
+			{#each categories as { category, winners, rune }}
+				<div class="category-container">
+					<Category {category} {winners} {rune} />
+				</div>
+			{/each}
+		</div>
+	{/if}
+</section>
 
 <style lang="scss">
 	.title {
-		margin: 0px auto;
-		margin-bottom: 48px;
-		padding: 0px 16px;
+		font-size: var(--font-xxl);
+		text-align: center;
+	}
+
+	.sveltehack {
+		color: var(--theme-a);
+		font-variation-settings:
+			'wght' 500,
+			'wdth' 105;
+	}
+
+	.year {
+		font-variation-settings:
+			'wght' 200,
+			'wdth' 105;
+	}
+
+	.subtitle {
+		text-align: center;
+		font-size: var(--font-lg);
+		color: var(--fg-b);
+
+		a {
+			color: var(--theme-a);
+			text-decoration: none;
+			font-weight: 500;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	.winners {
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 		justify-content: center;
-		align-items: stretch;
-		gap: 64px 32px;
+		gap: 3rem;
+	}
 
-		padding: 16px;
-		margin-bottom: 64px;
+	.category-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
 	}
 </style>

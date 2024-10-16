@@ -1,10 +1,14 @@
 <script lang="ts">
-	import GitHub from '$lib/graphics/GitHub.svelte'
-	import Website from '$lib/graphics/Website.svelte'
 	import type { Winner } from './types'
 
-	export let category: string
-	export let winners: Winner[]
+	import Website from '$lib/graphics/Website.svelte'
+	import GitHub from '$lib/graphics/GitHub.svelte'
+
+	const {
+		category,
+		winners,
+		rune,
+	}: { category: string; winners: Winner[]; rune: any } = $props()
 
 	function icon(place: number) {
 		switch (place) {
@@ -21,8 +25,15 @@
 </script>
 
 <div class="category">
-	<h2>{category}</h2>
+	<div class="br-md"></div>
 
+	<div class="title">
+		<div class="rune" aria-hidden="true">
+			{@render rune()}
+		</div>
+		<h2>{category}</h2>
+	</div>
+		
 	<div class="winners">
 		{#each winners as winner}
 			<div
@@ -54,7 +65,12 @@
 	.category {
 		display: flex;
 		flex-direction: column;
-		gap: 22px;
+	}
+
+	.title {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
 	}
 
 	.winners {
@@ -126,6 +142,15 @@
 			margin-right: 12px;
 			width: 20px;
 			height: 20px;
+		}
+	}
+
+	.rune {
+		height: 30px;
+		display: inline-flex;
+
+		:global(svg) {
+			filter: drop-shadow(0 0 10px var(--theme-a));
 		}
 	}
 </style>
