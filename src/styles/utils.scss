@@ -45,10 +45,15 @@
 	margin: 0 auto;
 
 	background: var(--bg-a);
+	background: color-mix(in lab, var(--bg-a), var(--theme-a) 1%);
 	border: 1px solid var(--bg-b);
 	border-radius: var(--radius-lg);
 
-	box-shadow: -0.25rem 0.5rem 2rem 0.25rem rgba(var(--theme-a-rgb), 0.1) inset;
+	box-shadow:
+		0 0 4rem 0 color-mix(in oklch, var(--theme-a), transparent 96%) inset,
+		0 0 2rem 0 color-mix(in hsl, var(--theme-a), transparent 94%) inset,
+		// 0 0 0.5rem 0 color-mix(in hsl, var(--theme-a), transparent 80%) inset,
+		0 0 2rem 0 color-mix(in oklch, var(--theme-a), transparent 87%);
 
 	@media screen and (width < 1000px) {
 		padding: 1rem;
@@ -60,7 +65,7 @@
 
 	width: max-content;
 	max-width: 100%;
-	padding: 0.15rem 0.15rem 0.15rem 0.15rem;
+	padding: 1px;
 	margin: 0 auto;
 
 	border-radius: var(--radius);

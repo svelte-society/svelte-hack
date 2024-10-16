@@ -25,6 +25,7 @@ h2 {
 p,
 li,
 .card {
+	// line-height: 1.2;
 	color: var(--fg-b);
 	font-size: var(--font);
 
@@ -34,12 +35,15 @@ li,
 
 	a {
 		color: var(--fg-c);
+		&:hover {
+			color: var(--fg-a);
+		}
 	}
 }
 
 a {
-	font-family: var(--font-mono);
 	color: var(--fg-a);
+	// font-family: var(--font-mono);
 
 	&:not(h1, h2) {
 		text-decoration: underline;
@@ -53,18 +57,37 @@ a {
 	}
 }
 
-code {
-	padding: 0.1rem 0.4rem;
+code,
+.code {
+	// position: relative;
+	display: inline-flex;
+
+	padding: 0px 4px 2px 4px;
+	margin-left: 2px;
+	// margin: -1px 0 0 0;
+
+	line-height: 1.1;
 
 	color: var(--fg-a);
-	background: var(--bg-d);
+	// background: var(--bg-c);
+	// background: color-mix(in hsl, var(--bg-c), var(--bg-d) 50%);
+	outline: 1px solid color-mix(in hsl, var(--theme-a), transparent 75%);
 	border-radius: var(--radius-sm);
-	box-shadow: var(--shadow-sm);
+	// box-shadow: var(--shadow-sm);
 
+	font-family: var(--font-a);
+	// font-size: var(--font-sm);
+	font-weight: 400;
 	font-variation-settings:
 		'wght' 400,
 		'wdth' 90;
 	white-space: nowrap;
+
+	// a {
+	// 	// transform: translateY(-2.5px);
+	// 	transform: scale(0.9) translateY(-1px);
+	// 	color: var(--fg-a) !important;
+	// }
 }
 
 input,

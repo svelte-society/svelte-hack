@@ -1,3 +1,4 @@
+// @import './font-face.scss';
 @import './elements.scss';
 @import './buttons.scss';
 @import './utils.scss';
@@ -7,15 +8,6 @@
 //* Variables
 
 :root {
-	--font-xxs: 0.75rem;
-	--font-xs: 0.9rem;
-	--font-sm: 1rem;
-	--font: clamp(1rem, 3vw, 1.2rem);
-	--font-md: clamp(1rem, 3.5vw, 1.4rem);
-	--font-lg: clamp(1.25rem, 5vw, 1.75rem);
-	--font-xl: clamp(1.5rem, 6vw, 2.25rem);
-	--font-xxl: clamp(1.75rem, 7vw, 3rem);
-
 	--warn: #ff8888;
 
 	--radius-sm: 3px;
@@ -60,10 +52,11 @@
 }
 
 html {
+	accent-color: var(--theme-a);
+
 	scroll-behavior: smooth;
 	scrollbar-gutter: stable;
 	overscroll-behavior-y: none;
-	accent-color: var(--theme-a);
 }
 
 html,
@@ -71,6 +64,7 @@ body {
 	width: 100%;
 	max-width: 100vw;
 	min-width: 100%;
+
 	overflow-x: hidden;
 	scroll-padding-top: 150px;
 }

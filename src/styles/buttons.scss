@@ -7,7 +7,7 @@ button,
 
 	padding: 0.6rem 2.5rem;
 
-	font-family: var(--font-mono);
+	// font-family: var(--font-mono);
 	border-radius: var(--radius);
 
 	transition: 0.2s;
@@ -42,7 +42,7 @@ button,
 		'wght' 300,
 		'wdth' 112;
 	letter-spacing: 1.5px;
-	
+
 	transition: all 0.2s;
 
 	&:hover,
