@@ -10,6 +10,7 @@ declare global {
 
 		interface PageData {
 			user?: UsersTable
+			hasSubmission: boolean
 		}
 	}
 }
