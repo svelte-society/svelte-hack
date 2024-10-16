@@ -146,8 +146,8 @@
 		</label>
 
 		{#if !isSubmitter}
-			<p style="font-size: var(--font-xs);">
-				Only the member of your team that made the submission can make edits
+			<p class="not-submitter" style="font-size: var(--font-xs); text-align: center;">
+				To edit a submission, you must be the team member who created it.
 			</p>
 		{/if}
 
@@ -209,9 +209,10 @@
 		gap: 2rem;
 
 		width: fit-content;
-		padding: 2rem;
+		padding: 1rem;
 
-		background: var(--bg-b);
+		/* background: var(--bg-b); */
+		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 50%);
 		box-shadow: var(--shadow);
 		border-radius: var(--radius);
 
@@ -222,13 +223,23 @@
 		display: flex;
 		flex-direction: column;
 		position: relative;
+
 		width: 100%;
+		padding: 0 0.5rem 0.5rem;
+
+		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 75%);
+		outline: 1px solid var(--bg-a);
+		border-radius: var(--radius);
 
 		font-weight: 300;
 	}
 
 	label:has(input[type='checkbox']) {
 		display: block;
+		padding-top: 0.5rem;
+		* {
+			outline-color: var(--fg-e);
+		}
 	}
 
 	label:first-of-type {
@@ -250,6 +261,8 @@
 		background: var(--bg-a);
 		padding: 0.5rem;
 		border-radius: var(--radius);
+		/* outline-color: color-mix(in hsl, var(--theme-a), transparent 50%); */
+		outline-color: var(--fg-e);
 
 		font-family: var(--font-mono);
 
@@ -269,14 +282,22 @@
 		height: 1rem;
 		max-height: 2rem;
 		padding: 0;
+		padding-bottom: 0.25rem;
+		line-height: 1rem;
 		margin-top: 0.5rem;
 
 		border: none;
 		background: var(--bg-a);
 		border-radius: var(--radius);
+		outline: 2px solid transparent;
 
 		box-shadow: var(--shadow-sm);
 		transition: 0.2s;
+
+		&:hover,
+		&:focus-visible {
+			outline-color: var(--bg-d);
+		}
 	}
 
 	.disabled {
@@ -285,5 +306,15 @@
 		opacity: 0;
 
 		pointer-events: none;
+	}
+
+	.not-submitter {
+		width: 20rem;
+		max-width: 90%;
+		margin: 0 auto;
+		text-align: center;
+		color: var(--fg-c);
+		font-size: var(--font-sm);
+		flex-shrink: 1;
 	}
 </style>

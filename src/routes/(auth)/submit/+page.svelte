@@ -3,7 +3,7 @@
 	import Submission from './Submission.svelte'
 	import { slide } from 'svelte/transition'
 
-	const { data, form } = $props();
+	const { data, form } = $props()
 
 	let showSubmissionForm = $state(!!data.submission)
 </script>
@@ -12,7 +12,7 @@
 	<div class="card" transition:slide>
 		<p>
 			Submissions for
-			<strong style:color="var(--theme-a)">SvelteHack 2024</strong>
+			<span class="sveltehack">SvelteHack</span> <span class="year">2024</span>
 			<sup>runes-edition</sup> are closed.
 			{#if data.submission}
 				Thanks for participating! You'll still be able to see your submission here, but you
@@ -26,6 +26,7 @@
 			<a href="https://svelte.dev/chat">Svelte Discord</a>!
 		</p>
 	</div>
+
 	<div class="br-md"></div>
 {/if}
 
@@ -37,20 +38,118 @@
 		{form}
 	/>
 {:else if SUBMISSIONS_OPEN}
-	<div class="card" transition:slide>
-		<p>
+	<div transition:slide>
+		<div class="br-md"></div>
+
+		<p class="above-text">
 			Welcome to
-			<strong style:color="var(--theme-a)">SvelteHack 2024</strong>
-			<sup>runes-edition</sup>. To get started take a look at the
-			<a href="/2024/prizes">categories</a>, and read the
-			<a href="/2024/rules">rules</a>. Then you can create your submission below! If you're
-			working on a team only one of you will need to do this.
+			<span class="sveltehack">SvelteHack</span>
+			<span class="year">2024</span><!-- <sup>runes-edition</sup>-->
 		</p>
 
-		<button class="button btn-b" onclick={() => (showSubmissionForm = true)}>
-			Let's do it
-		</button>
+		<div class="br-md"></div>
+
+		<h2 class="before-submit center">Before Submitting</h2>
+
+		<div class="br-sm"></div>
+
+		<div class="card">
+			<ul>
+				<!-- <li>
+				Check out the <a href="/2024/prizes">categories and prizes</a> if you haven't already.
+			</li> -->
+
+				<li>
+					Read the <a href="/2024/rules">rules</a>.
+				</li>
+
+				<li>
+					Join us on the <a href="https://svelte.dev/chat">Svelte Discord</a>
+					<sup>(if you want to)</sup>
+				</li>
+
+				<li>
+					For teams, choose <strong>one</strong> member to submit on behalf of the group.
+				</li>
+			</ul>
+		</div>
+
+		<div class="br-md"></div>
+
+		<p class="center">When you're ready, click below to create your submission!</p>
+
+		<div class="br-md"></div>
+
+		<button class="btn-b" onclick={() => (showSubmissionForm = true)}> Let's do this! </button>
 	</div>
 {/if}
 
 <div class="br-xl"></div>
+
+<style lang="scss">
+	sup {
+		color: var(--fg-d);
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.before-submit {
+		font-size: var(--font-md);
+		margin-top: -0.5rem;
+		font-variation-settings:
+			'wght' 500,
+			'wdth' 95;
+	}
+
+	.card {
+		max-width: min(var(--max-w), 95vw);
+		// box-shadow: none;
+		box-shadow: var(--shadow);
+		background: none;
+	}
+
+	.above-text {
+		position: relative;
+
+		width: fit-content;
+		margin: 0 auto;
+
+		box-shadow: none;
+
+		overflow: visible;
+
+		text-align: center;
+		text-wrap: balance;
+		font-size: var(--font-lg);
+	}
+
+	.sveltehack {
+		font-family: var(--font-b) !important;
+		color: var(--theme-a);
+		font-variation-settings:
+			'wght' 500,
+			'wdth' 105;
+	}
+
+	.year {
+		color: var(--theme-a);
+		font-family: var(--font-b) !important;
+		font-variation-settings:
+			'wght' 200,
+			'wdth' 105;
+	}
+
+	ul {
+		padding-left: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	button {
+		width: fit-content;
+		margin: 0 auto;
+	}
+</style>
