@@ -1,5 +1,5 @@
 <footer>
-	Made with 🧡 by <a href="https://sveltesociety.dev/" target="_blank" rel="noreferrer">
+	with 🧡 from <a href="https://sveltesociety.dev/" target="_blank" rel="noreferrer">
 		Svelte Society
 	</a>
 </footer>
@@ -19,8 +19,8 @@
 
 		color: var(--fg-a);
 		text-align: center;
-		font-size: var(--font-md);
-		font-family: var(--font-mono);
+		font-size: var(--font);
+		font-family: var(--font-a);
 	}
 
 	a {
