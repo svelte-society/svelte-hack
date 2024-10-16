@@ -1,5 +1,5 @@
 <footer>
-	with 🧡 from <a href="https://sveltesociety.dev/" target="_blank" rel="noreferrer">
+	Made with 🧡 by <a href="https://sveltesociety.dev/" target="_blank" rel="noreferrer">
 		Svelte Society
 	</a>
 </footer>

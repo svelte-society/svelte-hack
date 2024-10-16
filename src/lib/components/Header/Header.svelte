@@ -146,7 +146,7 @@
 	}
 
 	.login {
-		transform: translateY(-3px);
+		transform: translateY(-1px);
 		margin-right: 1.5rem;
 		text-decoration: none;
 		border-radius: var(--radius);
