@@ -71,3 +71,12 @@
 </section>
 
 <div class="br-xl"></div>
+
+<style lang="scss">
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		line-height: 1.4;
+	}
+</style>
