@@ -29,11 +29,14 @@
 
 	<div class="title">
 		<div class="rune" aria-hidden="true">
-			{@render rune()}
+			{#if rune}
+				{@render rune()}
+			{/if}
 		</div>
+
 		<h2>{category}</h2>
 	</div>
-		
+
 	<div class="winners">
 		{#each winners as winner}
 			<div

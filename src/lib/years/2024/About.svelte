@@ -82,8 +82,14 @@
 
 	.section-wrapper {
 		padding: 4rem 0;
-		background: var(--bg-b);
+		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 50%);
 		outline: 1px solid color-mix(in hsl, var(--theme-a), transparent 75%);
+	}
+
+	:global(:root[theme='dark']) {
+		.section-wrapper {
+			background: var(--bg-b);
+		}
 	}
 
 	.above-text {
