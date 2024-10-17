@@ -1,10 +1,8 @@
 import { submissionSchema } from '$lib/server/submissions'
+import { formatPBErrors } from '$lib/server/pocketbase'
 import type { ClientResponseError } from 'pocketbase'
 import { error, fail, redirect } from '@sveltejs/kit'
 import { SUBMISSIONS_OPEN } from '$lib/vars.js'
-import { z } from 'zod'
-
-type SchemaErrors = z.inferFlattenedErrors<typeof submissionSchema>['fieldErrors']
 
 async function getSubmission(locals: App.Locals) {
 	const submission = await locals.pb
@@ -93,25 +91,8 @@ export const actions = {
 		} catch (e) {
 			const error = e as ClientResponseError
 
-			if (error.response.data) {
-				return fail(400, {
-					error: Object.entries(error.response.data).reduce<Record<string, string>>(
-						(a, [key, value]) => {
-							a[key] =
-								typeof value == 'object' && value && 'message' in value
-									? `${value.message}`
-									: 'Invalid'
-
-							return a
-						},
-						{},
-					) as SchemaErrors,
-					success: false,
-				})
-			}
-
 			return fail(400, {
-				error: error.message || 'Failed to save',
+				error: formatPBErrors(submissionSchema, error.response.data),
 				success: false,
 			})
 		}
