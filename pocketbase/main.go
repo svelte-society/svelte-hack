@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	validation "github.com/go-ozzo/ozzo-validation/v4"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
@@ -27,7 +28,7 @@ func checkAuthors(app *pocketbase.PocketBase, record *models.Record) error {
 
 		return apis.NewBadRequestError(
 			"Failed to create record",
-			map[string]any{field: map[string]any{"code": "validation_not_unique"}},
+			validation.Errors{field: validation.NewError("validation_not_unique", "Author already has a submission")},
 		)
 	}
 
