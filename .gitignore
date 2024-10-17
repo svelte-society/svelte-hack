@@ -8,3 +8,6 @@
 .vercel
 
 .DS_Store
+
+pocketbase/pb_data
+pocketbase/svelte-hack-pb

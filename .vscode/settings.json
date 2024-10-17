@@ -8,5 +8,8 @@
 	"[svelte]": {
 		"editor.defaultFormatter": "svelte.svelte-vscode",
 		"editor.formatOnSave": true
+	},
+	"[go]": {
+		"editor.defaultFormatter": "golang.go"
 	}
 }
