@@ -2,7 +2,6 @@ import type { Theme } from './themer.types'
 export type { Theme }
 
 import vanilla from './themes/vanilla'
-
 import { parse } from 'cookie'
 
 type Preference = 'dark' | 'light' | 'system'
@@ -30,7 +29,7 @@ interface ThemerOptions {
  */
 class Themer {
 	activeTheme = $state<Theme>(vanilla)
-	preference = $state<'light' | 'dark' | 'system'>('dark')
+	preference = $state<'light' | 'dark' | 'system'>('system')
 	mode = $derived.by(() => this.#resolveMode())
 	colors = $derived.by(() =>
 		Object.fromEntries(
@@ -66,7 +65,7 @@ class Themer {
 	constructor(options?: ThemerOptions) {
 		this.#storage = options?.storage !== false
 
-		this.preference = this.#resolveStorage(options?.defaultMode ?? 'system')
+		this.preference = this.#resolveStorage(options?.defaultMode ?? 'dark')
 
 		if (globalThis.window) {
 			this.init()
