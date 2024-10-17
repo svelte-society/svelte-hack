@@ -21,7 +21,7 @@
 		form: ActionData
 	} = $props()
 
-	const locked = isSubmitter === false || !SUBMISSIONS_OPEN
+	const locked = !isSubmitter || !SUBMISSIONS_OPEN
 	let disabled = $state(locked)
 
 	let authorTwo = $state(!!submission.authorTwo)
@@ -74,14 +74,7 @@
 		<label>
 			<span>Author Email(s)</span>
 
-			<input
-				type="email"
-				name="authorOne"
-				value={submission.authorOne || user.email}
-				{disabled}
-				required
-			/>
-			<FieldError error={form?.error?.authorOne} />
+			<input type="email" value={submission.authorOne || user.email} disabled />
 
 			<Removable bind:open={authorTwo} {disabled}>
 				<input

@@ -3,19 +3,20 @@ import { z } from 'zod'
 export const submissionSchema = z.object({
 	github: z.string({ required_error: 'GitHub is required' }).url(),
 	demo: z.string({ required_error: 'Demo is required' }).url(),
-	authorOne: z.string({ required_error: 'Author is required' }).trim().email(),
 	authorTwo: z
 		.string({ required_error: 'Author is required' })
 		.trim()
 		.email()
 		.optional()
-		.or(z.literal('')),
+		.or(z.literal(''))
+		.default(''),
 	authorThree: z
 		.string({ required_error: 'Author is required' })
 		.trim()
 		.email()
 		.optional()
-		.or(z.literal('')),
+		.or(z.literal(''))
+		.default(''),
 	title: z
 		.string({ required_error: 'Title is required' })
 		.trim()

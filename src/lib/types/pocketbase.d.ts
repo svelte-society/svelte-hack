@@ -1,5 +1,4 @@
-import type { RecordService, BaseModel } from 'pocketbase'
-import type { Submission } from '$lib/server/submissions'
+import type { RecordService } from 'pocketbase'
 import type Pocketbase from 'pocketbase'
 
 export interface TypedPocketbase extends Pocketbase {
@@ -8,9 +7,15 @@ export interface TypedPocketbase extends Pocketbase {
 	collection(idOrName: 'submissions'): RecordService<SubmissionsTable>
 }
 
+interface BaseModel {
+	id: string
+	created: string
+	updated: string
+}
+
 export interface UsersTable extends BaseModel {
 	email: string
-	name: string
+	username: string
 	verified: boolean
 	listmonkId: number
 	newsletter: boolean
@@ -18,12 +23,12 @@ export interface UsersTable extends BaseModel {
 }
 
 export interface SubmissionsTable extends BaseModel {
-	account: UsersTable['id']
+	submitter: UsersTable['id']
+	authorOne: string
+	authorTwo?: string
+	authorThree?: string
 	title: string
 	description: string
 	github: string
 	demo: string
-	authorOne: string | undefined
-	authorTwo?: string | undefined
-	authorThree?: string | undefined
 }

@@ -1,8 +1,10 @@
-import { dangerously_get_pb_admin } from '$lib/server/pb-admin'
 import { submissionSchema } from '$lib/server/submissions'
 import type { ClientResponseError } from 'pocketbase'
 import { error, fail, redirect } from '@sveltejs/kit'
 import { SUBMISSIONS_OPEN } from '$lib/vars.js'
+import { z } from 'zod'
+
+type SchemaErrors = z.inferFlattenedErrors<typeof submissionSchema>['fieldErrors']
 
 async function getSubmission(locals: App.Locals) {
 	const submission = await locals.pb
@@ -14,7 +16,7 @@ async function getSubmission(locals: App.Locals) {
 		})
 
 	return {
-		isSubmitter: submission ? submission.account == locals.user?.id : null,
+		isSubmitter: !submission || submission.submitter === locals.user?.id,
 		submission,
 	}
 }
@@ -38,7 +40,7 @@ export const actions = {
 	async updateSubmission({ request, locals }) {
 		// If not logged in then exit
 		if (!locals.user) {
-			throw error(401, 'Unauthorised')
+			error(401, 'Unauthorised')
 		}
 
 		if (!SUBMISSIONS_OPEN) {
@@ -49,14 +51,14 @@ export const actions = {
 		}
 
 		// Parse data with zod
-		const result = await submissionSchema.safeParseAsync(
+		const { data, error: parseError } = await submissionSchema.safeParseAsync(
 			// @ts-expect-error form data complaining
 			Object.fromEntries(await request.formData()),
 		)
 
 		// If the submission is invalid return the errors to the frontend
-		if (!result.success) {
-			const errors = result.error.flatten()
+		if (parseError) {
+			const errors = parseError.flatten()
 
 			return fail(400, {
 				error: errors.fieldErrors,
@@ -68,32 +70,48 @@ export const actions = {
 			// Find an existing record, if there is one
 			const { submission, isSubmitter } = await getSubmission(locals)
 
-			if (submission && !isSubmitter) {
+			if (submission) {
+				if (!isSubmitter) {
+					return fail(400, {
+						error: 'Only the member of your team that made the submission can make edits',
+						success: false,
+					})
+				}
+
+				// If there is an existing submission then update it
+				await locals.pb.collection('submissions').update(submission.id, {
+					...data,
+				})
+			} else {
+				// If no record exists then create one
+				await locals.pb.collection('submissions').create({
+					submitter: locals.user.id,
+					authorOne: locals.user.email,
+					...data,
+				})
+			}
+		} catch (e) {
+			const error = e as ClientResponseError
+
+			if (error.response.data) {
 				return fail(400, {
-					error: 'Only the member of your team that made the submission can make edits',
+					error: Object.entries(error.response.data).reduce<Record<string, string>>(
+						(a, [key, value]) => {
+							a[key] =
+								typeof value == 'object' && value && 'message' in value
+									? `${value.message}`
+									: 'Invalid'
+
+							return a
+						},
+						{},
+					) as SchemaErrors,
 					success: false,
 				})
 			}
 
-			const pbAdmin = await dangerously_get_pb_admin()
-
-			if (submission) {
-				// If there is an existing submission then update it
-				await pbAdmin.collection('submissions').update(submission.id, {
-					authorTwo: '',
-					authorThree: '',
-					...result.data,
-				})
-			} else {
-				// If no record exists then create one
-				await pbAdmin.collection('submissions').create({
-					...result.data,
-					account: locals.user.id,
-				})
-			}
-		} catch (e) {
 			return fail(400, {
-				error: (e as any)?.message || 'Failed to save',
+				error: error.message || 'Failed to save',
 				success: false,
 			})
 		}
