@@ -9,6 +9,7 @@ import (
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/models"
+	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
 
 func checkAuthors(app *pocketbase.PocketBase, record *models.Record) error {
@@ -37,6 +38,10 @@ func checkAuthors(app *pocketbase.PocketBase, record *models.Record) error {
 
 func main() {
 	app := pocketbase.New()
+
+	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{
+		Automigrate: true,
+	})
 
 	app.OnRecordBeforeCreateRequest("submissions").Add(func(e *core.RecordCreateEvent) error {
 		if err := checkAuthors(app, e.Record); err != nil {
