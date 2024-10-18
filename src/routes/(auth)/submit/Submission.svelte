@@ -1,28 +1,31 @@
 <script lang="ts">
 	import type { SubmissionsTable, UsersTable } from '$lib/types/pocketbase'
-	import type { ActionData, SubmitFunction } from './$types'
+	import type { ActionData, PageData, SubmitFunction } from './$types'
+	import { superForm } from 'sveltekit-superforms'
 	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import FieldError from './FieldError.svelte'
 	import Removable from './Removable.svelte'
 	import { fade } from 'svelte/transition'
 	import Confetti from './Confetti.svelte'
-	import { enhance } from '$app/forms'
 	import { onDestroy } from 'svelte'
+	import { page } from '$app/stores'
 
 	const {
 		submission = {},
 		isSubmitter,
 		user,
-		form,
 	}: {
 		submission?: Partial<SubmissionsTable>
 		isSubmitter: boolean | null
 		user: UsersTable
-		form: ActionData
 	} = $props()
 
+	const { form, errors, constraints, enhance, submitting } = superForm(
+		($page.data as PageData).submissionForm,
+	)
+
 	const locked = !isSubmitter || !SUBMISSIONS_OPEN
-	let disabled = $state(locked)
+	let disabled = $derived(locked || $submitting)
 
 	let authorTwo = $state(!!submission.authorTwo)
 	let authorThree = $state(!!submission.authorThree)
@@ -46,19 +49,6 @@
 	onDestroy(() => {
 		clearInterval(confettiInterval)
 	})
-
-	const submit: SubmitFunction = () => {
-		disabled = true
-
-		return async ({ result, update }) => {
-			await update({ reset: false })
-			disabled = false
-
-			if (result.type == 'success') {
-				triggerConfetti()
-			}
-		}
-	}
 </script>
 
 {#if confettiPlaying}
@@ -70,7 +60,17 @@
 	<h2>Your SvelteHack Submission</h2>
 	<div class="br-md"></div>
 
-	<form method="POST" action="?/updateSubmission" use:enhance={submit}>
+	<form
+		method="POST"
+		action="?/updateSubmission"
+		use:enhance={{
+			onUpdated({ form }) {
+				if (form.valid) {
+					triggerConfetti()
+				}
+			},
+		}}
+	>
 		<label>
 			<span>Author Email(s)</span>
 
@@ -80,23 +80,23 @@
 				<input
 					type="email"
 					name="authorTwo"
-					value={submission.authorTwo}
 					{disabled}
-					required
+					bind:value={$form.authorTwo}
+					{...$constraints.authorTwo}
 				/>
-				<FieldError error={form?.error?.authorTwo} />
+				<FieldError error={$errors.authorTwo} />
 			</Removable>
 
 			<Removable bind:open={authorThree} {disabled}>
 				<input
 					type="email"
 					name="authorThree"
-					value={submission.authorThree}
 					{disabled}
-					required
+					bind:value={$form.authorThree}
+					{...$constraints.authorThree}
 				/>
 
-				<FieldError error={form?.error?.authorThree} />
+				<FieldError error={$errors.authorThree} />
 			</Removable>
 
 			{#if !locked}
@@ -115,27 +115,50 @@
 
 		<label>
 			<span>Project Title</span>
-			<input name="title" type="text" value={submission.title} {disabled} required />
-			<FieldError error={form?.error?.title} />
+			<input
+				name="title"
+				type="text"
+				{disabled}
+				bind:value={$form.title}
+				{...$constraints.title}
+			/>
+			<FieldError error={$errors.title} />
 		</label>
 
 		<label>
 			<span>Project Description</span>
-			<textarea name="description" value={submission.description} {disabled} required rows="4"
+			<textarea
+				name="description"
+				rows="4"
+				{disabled}
+				bind:value={$form.description}
+				{...$constraints.description}
 			></textarea>
-			<FieldError error={form?.error?.description} />
+			<FieldError error={$errors.description} />
 		</label>
 
 		<label>
 			<span>GitHub Repository</span>
-			<input name="github" type="url" value={submission.github} {disabled} required />
-			<FieldError error={form?.error?.github} />
+			<input
+				name="github"
+				type="url"
+				{disabled}
+				bind:value={$form.github}
+				{...$constraints.github}
+			/>
+			<FieldError error={$errors.github} />
 		</label>
 
 		<label>
 			<span>Demo URL</span>
-			<input name="demo" type="url" value={submission.demo} {disabled} required />
-			<FieldError error={form?.error?.demo} />
+			<input
+				name="demo"
+				type="url"
+				{disabled}
+				bind:value={$form.demo}
+				{...$constraints.demo}
+			/>
+			<FieldError error={$errors.demo} />
 		</label>
 
 		{#if !isSubmitter}
@@ -146,12 +169,17 @@
 
 		{#if !locked}
 			<label>
-				<input name="rulesAccepted" type="checkbox" {disabled} required />
+				<input
+					name="rulesAccepted"
+					type="checkbox"
+					{disabled}
+					{...$constraints.rulesAccepted}
+				/>
 				<span>
 					I have read and agree to the
 					<a href="/2024/rules">SvelteHack 2024 rules</a>
 				</span>
-				<FieldError error={form?.error?.rulesAccepted} />
+				<FieldError error={$errors.rulesAccepted} />
 			</label>
 
 			<button type="submit" class="btn-b" {disabled}>
@@ -159,9 +187,9 @@
 			</button>
 		{/if}
 
-		{#if typeof form?.error == 'string'}
+		{#if $errors._errors}
 			<div class="center">
-				<FieldError error={form.error} />
+				<FieldError error={$errors._errors} />
 			</div>
 		{/if}
 	</form>

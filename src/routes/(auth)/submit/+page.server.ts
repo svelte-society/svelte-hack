@@ -1,4 +1,6 @@
 import { submissionSchema, userPreferencesSchema } from './schema.server'
+import { message, setError, superValidate } from 'sveltekit-superforms/server'
+import { zod } from 'sveltekit-superforms/adapters'
 import { formatPBErrors } from '$lib/server/pocketbase'
 import type { ClientResponseError } from 'pocketbase'
 import { error, fail, redirect } from '@sveltejs/kit'
@@ -27,10 +29,12 @@ export async function load({ parent, locals }) {
 	}
 
 	const { submission, isSubmitter } = await getSubmission(locals)
+	const submissionForm = await superValidate(submission, zod(submissionSchema))
 
 	return {
 		submission,
 		isSubmitter,
+		submissionForm,
 	}
 }
 
@@ -41,27 +45,11 @@ export const actions = {
 			error(401, 'Unauthorised')
 		}
 
+		const form = await superValidate(request, zod(submissionSchema))
+		if (!form.valid) return fail(400, { form })
+
 		if (!SUBMISSIONS_OPEN) {
-			return fail(401, {
-				success: false,
-				error: 'Submissions are closed',
-			})
-		}
-
-		// Parse data with zod
-		const { data, error: parseError } = await submissionSchema.safeParseAsync(
-			// @ts-expect-error form data complaining
-			Object.fromEntries(await request.formData()),
-		)
-
-		// If the submission is invalid return the errors to the frontend
-		if (parseError) {
-			const errors = parseError.flatten()
-
-			return fail(400, {
-				error: errors.fieldErrors,
-				success: false,
-			})
+			return setError(form, '', 'Submissions are cloed')
 		}
 
 		try {
@@ -70,36 +58,36 @@ export const actions = {
 
 			if (submission) {
 				if (!isSubmitter) {
-					return fail(400, {
-						error: 'Only the member of your team that made the submission can make edits',
-						success: false,
-					})
+					return setError(
+						form,
+						'',
+						'Only the member of your team that made the submission can make edits',
+					)
 				}
 
 				// If there is an existing submission then update it
 				await locals.pb.collection('submissions').update(submission.id, {
-					...data,
+					...form.data,
 				})
 			} else {
 				// If no record exists then create one
 				await locals.pb.collection('submissions').create({
 					submitter: locals.user.id,
 					authorOne: locals.user.email,
-					...data,
+					...form.data,
 				})
 			}
 		} catch (e) {
 			const error = e as ClientResponseError
 
+			// todo
 			return fail(400, {
 				error: formatPBErrors(submissionSchema, error.response.data),
 				success: false,
 			})
 		}
 
-		return {
-			success: true,
-		}
+		return message(form, 'Saved!')
 	},
 	async updatePreferences({ request, locals }) {
 		if (!locals.user) {
