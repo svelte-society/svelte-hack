@@ -10,6 +10,8 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/models"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
+
+	_ "svelte-hack-pb/migrations"
 )
 
 func checkAuthors(app *pocketbase.PocketBase, record *models.Record) error {
