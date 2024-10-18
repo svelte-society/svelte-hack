@@ -1,4 +1,4 @@
-import { submissionSchema } from '$lib/server/submissions'
+import { submissionSchema, userPreferencesSchema } from './schema.server'
 import { formatPBErrors } from '$lib/server/pocketbase'
 import type { ClientResponseError } from 'pocketbase'
 import { error, fail, redirect } from '@sveltejs/kit'
@@ -100,5 +100,30 @@ export const actions = {
 		return {
 			success: true,
 		}
+	},
+	async updatePreferences({ request, locals }) {
+		if (!locals.user) {
+			error(401, 'Unauthorised')
+		}
+
+		const { data, error: parseError } = await userPreferencesSchema.safeParseAsync(
+			// @ts-expect-error form data complaining
+			Object.fromEntries(await request.formData()),
+		)
+
+		if (parseError) {
+			const errors = parseError.flatten()
+
+			return fail(400, {
+				error: errors.fieldErrors,
+				success: false,
+			})
+		}
+
+		await locals.pb.collection('users').update(locals.user.id, {
+			...data,
+		})
+
+		return { success: true }
 	},
 }

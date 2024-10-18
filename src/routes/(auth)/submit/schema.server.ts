@@ -35,3 +35,9 @@ export const submissionSchema = z.object({
 })
 
 export type Submission = z.infer<typeof submissionSchema>
+
+export const userPreferencesSchema = z.object({
+	preferedEmail: z.string().trim().email().optional(),
+	name: z.string().trim().max(64, 'Max length is 64 chars').optional(),
+	pronouns: z.string().trim().max(32, 'Max length is 64 chars').optional(),
+})

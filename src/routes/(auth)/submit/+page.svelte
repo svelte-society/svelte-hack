@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { SUBMISSIONS_OPEN } from '$lib/vars'
+	import Preferences from './Preferences.svelte'
 	import Submission from './Submission.svelte'
 	import { slide } from 'svelte/transition'
 
@@ -83,6 +84,9 @@
 		<button class="btn-b" onclick={() => (showSubmissionForm = true)}> Let's do this! </button>
 	</div>
 {/if}
+
+<div class="br-md"></div>
+<Preferences user={data.user!} {form} />
 
 <div class="br-xl"></div>
 

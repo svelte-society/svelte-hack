@@ -17,9 +17,9 @@ export interface UsersTable extends BaseModel {
 	email: string
 	username: string
 	verified: boolean
-	listmonkId: number
-	newsletter: boolean
-	customerId: string
+	preferedEmail?: string
+	name?: string
+	pronouns?: string
 }
 
 export interface SubmissionsTable extends BaseModel {
