@@ -26,7 +26,7 @@
 			<span>Name or Username</span>
 			<span class="muted">
 				This can be any name you preffered to be called by, such as a username. This will
-				used when sharing your subnmission online.
+				used when sharing your submission online.
 			</span>
 			<Text {form} type="text" field="name" {disabled} />
 		</label>
