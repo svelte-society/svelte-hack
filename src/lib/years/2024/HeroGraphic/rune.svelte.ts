@@ -326,13 +326,28 @@ export async function init(canvas: HTMLCanvasElement) {
 	addEventListener('scroll', updateScroll, false)
 	subs.add(() => removeEventListener('scroll', updateScroll, false))
 
-	function updatePointer(e: PointerEvent) {
-		mouseY = e.clientY
-		mouseX = e.clientX
+	function updatePointer(e: PointerEvent | TouchEvent) {
+		if ('touches' in e) {
+			if (e.touches.length > 0) {
+				mouseY = e.touches[0].clientY
+				mouseX = e.touches[0].clientX
+			}
+		} else {
+			mouseY = e.clientY
+			mouseX = e.clientX
+		}
 		update()
 	}
+
 	addEventListener('pointermove', updatePointer, false)
-	subs.add(() => removeEventListener('pointermove', updatePointer, false))
+	addEventListener('touchmove', updatePointer, false)
+	addEventListener('touchstart', updatePointer, false)
+
+	subs.add(() => {
+		removeEventListener('pointermove', updatePointer, false)
+		removeEventListener('touchmove', updatePointer, false)
+		removeEventListener('touchstart', updatePointer, false)
+	})
 
 	// Create a target rotation based on mouse position
 	const targetRotation = new Vector3()
@@ -340,9 +355,6 @@ export async function init(canvas: HTMLCanvasElement) {
 
 	// todo - add tween params to set calls below
 	function update() {
-		if (device.mobile) {
-			// todo -- maybe do more with scroll since we don't have a mouse?
-		} else {
 			const rect = canvas.getBoundingClientRect()
 
 			// Calculate the mouse position relative to the center of the canvas
@@ -395,7 +407,6 @@ export async function init(canvas: HTMLCanvasElement) {
 					// 	1.0,
 				},
 			)
-		}
 	}
 
 	subs.add(
@@ -433,9 +444,9 @@ export async function init(canvas: HTMLCanvasElement) {
 		runeGroup.scale.setScalar(v)
 		cloneGroup.scale.setScalar(v)
 
-		bloomPass.radius = mapRange(v, 0, 1, 2, params.bloom[themer.mode].radius)
-		bloomPass.strength = mapRange(v, 0, 1, 10, params.bloom[themer.mode].strength)
-		bloomPass.threshold = mapRange(v, 0, 1, 0.1, params.bloom[themer.mode].threshold)
+		// bloomPass.radius = mapRange(v, 0, 1, 0, params.bloom[themer.mode].radius)
+		// bloomPass.strength = mapRange(v, 0, 1, 10, params.bloom[themer.mode].strength)
+		// bloomPass.threshold = mapRange(v, 0, 1, 0.1, params.bloom[themer.mode].threshold)
 	})
 	setTimeout(() => requestAnimationFrame(() => animateIn.set(0.9)), 600)
 

@@ -31,7 +31,7 @@
 		margin: 0 auto;
 
 		background-color: transparent;
-
+		user-select: none;
 		z-index: 1;
 	}
 
