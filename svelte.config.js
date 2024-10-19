@@ -1,6 +1,6 @@
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import adapter from '@sveltejs/adapter-vercel'
 import mdsvexConfig from './mdsvex.config.js'
-import auto from '@sveltejs/adapter-auto'
 import postcss from './postcss.config.js'
 import process from 'node:process'
 import { mdsvex } from 'mdsvex'
@@ -15,7 +15,7 @@ const config = {
 		mdsvex(mdsvexConfig),
 	],
 	kit: {
-		adapter: auto(),
+		adapter: adapter(),
 		csrf: { checkOrigin: process.env['NODE_ENV'] != 'development' },
 	},
 	vitePlugin: {
