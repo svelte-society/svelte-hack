@@ -30,7 +30,7 @@ export const submissionSchema = z.object({
 	category: z.union([
 		z.literal('wizzbangery-wizard'),
 		z.literal('rune-revolutionary'),
-		z.literal('migration-master'),
+		z.literal('migration-magician'),
 	]),
 	rulesAccepted: z.boolean(),
 })

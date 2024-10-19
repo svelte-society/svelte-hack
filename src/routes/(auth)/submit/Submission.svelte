@@ -87,7 +87,7 @@
 				{form}
 				field="category"
 				{disabled}
-				options={['wizzbangery-wizard', 'rune-revolutionary', 'migration-master']}
+				options={['wizzbangery-wizard', 'rune-revolutionary', 'migration-magician']}
 			/>
 			<FieldError error={$errors.category} />
 		</label>

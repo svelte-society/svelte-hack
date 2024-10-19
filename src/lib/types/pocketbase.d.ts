@@ -31,5 +31,5 @@ export interface SubmissionsTable extends BaseModel {
 	description: string
 	github: string
 	demo: string
-	category: 'wizzbangery-wizard' | 'rune-revolutionary' | 'migration-master'
+	category: 'wizzbangery-wizard' | 'rune-revolutionary' | 'migration-magician'
 }
