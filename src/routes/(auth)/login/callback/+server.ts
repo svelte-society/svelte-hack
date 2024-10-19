@@ -5,6 +5,10 @@ import { syncAuthState } from '$lib/server/pocketbase'
 import { error, redirect } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ cookies, locals, url }) => {
+	if (locals.user) {
+		redirect(307, '/submit')
+	}
+
 	//? Try and get auth errors from the provider (if any)
 	const authError =
 		url.searchParams.get('error_description') || url.searchParams.get('error_message')
