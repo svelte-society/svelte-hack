@@ -120,4 +120,23 @@ export const actions = {
 
 		return message(form, 'Saved!')
 	},
+	async withdraw({ locals }) {
+		if (!locals.user) {
+			error(401, 'Unauthorised')
+		}
+
+		if (!SUBMISSIONS_OPEN) {
+			return fail(400, {
+				message: 'Submissions are closed, please email us to withdraw',
+			})
+		}
+
+		const { submission, isSubmitter } = await getSubmission(locals)
+
+		if (submission && isSubmitter) {
+			await locals.pb.collection('submissions').delete(submission.id)
+		}
+
+		return {}
+	},
 }

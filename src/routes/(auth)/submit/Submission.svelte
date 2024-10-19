@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ConfirmDialog from '$lib/components/ConfirmDialog.svelte'
 	import type { SubmissionsTable } from '$lib/types/pocketbase'
 	import FieldError from '$lib/forms/FieldError.svelte'
 	import TextArea from '$lib/forms/TextArea.svelte'
@@ -14,8 +15,9 @@
 	import { page } from '$app/stores'
 
 	interface Props {
+		// todo remove in favour of $form
 		submission?: Partial<SubmissionsTable>
-		isSubmitter: boolean | null
+		isSubmitter: boolean
 	}
 
 	const { submission = {}, isSubmitter }: Props = $props()
@@ -134,9 +136,24 @@
 			</label>
 		{/if}
 	</Form>
+
+	{#if submission?.id && isSubmitter}
+		<ConfirmDialog action="?/withdraw" message="Are you sure you'd like to withdraw?">
+			<button class="withdraw"> Withdraw Submission </button>
+		</ConfirmDialog>
+	{/if}
 </section>
 
-<style>
+<style lang="scss">
+	.withdraw {
+		transition: color 0.2s ease-in-out;
+
+		&:focus-visible,
+		&:hover {
+			color: var(--theme-a);
+		}
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
