@@ -83,11 +83,12 @@
 
 		<label>
 			<span>Category</span>
-			<Select {form} field="category" {disabled}>
-				<option value="wizzbangery-wizard">Wizzbangery Wizard</option>
-				<option value="rune-revolutionary">Rune Revolutionary</option>
-				<option value="migration-master">Migration Master</option>
-			</Select>
+			<Select
+				{form}
+				field="category"
+				{disabled}
+				options={['wizzbangery-wizard', 'rune-revolutionary', 'migration-magician']}
+			/>
 			<FieldError error={$errors.category} />
 		</label>
 

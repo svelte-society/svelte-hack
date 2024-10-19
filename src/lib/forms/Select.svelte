@@ -1,6 +1,5 @@
 <script lang="ts" generics="T extends Record<string, unknown>">
 	import type { FormPathLeaves } from 'sveltekit-superforms'
-	import type { Snippet } from 'svelte'
 
 	import { formFieldProxy, type SuperForm } from 'sveltekit-superforms/client'
 	import FieldError from './FieldError.svelte'
@@ -9,15 +8,25 @@
 		form: SuperForm<T>
 		field: FormPathLeaves<T>
 		disabled: boolean
-		children: Snippet
+		options: string[]
 	}
 
-	const { form, field, disabled, children }: Props = $props()
+	const { form, field, disabled, options }: Props = $props()
 	const { value, errors, constraints } = formFieldProxy(form, field)
 </script>
 
 <select name="category" bind:value={$value} {disabled} {...$constraints}>
-	{@render children()}
+	{#each options as option}
+		<option value={option} selected={option == $value}>
+			{option.replaceAll('-', ' ')}
+		</option>
+	{/each}
 </select>
 
 <FieldError error={$errors} />
+
+<style>
+	option {
+		text-transform: capitalize;
+	}
+</style>
