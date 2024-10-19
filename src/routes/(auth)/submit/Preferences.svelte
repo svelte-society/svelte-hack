@@ -13,21 +13,18 @@
 
 <section transition:fade>
 	<div class="br-sm"></div>
-	<h2>Your Preferences</h2>
+	<h3>Preferences</h3>
 	<div class="br-md"></div>
 
 	<Form {form} action="?/updatePreferences" bind:showSuccessAnimation bind:disabled>
 		<label>
-			<span>Prefered Contact Email</span>
+			<span>Contact Email</span>
 			<Text {form} type="email" field="preferedEmail" {disabled} />
 		</label>
 
 		<label>
-			<span>Name or Username</span>
-			<span class="muted">
-				This can be any name you preffered to be called by, such as a username. This will
-				used when sharing your submission online.
-			</span>
+			<span>Display Name</span>
+			<span class="muted"> This will be seen when sharing your submission online. </span>
 			<Text {form} type="text" field="name" {disabled} />
 		</label>
 
