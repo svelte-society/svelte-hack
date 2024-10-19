@@ -10,7 +10,7 @@
 			<h1>Rules</h1>
 
 			<ul>
-				<li>Your project must use Svelte as its primary dependency!</li>
+				<li>Your project must use Svelte 5 as its primary dependency!</li>
 
 				<li>Team sizes must be between 1 and 3 members.</li>
 
@@ -60,12 +60,13 @@
 				</li>
 
 				<li>
-					You can optionally choose to donate your winnings to a project or charity of
-					your choice, which we must approve.
+					Prize money can only be distributed to winners who reside in a country that is
+					supported by OpenCollective. You can optionally choose to donate your winnings
+					to a project or charity of your choice, which we must approve.
 				</li>
 
 				<li>
-					Any taxes or other fees are the responsibility of the winner, and will not be
+					Any taxes or other fees are the responsibility of the recipient, and will not be
 					paid by us.
 				</li>
 			</ul>
@@ -123,8 +124,12 @@
 	<div class="br-md"></div>
 
 	<p>
-		If you have any questions, issues, or wish to revoke a submission after the hackathon
-		closes, please send an email to <code>kev@sveltesociety.dev</code>.
+		You and your submission must adhere to the
+		<a href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md">
+			Svelte Community Code of Conduct
+		</a>
+		at all times. If you have any questions, issues, or wish to revoke a submission after the
+		hackathon closes, please send an email to <code>kev@sveltesociety.dev</code>.
 	</p>
 
 	<p>
