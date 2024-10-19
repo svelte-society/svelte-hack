@@ -48,6 +48,13 @@
 					<a href="https://opensource.org/licenses">OSI approved Open Source license</a> displayed
 					in a `LICENSE` file at the root of your repository.
 				</li>
+
+				<li>
+					You and your submission must adhere to the
+					<a href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md">
+						Svelte Community Code of Conduct
+					</a>
+				</li>
 			</ul>
 
 			<h1>Winners & Prizes</h1>
@@ -124,12 +131,8 @@
 	<div class="br-md"></div>
 
 	<p>
-		You and your submission must adhere to the
-		<a href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md">
-			Svelte Community Code of Conduct
-		</a>
-		at all times. If you have any questions, issues, or wish to revoke a submission after the
-		hackathon closes, please send an email to <code>kev@sveltesociety.dev</code>.
+		If you have any questions, issues, or wish to revoke a submission after the hackathon
+		closes, please send an email to <code>kev@sveltesociety.dev</code>.
 	</p>
 
 	<p>
