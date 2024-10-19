@@ -30,11 +30,6 @@
 			</span>
 			<Text {form} type="text" field="name" {disabled} />
 		</label>
-
-		<label>
-			<span>Pronouns</span>
-			<Text {form} type="text" field="pronouns" {disabled} />
-		</label>
 	</Form>
 </section>
 
