@@ -7,6 +7,7 @@
 	import M from '$lib/years/2024/runes/M.svelte'
 	import { data } from '$lib/years/2024/data'
 	import Category from './Category.svelte'
+	import { page } from '$app/stores'
 
 	interface Data {
 		category: string
@@ -46,8 +47,10 @@
 
 	{#if new Date() < new Date(data.date.end)}
 		<p class="subtitle">Svelte Hack isn't over yet!</p>
-		<div class="br-sm"></div>
-		<p><a class="btn-b" href="/login">Enter</a></p>
+		{#if !$page.data.hasSubmitted}
+			<div class="br-sm"></div>
+			<p><a class="btn-b" href="/login">Enter</a></p>
+		{/if}
 	{:else}
 		<div class="winners">
 			{#each categories as { category, winners, rune }}
