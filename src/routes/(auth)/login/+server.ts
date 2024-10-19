@@ -1,6 +1,10 @@
 import { error, redirect } from '@sveltejs/kit'
 
 export async function GET({ url, locals, cookies }) {
+	if (locals.user) {
+		redirect(307, '/submit')
+	}
+
 	//? List all auth methods, we can't do this statically as it generates state data
 	const methods = await locals.pb.collection('users').listAuthMethods()
 
