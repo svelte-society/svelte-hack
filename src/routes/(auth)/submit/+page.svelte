@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import Preferences from './Preferences.svelte'
 	import Submission from './Submission.svelte'
+	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import { slide } from 'svelte/transition'
 	import '../../../styles/inputs.scss'
 
@@ -34,6 +34,9 @@
 
 {#if showSubmissionForm}
 	<Submission submission={data.submission || {}} isSubmitter={data.isSubmitter} />
+
+	<div class="br-lg"></div>
+	<Preferences />
 {:else if SUBMISSIONS_OPEN}
 	<div transition:slide>
 		<div class="br-md"></div>
@@ -80,9 +83,6 @@
 		<button class="btn-b" onclick={() => (showSubmissionForm = true)}> Let's do this! </button>
 	</div>
 {/if}
-
-<div class="br-md"></div>
-<Preferences />
 
 <div class="br-xl"></div>
 
