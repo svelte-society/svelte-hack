@@ -116,6 +116,7 @@ class Themer {
 		this.css.replaceSync(str)
 
 		document.documentElement.style.setProperty('color-scheme', this.mode)
+		document.documentElement.setAttribute('theme', this.mode)
 
 		if (this.#storage) {
 			globalThis.localStorage?.setItem(this.#storageKey, this.preference)

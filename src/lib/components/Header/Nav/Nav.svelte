@@ -2,7 +2,7 @@
 	import { device } from '$lib/utils/device.svelte'
 	import Mobile from './Mobile/Mobile.svelte'
 	import Desktop from './Desktop.svelte'
-	import { onMount, setContext } from 'svelte'
+	import { setContext } from 'svelte'
 
 	let showMenu = false
 
@@ -12,17 +12,10 @@
 		['/2024/rules', 'Rules'],
 		['/2024/winners', 'Winners'],
 	])
-
-	let mounted = false
-	onMount(() => {
-		mounted = true
-	})
 </script>
 
-{#if mounted}
-	{#if device.mobile}
-		<Mobile bind:showMenu />
-	{:else}
-		<Desktop />
-	{/if}
+{#if device.mobile}
+	<Mobile bind:showMenu />
+{:else}
+	<Desktop />
 {/if}

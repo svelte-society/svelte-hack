@@ -8,6 +8,7 @@
 		<span class="sveltehack">
 			<span class="svelte">Svelte</span><span class="hack">Hack</span>
 		</span>
+		<br />
 		<span class="year">2024</span>
 		<div class="runes-edition"><RunesEdition /></div>
 	</h1>

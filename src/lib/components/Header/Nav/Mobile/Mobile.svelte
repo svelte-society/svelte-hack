@@ -78,22 +78,12 @@
 </div>
 
 <style lang="scss">
-	nav {
-		// display: flex;
-		// justify-content: center;
-
-		// padding: 2rem;
-	}
-
 	ul {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		position: absolute;
 		position: fixed;
-		// inset: 0;
-		// top: 5rem;
 		top: 5rem;
 		left: 0;
 		right: 0;
