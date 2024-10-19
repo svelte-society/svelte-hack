@@ -1,16 +1,8 @@
 <div class="date">
 	<div class="tag start">
-		<span>&lt;</span>
-		october 17
-		<span>&gt;</span>
-	</div>
-
-	<div class="middle">SvelteHack</div>
-
-	<div class="tag end">
-		<span>&lt;&#47;</span>
-		december 17
-		<span>&gt;</span>
+		<span>[</span> Oct 19
+		<div class="span">...</div>
+		Jan 10<span>&nbsp;]</span>
 	</div>
 </div>
 
@@ -20,7 +12,7 @@
 		flex-direction: column;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: 2rem;
+		gap: 1rem;
 
 		max-width: 90vw;
 		margin: 0 auto;
@@ -28,15 +20,21 @@
 
 		color: var(--fg-b);
 
-		font-size: clamp(1.25rem, 2rem, 4vw);
+		font-size: var(--font-xl);
 		font-family: var(--font-mono);
+		font-variation-settings:
+			'wght' 400,
+			'wdth' 100;
 
-		letter-spacing: 0.2rem;
 		word-wrap: break-word;
 		white-space: pre-wrap;
 
 		text-align: center;
 		line-height: 2rem;
+	}
+
+	.tag span {
+		font-variation-settings: 'wght' 900;
 	}
 
 	.date div {
@@ -47,6 +45,11 @@
 	:global(.tag span) {
 		color: var(--bg-d);
 		margin: 0 0.25rem;
+
+		&:first-of-type,
+		&:last-of-type {
+			color: var(--theme-a);
+		}
 	}
 
 	.start {
@@ -61,7 +64,11 @@
 		color: var(--theme-a);
 		opacity: 0;
 
-		font-size: var(--font-lg);
+		font-family: var(--font-b);
+		font-size: var(--font-md);
+		font-variation-settings:
+			'wght' 550,
+			'wdth' 110;
 
 		transform: translateX(1rem);
 		animation: fly-over 1s cubic-bezier(0.22, 1, 0.36, 1) 350ms forwards;

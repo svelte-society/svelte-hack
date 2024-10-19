@@ -1,8 +1,10 @@
 <script>
 	import Scene from '$lib/years/2024/HeroGraphic/Scene.svelte'
+	// import Countdown from '$lib/components/Countdown.svelte'
 	import Sponsors from '$lib/years/2024/Sponsors.svelte'
 	import About from '$lib/years/2024/About.svelte'
 	import Hero from '$lib/years/2024/Hero.svelte'
+	import Date from '$lib/years/2024/Date.svelte'
 </script>
 
 <div class="br-md"></div>
@@ -15,8 +17,9 @@
 <div class="br-xxl"></div>
 
 <!-- <Countdown /> -->
+<Date />
 
-<!-- <Date /> -->
+<div class="br-sm"></div>
 
 <span id="about"></span>
 <About />
