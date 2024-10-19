@@ -27,6 +27,11 @@ export const submissionSchema = z.object({
 		.trim()
 		.min(1, "Can't be empty")
 		.max(256, 'Max length is 256 chars'),
+	category: z.union([
+		z.literal('wizzbangery-wizard'),
+		z.literal('rune-revolutionary'),
+		z.literal('migration-master'),
+	]),
 	rulesAccepted: z.boolean(),
 })
 

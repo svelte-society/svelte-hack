@@ -3,6 +3,7 @@
 	import FieldError from '$lib/forms/FieldError.svelte'
 	import TextArea from '$lib/forms/TextArea.svelte'
 	import { superForm } from 'sveltekit-superforms'
+	import Select from '$lib/forms/Select.svelte'
 	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import Text from '$lib/forms/Text.svelte'
 	import Removable from './Removable.svelte'
@@ -78,6 +79,16 @@
 					+
 				</button>
 			{/if}
+		</label>
+
+		<label>
+			<span>Category</span>
+			<Select {form} field="category" {disabled}>
+				<option value="wizzbangery-wizard">Wizzbangery Wizard</option>
+				<option value="rune-revolutionary">Rune Revolutionary</option>
+				<option value="migration-master">Migration Master</option>
+			</Select>
+			<FieldError error={$errors.category} />
 		</label>
 
 		<label>
