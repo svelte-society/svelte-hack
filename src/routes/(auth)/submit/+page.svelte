@@ -3,6 +3,7 @@
 	import Preferences from './Preferences.svelte'
 	import Submission from './Submission.svelte'
 	import { slide } from 'svelte/transition'
+	import '../../../styles/inputs.scss'
 
 	const { data, form } = $props()
 

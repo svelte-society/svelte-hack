@@ -1,6 +1,5 @@
 <script>
 	import Categories from '$lib/years/2024/Prizes/Categories.svelte'
-	// import ProllyDont from '$lib/years/2024/Prizes/ProllyDont.svelte'
 	import Awards from '$lib/years/2024/Prizes/Awards.svelte'
 	import BlobA from '$lib/graphics/BlobA.svelte'
 </script>
@@ -14,11 +13,6 @@
 			<div class="text">prizes</div>
 		</div>
 
-		<!-- <div class="br-md"></div> -->
-
-		<!-- <p><strong>3</strong> categories &nbsp;·&nbsp; <strong>5</strong> winners each</p> -->
-
-		<!-- <ProllyDont /> -->
 		<p>The top <strong>5</strong> submissions in each category will be awarded a cash prize</p>
 
 		<div class="br-md"></div>
@@ -29,8 +23,6 @@
 	<div class="br-lg"></div>
 
 	<div class="prizes">
-		<!-- <h1>Prizes</h1> -->
-
 		<div class="header prizes">
 			<div class="header categories">
 				<div class="number">3</div>
@@ -38,8 +30,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- <div class="br-md"></div> -->
 
 	<Categories />
 
