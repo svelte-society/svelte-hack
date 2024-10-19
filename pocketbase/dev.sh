@@ -1,4 +1,4 @@
-if [[ ${PWD##*/} != "pocketbae" ]]; then
+if [[ ${PWD##*/} != "pocketbase" ]]; then
     cd pocketbase || exit 1
 fi
 
