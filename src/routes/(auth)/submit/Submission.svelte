@@ -1,31 +1,30 @@
 <script lang="ts">
-	import type { SubmissionsTable, UsersTable } from '$lib/types/pocketbase'
-	import type { ActionData, PageData, SubmitFunction } from './$types'
+	import type { SubmissionsTable } from '$lib/types/pocketbase'
+	import FieldError from '$lib/forms/FieldError.svelte'
+	import TextArea from '$lib/forms/TextArea.svelte'
 	import { superForm } from 'sveltekit-superforms'
 	import { SUBMISSIONS_OPEN } from '$lib/vars'
-	import FieldError from './FieldError.svelte'
+	import Text from '$lib/forms/Text.svelte'
 	import Removable from './Removable.svelte'
+	import Form from '$lib/forms/Form.svelte'
 	import { fade } from 'svelte/transition'
 	import Confetti from './Confetti.svelte'
-	import { onDestroy } from 'svelte'
+	import type { PageData } from './$types'
 	import { page } from '$app/stores'
 
-	const {
-		submission = {},
-		isSubmitter,
-		user,
-	}: {
+	interface Props {
 		submission?: Partial<SubmissionsTable>
 		isSubmitter: boolean | null
-		user: UsersTable
-	} = $props()
+	}
 
-	const { form, errors, constraints, enhance, submitting } = superForm(
-		($page.data as PageData).submissionForm,
-	)
+	const { submission = {}, isSubmitter }: Props = $props()
+	const LOCKED = !isSubmitter || !SUBMISSIONS_OPEN
 
-	const locked = !isSubmitter || !SUBMISSIONS_OPEN
-	let disabled = $derived(locked || $submitting)
+	const form = superForm(($page.data as PageData).submissionForm, { resetForm: false })
+	const { constraints, errors } = form
+
+	let showSuccessAnimation = $state(false)
+	let disabled = $state(LOCKED)
 
 	let authorTwo = $state(!!submission.authorTwo)
 	let authorThree = $state(!!submission.authorThree)
@@ -37,21 +36,9 @@
 			authorThree = true
 		}
 	}
-
-	let confettiInterval: ReturnType<typeof setInterval>
-	let confettiPlaying = $state(false)
-
-	function triggerConfetti() {
-		confettiPlaying = true
-		confettiInterval = setInterval(() => (confettiPlaying = false), 5000)
-	}
-
-	onDestroy(() => {
-		clearInterval(confettiInterval)
-	})
 </script>
 
-{#if confettiPlaying}
+{#if showSuccessAnimation}
 	<Confetti />
 {/if}
 
@@ -60,53 +47,33 @@
 	<h2>Your SvelteHack Submission</h2>
 	<div class="br-md"></div>
 
-	<form
-		method="POST"
+	<Form
+		{form}
 		action="?/updateSubmission"
-		use:enhance={{
-			onUpdated({ form }) {
-				if (form.valid) {
-					triggerConfetti()
-				}
-			},
-		}}
+		locked={LOCKED}
+		bind:showSuccessAnimation
+		bind:disabled
 	>
 		<label>
 			<span>Author Email(s)</span>
 
-			<input type="email" value={submission.authorOne || user.email} disabled />
+			<input type="email" value={submission.authorOne || $page.data.user!.email} disabled />
 
 			<Removable bind:open={authorTwo} {disabled}>
-				<input
-					type="email"
-					name="authorTwo"
-					{disabled}
-					bind:value={$form.authorTwo}
-					{...$constraints.authorTwo}
-				/>
-				<FieldError error={$errors.authorTwo} />
+				<Text type="email" field="authorTwo" {form} {disabled} />
 			</Removable>
 
 			<Removable bind:open={authorThree} {disabled}>
-				<input
-					type="email"
-					name="authorThree"
-					{disabled}
-					bind:value={$form.authorThree}
-					{...$constraints.authorThree}
-				/>
-
-				<FieldError error={$errors.authorThree} />
+				<Text type="email" field="authorThree" {form} {disabled} />
 			</Removable>
 
-			{#if !locked}
+			{#if !LOCKED}
 				<button
 					title="add author"
-					class:disabled={authorTwo && authorThree}
 					type="button"
 					class="add-author-btn"
 					onclick={addAuthor}
-					{disabled}
+					disabled={disabled || (authorTwo && authorThree)}
 				>
 					+
 				</button>
@@ -115,50 +82,22 @@
 
 		<label>
 			<span>Project Title</span>
-			<input
-				name="title"
-				type="text"
-				{disabled}
-				bind:value={$form.title}
-				{...$constraints.title}
-			/>
-			<FieldError error={$errors.title} />
+			<Text type="text" field="title" {form} {disabled} />
 		</label>
 
 		<label>
 			<span>Project Description</span>
-			<textarea
-				name="description"
-				rows="4"
-				{disabled}
-				bind:value={$form.description}
-				{...$constraints.description}
-			></textarea>
-			<FieldError error={$errors.description} />
+			<TextArea field="description" {form} {disabled} />
 		</label>
 
 		<label>
 			<span>GitHub Repository</span>
-			<input
-				name="github"
-				type="url"
-				{disabled}
-				bind:value={$form.github}
-				{...$constraints.github}
-			/>
-			<FieldError error={$errors.github} />
+			<Text type="url" field="github" {form} {disabled} />
 		</label>
 
 		<label>
 			<span>Demo URL</span>
-			<input
-				name="demo"
-				type="url"
-				{disabled}
-				bind:value={$form.demo}
-				{...$constraints.demo}
-			/>
-			<FieldError error={$errors.demo} />
+			<Text type="url" field="demo" {form} {disabled} />
 		</label>
 
 		{#if !isSubmitter}
@@ -167,7 +106,7 @@
 			</p>
 		{/if}
 
-		{#if !locked}
+		{#if !LOCKED}
 			<label>
 				<input
 					name="rulesAccepted"
@@ -181,18 +120,8 @@
 				</span>
 				<FieldError error={$errors.rulesAccepted} />
 			</label>
-
-			<button type="submit" class="btn-b" {disabled}>
-				{confettiPlaying ? 'Saved!' : 'Save'}
-			</button>
 		{/if}
-
-		{#if $errors._errors}
-			<div class="center">
-				<FieldError error={$errors._errors} />
-			</div>
-		{/if}
-	</form>
+	</Form>
 </section>
 
 <style>
@@ -201,6 +130,7 @@
 		flex-direction: column;
 		align-items: center;
 		flex-grow: 1;
+		max-width: 500px;
 	}
 
 	h2 {
@@ -215,83 +145,6 @@
 		text-align: center;
 
 		transition: opacity 0.2s ease-in-out;
-	}
-
-	button:disabled,
-	input:disabled,
-	textarea:disabled {
-		opacity: 0.8;
-		cursor: not-allowed;
-	}
-
-	form {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-
-		width: fit-content;
-		padding: 1rem;
-
-		/* background: var(--bg-b); */
-		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 50%);
-		box-shadow: var(--shadow);
-		border-radius: var(--radius);
-
-		font-family: var(--font-a);
-	}
-
-	label {
-		display: flex;
-		flex-direction: column;
-		position: relative;
-
-		width: 100%;
-		padding: 0 0.5rem 0.5rem;
-
-		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 75%);
-		outline: 1px solid var(--bg-a);
-		border-radius: var(--radius);
-
-		font-weight: 300;
-	}
-
-	label:has(input[type='checkbox']) {
-		display: block;
-		padding-top: 0.5rem;
-		* {
-			outline-color: var(--fg-e);
-		}
-	}
-
-	label:first-of-type {
-		margin: 0;
-	}
-
-	label span {
-		margin: 0.5rem 0;
-	}
-
-	input:not([type='checkbox']),
-	textarea {
-		min-width: min(25rem, 90vw);
-		max-width: 90vw;
-		width: 100%;
-		max-height: 10rem;
-
-		border: none;
-		background: var(--bg-a);
-		padding: 0.5rem;
-		border-radius: var(--radius);
-		/* outline-color: color-mix(in hsl, var(--theme-a), transparent 50%); */
-		outline-color: var(--fg-e);
-
-		font-family: var(--font-mono);
-
-		transition: 0.2s;
-	}
-
-	textarea {
-		resize: vertical;
 	}
 
 	.add-author-btn {
@@ -319,14 +172,6 @@
 		&:focus-visible {
 			outline-color: var(--bg-d);
 		}
-	}
-
-	.disabled {
-		max-height: 0;
-
-		opacity: 0;
-
-		pointer-events: none;
 	}
 
 	.not-submitter {

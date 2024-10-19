@@ -32,12 +32,7 @@
 {/if}
 
 {#if showSubmissionForm}
-	<Submission
-		submission={data.submission || {}}
-		isSubmitter={data.isSubmitter}
-		user={data.user!}
-		{form}
-	/>
+	<Submission submission={data.submission || {}} isSubmitter={data.isSubmitter} />
 {:else if SUBMISSIONS_OPEN}
 	<div transition:slide>
 		<div class="br-md"></div>
@@ -86,7 +81,7 @@
 {/if}
 
 <div class="br-md"></div>
-<Preferences user={data.user!} {form} />
+<Preferences />
 
 <div class="br-xl"></div>
 

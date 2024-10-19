@@ -27,11 +27,7 @@ export const submissionSchema = z.object({
 		.trim()
 		.min(1, "Can't be empty")
 		.max(256, 'Max length is 256 chars'),
-	rulesAccepted: z.literal('on', {
-		errorMap: () => ({
-			message: "Please indicate you've read and agreed to the SvelteHack 2024 rules",
-		}),
-	}),
+	rulesAccepted: z.boolean(),
 })
 
 export type Submission = z.infer<typeof submissionSchema>

@@ -1,10 +1,10 @@
-import { submissionSchema, userPreferencesSchema } from './schema.server'
 import { message, setError, superValidate } from 'sveltekit-superforms/server'
-import { zod } from 'sveltekit-superforms/adapters'
+import { submissionSchema, userPreferencesSchema } from './schema.server'
 import { formatPBErrors } from '$lib/server/pocketbase'
 import type { ClientResponseError } from 'pocketbase'
 import { error, fail, redirect } from '@sveltejs/kit'
-import { SUBMISSIONS_OPEN } from '$lib/vars.js'
+import { zod } from 'sveltekit-superforms/adapters'
+import { SUBMISSIONS_OPEN } from '$lib/vars'
 
 async function getSubmission(locals: App.Locals) {
 	const submission = await locals.pb
@@ -29,12 +29,21 @@ export async function load({ parent, locals }) {
 	}
 
 	const { submission, isSubmitter } = await getSubmission(locals)
+
+	const preferences = {
+		preferedEmail: locals.user?.preferedEmail || locals.user?.email,
+		name: locals.user?.name,
+		pronouns: locals.user?.pronouns,
+	}
+
+	const preferencesForm = await superValidate(preferences, zod(userPreferencesSchema))
 	const submissionForm = await superValidate(submission, zod(submissionSchema))
 
 	return {
 		submission,
 		isSubmitter,
 		submissionForm,
+		preferencesForm,
 	}
 }
 
@@ -50,6 +59,14 @@ export const actions = {
 
 		if (!SUBMISSIONS_OPEN) {
 			return setError(form, '', 'Submissions are cloed')
+		}
+
+		if (form.data.rulesAccepted !== true) {
+			return setError(
+				form,
+				'',
+				"Please indicate you've read and agreed to the SvelteHack 2024 rules",
+			)
 		}
 
 		try {
@@ -90,28 +107,18 @@ export const actions = {
 		return message(form, 'Saved!')
 	},
 	async updatePreferences({ request, locals }) {
+		console.log('asd')
 		if (!locals.user) {
 			error(401, 'Unauthorised')
 		}
 
-		const { data, error: parseError } = await userPreferencesSchema.safeParseAsync(
-			// @ts-expect-error form data complaining
-			Object.fromEntries(await request.formData()),
-		)
-
-		if (parseError) {
-			const errors = parseError.flatten()
-
-			return fail(400, {
-				error: errors.fieldErrors,
-				success: false,
-			})
-		}
+		const form = await superValidate(request, zod(userPreferencesSchema))
+		if (!form.valid) return fail(400, { form })
 
 		await locals.pb.collection('users').update(locals.user.id, {
-			...data,
+			...form.data,
 		})
 
-		return { success: true }
+		return message(form, 'Saved!')
 	},
 }
