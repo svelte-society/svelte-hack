@@ -8,7 +8,7 @@
 		form: SuperForm<T>
 		field: FormPathLeaves<T>
 		disabled: boolean
-		options: string[]
+		options: { label: string; value: string }[]
 	}
 
 	const { form, field, disabled, options }: Props = $props()
@@ -16,9 +16,9 @@
 </script>
 
 <select name="category" bind:value={$value} {disabled} {...$constraints}>
-	{#each options as option}
-		<option value={option} selected={option == $value}>
-			{option.replaceAll('-', ' ')}
+	{#each options as o}
+		<option value={o.value} selected={o.value == $value}>
+			{o.label}
 		</option>
 	{/each}
 </select>
