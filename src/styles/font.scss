@@ -26,7 +26,7 @@ body {
 	font-variation-settings:
 		'wght' 300,
 		'wdth' 95;
-	letter-spacing: 0.2px;
+	// letter-spacing: 0.2px;
 	line-height: 1.3;
 	line-height: 1.25;
 	text-wrap: pretty;
@@ -52,6 +52,8 @@ h5,
 }
 
 :root[theme='light'] p,
-text {
+text,
+li,
+.description {
 	font-weight: 400;
 }
