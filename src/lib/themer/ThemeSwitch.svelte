@@ -172,7 +172,7 @@
 
 		&.system {
 			animation: in-center var(--duration) cubic-bezier(0.05, 1, 0.56, 0.91) forwards;
-			top: -4px;
+			top: 0;
 			left: 0;
 			right: 0;
 			margin: auto;

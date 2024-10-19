@@ -138,8 +138,9 @@
 	</Form>
 
 	{#if submission?.id && isSubmitter}
+		<div class="br-sm"></div>
 		<ConfirmDialog action="?/withdraw" message="Are you sure you'd like to withdraw?">
-			<button class="withdraw"> Withdraw Submission </button>
+			<button class="withdraw btn-b"> Withdraw Submission </button>
 		</ConfirmDialog>
 	{/if}
 </section>
@@ -259,5 +260,10 @@
 		color: var(--fg-c);
 		font-size: var(--font-sm);
 		flex-shrink: 1;
+	}
+
+	.withdraw {
+		font-size: var(--font-xs);
+		padding: 0.5rem 1rem;
 	}
 </style>

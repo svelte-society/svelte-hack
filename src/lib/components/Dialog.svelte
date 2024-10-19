@@ -74,4 +74,18 @@
 	.activator {
 		display: contents;
 	}
+
+	dialog {
+		box-shadow: var(--shadow-lg);
+		border-radius: var(--radius);
+		border: 1px solid var(--theme-a);
+
+		&::backdrop {
+			@starting-style {
+				backdrop-filter: blur(0);
+			}
+			transition: 0.15s ease-out;
+			backdrop-filter: blur(5px);
+		}
+	}
 </style>

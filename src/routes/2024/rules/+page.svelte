@@ -11,8 +11,11 @@
 
 			<ul>
 				<li>Your project must use Svelte as its primary dependency!</li>
+
 				<li>Team sizes must be between 1 and 3 members.</li>
+
 				<li>There can be only one submission per team, submitted by one member.</li>
+
 				<li>
 					Submissions must have a demonstration video or working demo included in their
 					README. <br /><sup
@@ -20,21 +23,26 @@
 						></sup
 					>
 				</li>
+
 				<li>
 					Submissions must be new. Projects started before
 					<code>{new Date(data.date.start).toDateString().slice(4)}</code> are not eligible.
 				</li>
+
 				<li>
 					Submissions can't be updated after <code
 						>{new Date(data.date.end).toDateString().slice(4)}</code
 					>. Any commits beyond this date must be made in a separate branch until winners
 					are announced.
 				</li>
+
 				<li>
 					If you're below the legal age in your country, you will need to obtain written
 					permission from a parent or legal guardian to enter.
 				</li>
+
 				<li>You must be able to provide a link to your project on GitHub or GitLab.</li>
+
 				<li>
 					Projects must be licensed under an
 					<a href="https://opensource.org/licenses">OSI approved Open Source license</a> displayed
