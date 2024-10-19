@@ -61,8 +61,4 @@
 	label:first-of-type {
 		margin: 0;
 	}
-
-	.muted {
-		opacity: 0.6;
-	}
 </style>

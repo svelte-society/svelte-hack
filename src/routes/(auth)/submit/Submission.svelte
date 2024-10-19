@@ -60,6 +60,16 @@
 		<label>
 			<span>Author Email(s)</span>
 
+			<span class="muted">
+				Please ensure you use your
+				<a
+					href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/changing-your-primary-email-address"
+				>
+					GitHub primary email
+				</a>
+				here.
+			</span>
+
 			<input type="email" value={submission.authorOne || $page.data.user!.email} disabled />
 
 			<Removable bind:open={authorTwo} {disabled}>
