@@ -37,8 +37,6 @@ export const GET: RequestHandler = async ({ cookies, locals, url }) => {
 		error(400, msg)
 	}
 
-	console.log('provider', provider)
-
 	//? Log the user in
 	try {
 		await locals.pb

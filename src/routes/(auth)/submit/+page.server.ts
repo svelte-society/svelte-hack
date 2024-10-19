@@ -107,7 +107,6 @@ export const actions = {
 		return message(form, 'Saved!')
 	},
 	async updatePreferences({ request, locals }) {
-		console.log('asd')
 		if (!locals.user) {
 			error(401, 'Unauthorised')
 		}
