@@ -15,7 +15,8 @@
 
 		background-color: var(--bg-a);
 		border-radius: 100%;
-		opacity: 0;
+		border: 0.1px solid var(--bg-c);
+		opacity: 1;
 
 		transform: scale(0.01);
 		transition:
@@ -28,7 +29,7 @@
 
 	.showMenu {
 		opacity: 1;
-		transform: scale(30);
+		transform: scale(42);
 		transition:
 			transform 1s cubic-bezier(0.2, 0.25, 0, 1),
 			opacity 0.5s ease;

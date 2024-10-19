@@ -1,6 +1,7 @@
 <script lang="ts">
+	import ThemeSwitch from '$lib/themer/ThemeSwitch.svelte'
 	import { clickoutside } from '$lib/utils/clickoutside'
-	import { mobile, ThemeToggle } from 'fractils'
+	import { device } from '$lib/utils/device.svelte'
 	import { fly, fade } from 'svelte/transition'
 	import PageFill from './PageFill.svelte'
 	import Burger from './Burger.svelte'
@@ -8,7 +9,7 @@
 	import { page } from '$app/stores'
 
 	const links = getContext<[string, string]>('links')
-	export let showMenu = false
+	let { showMenu = $bindable() }: { showMenu: boolean } = $props()
 </script>
 
 <div
@@ -22,21 +23,21 @@
 
 	{#if showMenu}
 		<div class="theme corner">
-			<ThemeToggle />
+			<ThemeSwitch />
 		</div>
 
-		<nav class:showMenu class:mobile={$mobile}>
+		<nav class:showMenu class:mobile={device.mobile}>
 			<ul>
 				{#each links as [path, title], i (title)}
 					<li
 						class:active={$page.url.pathname === path}
-						in:fly={{ y: -10 - 5 * i, delay: 100 + i * 100 }}
+						in:fly|global={{ y: -10 - 5 * i, delay: 100 + i * 100 }}
 						out:fade={{ duration: 50 }}
 					>
 						<a
+							href={path}
 							class="nav-link"
 							data-sveltekit-preload-code
-							href={path}
 							onclick={() => (showMenu = false)}
 						>
 							{title}
@@ -46,7 +47,7 @@
 
 				<li
 					class:active={$page.url.pathname === '/submit'}
-					in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
+					in:fly|global={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
 					out:fade={{ duration: 50 }}
 				>
 					<a
@@ -60,7 +61,10 @@
 
 				{#if $page.data.user}
 					<li
-						in:fly={{ y: -10 - 5 * links.length, delay: 100 + links.length * 100 }}
+						in:fly|global={{
+							y: -10 - 5 * links.length - 5,
+							delay: 100 + links.length * 100,
+						}}
 						out:fade={{ duration: 50 }}
 					>
 						<a class="nav-link" href="/logout" onclick={() => (showMenu = false)}>
@@ -75,10 +79,10 @@
 
 <style lang="scss">
 	nav {
-		display: flex;
-		justify-content: center;
+		// display: flex;
+		// justify-content: center;
 
-		padding: 2rem;
+		// padding: 2rem;
 	}
 
 	ul {
@@ -87,8 +91,12 @@
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		inset: 0;
-		top: 40vh;
+		position: fixed;
+		// inset: 0;
+		// top: 5rem;
+		top: 5rem;
+		left: 0;
+		right: 0;
 		gap: 3rem;
 
 		margin: 0 auto;
@@ -128,7 +136,7 @@
 
 	.theme {
 		position: fixed;
-		top: 1rem;
+		top: 1.5rem;
 		right: 5rem;
 		z-index: 45;
 
