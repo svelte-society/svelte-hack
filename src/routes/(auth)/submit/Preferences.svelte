@@ -39,6 +39,29 @@
 		max-width: 500px;
 	}
 
+	label {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+
+		width: 100%;
+		padding: 0 0.5rem 0.5rem;
+
+		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 75%);
+		outline: 1px solid var(--bg-a);
+		border-radius: var(--radius);
+
+		font-weight: 300;
+
+		span {
+			margin: 0.5rem 0;
+		}
+	}
+
+	label:first-of-type {
+		margin: 0;
+	}
+
 	.muted {
 		opacity: 0.6;
 	}

@@ -5,7 +5,7 @@
 	import { slide } from 'svelte/transition'
 	import '../../../styles/inputs.scss'
 
-	const { data, form } = $props()
+	const { data } = $props()
 
 	let showSubmissionForm = $state(!!data.submission)
 </script>
@@ -55,10 +55,6 @@
 
 		<div class="card">
 			<ul>
-				<!-- <li>
-				Check out the <a href="/2024/prizes">categories and prizes</a> if you haven't already.
-			</li> -->
-
 				<li>
 					Read the <a href="/2024/rules">rules</a>.
 				</li>
@@ -105,7 +101,6 @@
 
 	.card {
 		max-width: min(var(--max-w), 95vw);
-		// box-shadow: none;
 		box-shadow: var(--shadow);
 		background: none;
 	}

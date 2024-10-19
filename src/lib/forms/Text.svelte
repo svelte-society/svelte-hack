@@ -16,3 +16,22 @@
 
 <input {type} name={field} bind:value={$value} {...$constraints} {disabled} />
 <FieldError error={$errors} />
+
+<style>
+	input:not([type='checkbox']) {
+		min-width: min(25rem, 90vw);
+		max-width: 90vw;
+		width: 100%;
+		max-height: 10rem;
+
+		border: none;
+		background: var(--bg-a);
+		padding: 0.5rem;
+		border-radius: var(--radius);
+		outline-color: var(--fg-e);
+
+		font-family: var(--font-mono);
+
+		transition: 0.2s;
+	}
+</style>

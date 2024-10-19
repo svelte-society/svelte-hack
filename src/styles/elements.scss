@@ -80,3 +80,22 @@ sup {
 	color: color-mix(in hsl, var(--theme-a), var(--fg-a) 30%);
 	font-style: italic;
 }
+
+input,
+button,
+select {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+	opacity: 0.8;
+	cursor: not-allowed;
+}

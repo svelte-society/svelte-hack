@@ -67,4 +67,19 @@
 		margin: 0 auto;
 		text-align: center;
 	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		width: fit-content;
+		padding: 1rem;
+
+		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 50%);
+		box-shadow: var(--shadow);
+		border-radius: var(--radius);
+
+		font-family: var(--font-a);
+	}
 </style>

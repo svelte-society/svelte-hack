@@ -45,7 +45,7 @@
 
 <section transition:fade>
 	<div class="br-sm"></div>
-	<h2>Your SvelteHack Submission</h2>
+	<h2>{$page.data.hasSubmission ? 'Edit Your Submission' : 'SvelteHack Submission'}</h2>
 	<div class="br-md"></div>
 
 	<Form
@@ -145,10 +145,6 @@
 		max-width: 500px;
 	}
 
-	h2 {
-		text-align: center;
-	}
-
 	button {
 		margin: auto;
 
@@ -157,6 +153,58 @@
 		text-align: center;
 
 		transition: opacity 0.2s ease-in-out;
+	}
+
+	label {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+
+		width: 100%;
+		padding: 0 0.5rem 0.5rem;
+
+		background: color-mix(in hsl, var(--bg-a), var(--bg-b) 75%);
+		outline: 1px solid var(--bg-a);
+		border-radius: var(--radius);
+
+		font-weight: 300;
+
+		span {
+			margin: 0.5rem 0;
+		}
+
+		&:not(:has(select, input[disabled], :focus-within)) {
+			cursor: pointer;
+		}
+	}
+
+	label:first-of-type {
+		margin: 0;
+	}
+
+	:global(label:has(input[type='checkbox'])) {
+		display: block;
+		padding-top: 0.5rem;
+		* {
+			outline-color: var(--fg-e);
+		}
+	}
+
+	input:not([type='checkbox']) {
+		min-width: min(25rem, 90vw);
+		max-width: 90vw;
+		width: 100%;
+		max-height: 10rem;
+
+		border: none;
+		background: var(--bg-a);
+		padding: 0.5rem;
+		border-radius: var(--radius);
+		outline-color: var(--fg-e);
+
+		font-family: var(--font-mono);
+
+		transition: 0.2s;
 	}
 
 	.add-author-btn {
