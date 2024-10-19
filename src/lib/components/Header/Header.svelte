@@ -17,14 +17,18 @@
 			<Nav />
 		</nav>
 
-		<div class="row">
-			{#if $page.data.user}
+		<div class="row auth">
+			{#if $page.data.user && !device.mobile}
 				<a class="logout" href="/logout">Logout</a>
 			{/if}
 
 			{#if $page.url.pathname !== '/submit'}
 				<a class="btn-b login" href={$page.data.user ? '/submit' : '/login'}>
-					{$page.data.user ? 'Submit' : 'Enter'}
+					{$page.data.user
+						? $page.data.hasSubmission
+							? 'Submission'
+							: 'Submit'
+						: 'Enter'}
 				</a>
 			{/if}
 		</div>
@@ -153,6 +157,9 @@
 	@media (width <= 1000px) {
 		.login {
 			padding: 0.5rem 1.5rem;
+		}
+		.logout {
+			padding: 0.5rem 0 0.5rem 1rem;
 		}
 	}
 
