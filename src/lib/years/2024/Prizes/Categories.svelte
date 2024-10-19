@@ -53,10 +53,10 @@
 			</div>
 
 			<div class="description">
-				Migration Magicians are masters of transformation, showcasing impressive upgrades
-				from Svelte 4 to Svelte 5. This can mean migrating large codebases, creating pull
-				requests for active projects, or demonstrating high-quality migrations of your own
-				work. Show us how you're paving the way for the new era of Svelte!
+				Migration Magicians are masters of transformation, showcasing impressive upgrades of
+				existing Svelte 4 code to Svelte 5. This can mean migrating large codebases,
+				creating pull requests for active projects, or demonstrating high-quality migrations
+				of your own work. Show us how you're paving the way for the new era of Svelte!
 			</div>
 		</div>
 	</div>
