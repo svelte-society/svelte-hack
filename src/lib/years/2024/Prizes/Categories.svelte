@@ -11,12 +11,13 @@
 				<div class="icon" aria-hidden="true">
 					<W />
 				</div>
-				<h2>Wizzbangery Wizard</h2>
+				<h2 id="wizzbangery-wizard">Wizzbangery Wizard</h2>
 			</div>
 
 			<div class="description row">
-				Entries will be judged based on their novelty, quality, and ability to inspire
-				delight. May the coolest usage of Svelte win!
+				The Wizards of Wizzbangery are masters of innovation, showcasing novel and
+				impressive uses of Svelte. Entries will be judged based on their novelty, quality,
+				and ability to inspire delight. May the coolest usage of Svelte win!
 			</div>
 		</div>
 	</div>
@@ -27,13 +28,13 @@
 				<div class="icon" aria-hidden="true">
 					<R />
 				</div>
-				<h2>Rune Revolutionary</h2>
+				<h2 style:margin-right="3.5rem" id="rune-ritualist">Rune Ritualist</h2>
 			</div>
 
 			<div class="description">
 				With the release of
-				<a href="https://kit.svelte.dev/docs/svelte/state" target="_blank">Svelte 5</a>,
-				it's time to take full advantage of
+				<a href="https://kit.svelte.dev/docs/svelte/state" target="_blank">Svelte 5</a>, the
+				Rune Ritualist can take full advantage of
 				<a href="https://kit.svelte.dev/docs/svelte/state" target="_blank">runes</a>
 				and the capabilities they unlock. This category is for npm and
 				<a href="https://jsr.io" target="_blank">jsr</a> packages that push the envelope on the
@@ -48,12 +49,14 @@
 				<div class="icon" aria-hidden="true">
 					<M />
 				</div>
-				<h2>Migration Master</h2>
+				<h2 id="migration-magician">Migration Magician</h2>
 			</div>
 
 			<div class="description">
-				Become a master of migration by upgrading the most Svelte 4 code to Svelte 5, paving
-				the way for a new era of Svelte!
+				Migration Magicians are masters of transformation, showcasing impressive upgrades
+				from Svelte 4 to Svelte 5. This can mean migrating large codebases, creating pull
+				requests for active projects, or demonstrating high-quality migrations of your own
+				work. Show us how you're paving the way for the new era of Svelte!
 			</div>
 		</div>
 	</div>
