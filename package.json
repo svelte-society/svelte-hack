@@ -1,14 +1,6 @@
 {
 	"name": "sveltehack",
-	"version": "0.0.1",
-	"description": "SvelteHack 2024",
-	"keywords": [
-		"kit",
-		"svelte",
-		"sveltekit",
-		"sveltehack",
-		"hackathon"
-	],
+	"private": true,
 	"type": "module",
 	"scripts": {
 		"postinstall": "svelte-kit sync",
