@@ -11,6 +11,14 @@
 				have any questions please email <code>kev@sveltesociety.dev</code>.
 			</p>
 
+			<p>
+				We use Plausible for GDPR compliant, privacy respecting, and anonymous analytics.
+				Click here to
+				<a href="https://plausible.io/data-policy" rel="noreferrer">
+					read more about how that works
+				</a>.
+			</p>
+
 			<h2>Information we collect</h2>
 
 			<ul>
