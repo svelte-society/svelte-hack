@@ -46,7 +46,7 @@
 	<div class="br-md"></div>
 
 	{#if new Date() < new Date(data.date.end)}
-		<p class="subtitle">Svelte Hack isn't over yet!</p>
+		<p class="subtitle">SvelteHack isn't over yet!</p>
 		{#if !$page.data.hasSubmitted}
 			<div class="br-sm"></div>
 			<p><a class="btn-b" href="/login">Enter</a></p>

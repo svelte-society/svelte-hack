@@ -142,7 +142,7 @@
 	<YearSelector activeYear="2023" />
 </div>
 
-<h1 class="title">Svelte Hack 2023 Winners</h1>
+<h1 class="title">SvelteHack 2023 Winners</h1>
 
 <div class="winners">
 	{#each data as { category, winners }}

@@ -1,6 +1,6 @@
 {
-    "name": "Svelte Hack",
-    "short_name": "Svelte Hack",
+    "name": "SvelteHack",
+    "short_name": "SvelteHack",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

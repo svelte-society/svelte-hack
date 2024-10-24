@@ -1,1 +1,1 @@
-# Svelte Hack
+# SvelteHack

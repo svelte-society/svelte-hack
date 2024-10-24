@@ -11,7 +11,7 @@
 
 <svelte:head>
 	<title>
-		Svelte Hack · {pageTitle($page.url.pathname)}
+		SvelteHack · {pageTitle($page.url.pathname)}
 	</title>
 </svelte:head>
 
