@@ -32,10 +32,10 @@
 			</div>
 
 			<div class="description">
-				With the release of
-				<a href="https://kit.svelte.dev/docs/svelte/state" target="_blank">Svelte 5</a>, the
+				With
+				<a href="https://svelte.dev/blog/svelte-5-is-alive" target="_blank">the release of Svelte 5</a>, the
 				Rune Ritualist can take full advantage of
-				<a href="https://kit.svelte.dev/docs/svelte/state" target="_blank">runes</a>
+				<a href="https://svelte.dev/docs/svelte/what-are-runes" target="_blank">runes</a>
 				and the capabilities they unlock. This category is for npm and
 				<a href="https://jsr.io" target="_blank">jsr</a> packages that push the envelope on the
 				cutting-edge.
