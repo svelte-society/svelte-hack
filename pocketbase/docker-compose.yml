@@ -4,5 +4,4 @@ services:
             dockerfile: ./Dockerfile
             context: .
         restart: always
-        ports:
-            - '127.0.0.1:8413:8090'
+        network_mode: host
