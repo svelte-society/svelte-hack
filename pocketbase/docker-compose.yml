@@ -3,5 +3,7 @@ services:
         build:
             dockerfile: ./Dockerfile
             context: .
+        volumes:
+            - ./pb_data:/app/pb_data
         restart: always
         network_mode: host
