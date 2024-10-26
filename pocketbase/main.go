@@ -61,6 +61,20 @@ func main() {
 		return nil
 	})
 
+	app.OnRecordBeforeAuthWithOAuth2Request().Add(func(e *core.RecordAuthWithOAuth2Event) error {
+		if name, ok := e.OAuth2User.RawUser["name"].(string); ok {
+			if e.Record.GetString("name") == "" {
+				e.Record.Set("name", name)
+
+				if err := app.Dao().SaveRecord(e.Record); err != nil {
+					log.Println("Failed to update display name.", e.Record.Id, name)
+				}
+			}
+		}
+
+		return nil
+	})
+
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
