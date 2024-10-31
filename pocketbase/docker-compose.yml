@@ -8,3 +8,8 @@ services:
         restart: always
         ports:
             - 127.0.0.1:3184:3184
+        healthcheck:
+            test: ['CMD', 'curl', '-sf', 'http://127.0.0.1:3184/api/health']
+            interval: 10s
+            timeout: 5s
+            retries: 6
