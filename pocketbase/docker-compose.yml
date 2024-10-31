@@ -6,4 +6,5 @@ services:
         volumes:
             - ./pb_data:/app/pb_data
         restart: always
-        network_mode: host
+        ports:
+            - 127.0.0.1:3184:3184
