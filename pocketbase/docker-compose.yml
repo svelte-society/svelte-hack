@@ -7,9 +7,9 @@ services:
             - ./pb_data:/app/pb_data
         restart: always
         ports:
-            - 127.0.0.1:3184:3184
+            - 127.0.0.1:3184:8090
         healthcheck:
-            test: ['CMD', 'curl', '-sf', 'http://127.0.0.1:3184/api/health']
+            test: ['CMD', 'curl', '-sf', 'http://127.0.0.1:8090/api/health']
             interval: 10s
             timeout: 5s
             retries: 6
