@@ -94,7 +94,7 @@
 		</label>
 
 		<label>
-			<span>Category</span>
+			<span>Preferred Category</span>
 			<Select
 				{form}
 				field="category"
