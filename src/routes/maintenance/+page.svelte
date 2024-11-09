@@ -6,12 +6,7 @@
 
 <div class="note">
 	<p>Damn... the submissions form is under maintenance! You'll have to come back later :(</p>
-
-	<p>
-		In the meantime, why don't you look at this pretty rune? We'll refresh the page
-		automatically when we're back online!
-	</p>
-
+	<p>In the meantime, why don't you look at this pretty rune?</p>
 	<Scene />
 </div>
 
