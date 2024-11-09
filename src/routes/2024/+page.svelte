@@ -11,7 +11,7 @@
 
 <section class="hero row">
 	<Hero />
-	<Scene />
+	<Scene home />
 </section>
 
 <div class="br-xxl"></div>

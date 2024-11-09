@@ -2,7 +2,8 @@ import type { UsersTable } from '$lib/types/pocketbase'
 
 import { clearAuthState, syncAuthState } from '$lib/server/pocketbase'
 import { POCKETBASE_URL } from '$env/static/private'
-import { error } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
+import { MAINTENANCE } from '$lib/vars'
 import Pocketbase from 'pocketbase'
 
 function getTheme(cookie: any): 'dark' | 'light' | 'system' {
@@ -12,7 +13,7 @@ function getTheme(cookie: any): 'dark' | 'light' | 'system' {
 export async function handle({ event, resolve }) {
 	event.locals.pb = new Pocketbase(POCKETBASE_URL)
 
-	if (event.cookies.get('pb_auth')) {
+	if (event.cookies.get('pb_auth') && !MAINTENANCE) {
 		const cookie = event.request.headers.get('cookie')
 		if (!cookie) error(400, { message: 'No cookie header found.' })
 
@@ -31,6 +32,10 @@ export async function handle({ event, resolve }) {
 
 		//? Store the user in locals.
 		event.locals.user = event.locals.pb.authStore.model as UsersTable
+	}
+
+	if (event.route.id?.includes('(auth)') && MAINTENANCE) {
+		redirect(307, '/maintenance')
 	}
 
 	// Set the page theme
