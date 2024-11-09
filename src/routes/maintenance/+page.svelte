@@ -2,11 +2,24 @@
 
 <script lang="ts">
 	import Scene from '$lib/years/2024/HeroGraphic/Scene.svelte'
+
+	$effect(() => {
+		const interval = setInterval(() => location.reload(), 30000)
+
+		return () => {
+			clearInterval(interval)
+		}
+	})
 </script>
 
 <div class="note">
 	<p>Damn... the submissions form is under maintenance! You'll have to come back later :(</p>
-	<p>In the meantime, why don't you look at this pretty rune?</p>
+
+	<p>
+		In the meantime, why don't you look at this pretty rune? We'll refresh the page
+		automatically when we're back online!
+	</p>
+
 	<Scene />
 </div>
 
