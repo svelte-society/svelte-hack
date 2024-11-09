@@ -4,4 +4,4 @@ export const SUBMISSIONS_OPEN = true
 /**
  * When true login/signup pages are disabled
  */
-export const MAINTENANCE = false
+export const MAINTENANCE = true
