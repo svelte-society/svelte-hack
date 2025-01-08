@@ -1,9 +1,8 @@
-// @import './font-face.scss';
-@import './elements.scss';
-@import './buttons.scss';
-@import './utils.scss';
-@import './theme.scss';
-@import './font.scss';
+@use './elements.scss' as *;
+@use './buttons.scss' as *;
+@use './utils.scss' as *;
+@use './theme.scss' as *;
+@use './font.scss' as *;
 
 //* Variables
 

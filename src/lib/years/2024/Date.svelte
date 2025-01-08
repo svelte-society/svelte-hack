@@ -58,7 +58,7 @@
 		animation: fly-down 1s cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
 	}
 
-	.middle {
+	/* .middle {
 		padding-left: 3rem;
 
 		color: var(--theme-a);
@@ -78,7 +78,7 @@
 		opacity: 0;
 		transform: translateY(1rem);
 		animation: fly-up 1s cubic-bezier(0.22, 1, 0.36, 1) 450ms forwards;
-	}
+	} */
 
 	@keyframes fly-down {
 		0% {

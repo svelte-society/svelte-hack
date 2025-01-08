@@ -81,11 +81,12 @@
 		border: 1px solid var(--theme-a);
 
 		&::backdrop {
+			transition: 0.15s ease-out;
+			backdrop-filter: blur(5px);
+
 			@starting-style {
 				backdrop-filter: blur(0);
 			}
-			transition: 0.15s ease-out;
-			backdrop-filter: blur(5px);
 		}
 	}
 </style>
