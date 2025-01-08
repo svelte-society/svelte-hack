@@ -303,7 +303,6 @@ export async function init(canvas: HTMLCanvasElement) {
 		},
 		vertexShader,
 		fragmentShader,
-		silent: true, // Extraneous warnings.
 	}) as any as ShaderMaterial
 	//#endregion Svelte Logo
 
@@ -355,58 +354,58 @@ export async function init(canvas: HTMLCanvasElement) {
 
 	// todo - add tween params to set calls below
 	function update() {
-			const rect = canvas.getBoundingClientRect()
+		const rect = canvas.getBoundingClientRect()
 
-			// Calculate the mouse position relative to the center of the canvas
-			const x = mouseX - (rect.left + rect.width / 2)
-			const totalY = scrollY + mouseY
-			const middle = rect.top + rect.height / 2
-			const y = totalY - middle
+		// Calculate the mouse position relative to the center of the canvas
+		const x = mouseX - (rect.left + rect.width / 2)
+		const totalY = scrollY + mouseY
+		const middle = rect.top + rect.height / 2
+		const y = totalY - middle
 
-			const relative_x = -x / window.innerWidth
-			const relative_y = y / rect.height
+		const relative_x = -x / window.innerWidth
+		const relative_y = y / rect.height
 
-			// wip
-			targetRotation.x = relative_y * lerp * params.tweens.rotation.y
-			targetRotation.y = -relative_x * lerp * params.tweens.rotation.x
+		// wip
+		targetRotation.x = relative_y * lerp * params.tweens.rotation.y
+		targetRotation.y = -relative_x * lerp * params.tweens.rotation.x
 
-			runeRotation.set(
-				{
-					x: targetRotation.x,
-					y: targetRotation.y,
-				},
-				{
-					duration: params.tween_duration,
-					easing: cubicOut,
-				},
-			)
+		runeRotation.set(
+			{
+				x: targetRotation.x,
+				y: targetRotation.y,
+			},
+			{
+				duration: params.tween_duration,
+				easing: cubicOut,
+			},
+		)
 
-			runePosition.set(
-				{
-					x: relative_x * params.tweens.position.x,
-					y: relative_y * params.tweens.position.y,
-				},
-				{
-					duration: params.tween_duration * 0.75,
-					easing: cubicOut,
-				},
-			)
+		runePosition.set(
+			{
+				x: relative_x * params.tweens.position.x,
+				y: relative_y * params.tweens.position.y,
+			},
+			{
+				duration: params.tween_duration * 0.75,
+				easing: cubicOut,
+			},
+		)
 
-			clonePosition.set(
-				{
-					x: relative_x * params.tweens.clonePosition.x,
-					y: relative_y * params.tweens.clonePosition.y,
-				},
-				{
-					duration: params.tweens.clonePosition.duration,
-					easing: params.tweens.clonePosition.easing,
-					// easing: (t: number) =>
-					// 	params.debug.amp *
-					// 		Math.sin((-13.0 * (t + 1.0) * Math.PI) / 2) *
-					// 		Math.pow(2.0, -params.debug.decay * t) +
-					// 	1.0,
-				},
-			)
+		clonePosition.set(
+			{
+				x: relative_x * params.tweens.clonePosition.x,
+				y: relative_y * params.tweens.clonePosition.y,
+			},
+			{
+				duration: params.tweens.clonePosition.duration,
+				easing: params.tweens.clonePosition.easing,
+				// easing: (t: number) =>
+				// 	params.debug.amp *
+				// 		Math.sin((-13.0 * (t + 1.0) * Math.PI) / 2) *
+				// 		Math.pow(2.0, -params.debug.decay * t) +
+				// 	1.0,
+			},
+		)
 	}
 
 	subs.add(
