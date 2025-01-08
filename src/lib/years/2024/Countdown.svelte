@@ -8,7 +8,7 @@
 		return formatDuration(
 			intervalToDuration({
 				start: Date.now(),
-				end: new Date(2025, 1, 10, 0, 0, 0),
+				end: new Date('2025-01-10T23:59:59.999Z'),
 			}),
 			{ zero: true, format: ['days', 'hours', 'minutes', 'seconds'] },
 		)
