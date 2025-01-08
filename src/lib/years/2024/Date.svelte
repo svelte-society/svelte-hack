@@ -15,8 +15,7 @@
 		gap: 1rem;
 
 		max-width: 90vw;
-		margin: 0 auto;
-		min-height: 175px;
+		margin: 4rem auto;
 
 		color: var(--fg-b);
 
