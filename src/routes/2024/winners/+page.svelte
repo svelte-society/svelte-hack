@@ -8,6 +8,7 @@
 	import { data } from '$lib/years/2024/data'
 	import Category from './Category.svelte'
 	import { page } from '$app/stores'
+	import { format } from 'date-fns'
 
 	interface Data {
 		category: string
@@ -45,12 +46,16 @@
 
 	<div class="br-md"></div>
 
-	{#if new Date() < new Date(data.date.end)}
+	{#if new Date() < data.date.end}
 		<p class="subtitle">SvelteHack isn't over yet!</p>
 		{#if !$page.data.hasSubmitted}
 			<div class="br-sm"></div>
 			<p><a class="btn-b" href="/login">Enter</a></p>
 		{/if}
+	{:else if new Date() < data.date.winnersAnnouncement}
+		<p class="subtitle">
+			The 2024 winners will be announced on {format(data.date.winnersAnnouncement, 'MMMM do')}
+		</p>
 	{:else}
 		<div class="winners">
 			{#each categories as { category, winners, rune }}

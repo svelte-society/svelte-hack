@@ -2,6 +2,8 @@
 	import Society from '$lib/graphics/Society.svelte'
 	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import Hat from '$lib/graphics/Hat.svelte'
+	import { format } from 'date-fns'
+	import { data } from './data'
 </script>
 
 <div class="section-wrapper">
@@ -43,31 +45,22 @@
 					</p>
 				</div>
 			{:else}
-				<!-- todo: post-event blurb for later -->
 				<div data-past class="card">
 					<p>
 						<strong style:color="var(--theme-a)">SvelteHack</strong> was brought to you
 						on behalf of the Svelte team, by
-						<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>
-						our generous sponsors, and the amazing Svelte Community. We had
-						<strong>$15,000</strong>
-						in prizes, over <strong>250</strong> submissions, and <strong>15</strong>
-						amazing winners.
+						<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>,
+						donations to the
+						<a href="https://opencollective.com/svelte">Svelte Open Collective</a>, and
+						the amazing Svelte Community.
 					</p>
 
 					<p>
-						SvelteHack ran from the START_DATE to the END_DATE, and the winners were
-						announced at the
-						<a href="https://www.youtube.com/watch?v=0bog8-Ay7CU"
-							>Spring Svelte Summit. (UPDATE THIS URL)</a
-						>
+						The winners will be announced on
+						{format(data.date.winnersAnnouncement, 'MMMM do')}
 					</p>
 
-					<p>
-						<a class="button btn-a" href="/winners" style="width: fit-content;">
-							View the SvelteHack winners
-						</a>
-					</p>
+					<div class="br-xs"></div>
 				</div>
 			{/if}
 		</div>

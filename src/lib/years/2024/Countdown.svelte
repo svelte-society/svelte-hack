@@ -1,16 +1,19 @@
 <script lang="ts">
-	import { intervalToDuration, formatDuration } from 'date-fns'
-	import { onMount } from 'svelte'
+	import { intervalToDuration, formatDuration, isPast, format } from 'date-fns'
+	import { data } from './data'
 
-	let duration = $state(remaining())
+	let duration = $state<string | null>(remaining())
 
 	function remaining() {
+		if (isPast(data.date.end)) {
+			return null
+		}
+
 		return formatDuration(
 			intervalToDuration({
 				start: Date.now(),
-				end: new Date('2025-01-10T23:59:59.999Z'),
+				end: data.date.end,
 			}),
-			{ zero: true, format: ['days', 'hours', 'minutes', 'seconds'] },
 		)
 	}
 
@@ -23,16 +26,23 @@
 	})
 </script>
 
-<div class="countdown">
-	{#each duration.split(' ') as text, i}
-		<div class="text">
-			<div class:isWord={i % 2 === 1}>
-				{text + '   '}
-				<!-- {i === duration.split(' ').length - 1 ? '' : ''} -->
+{#if duration}
+	<div class="countdown">
+		{#each duration.split(' ') as text, i}
+			<div class="text">
+				<div class:isWord={i % 2 === 1}>
+					{text + '   '}
+					<!-- {i === duration.split(' ').length - 1 ? '' : ''} -->
+				</div>
 			</div>
-		</div>
-	{/each}
-</div>
+		{/each}
+	</div>
+{:else}
+	<p class="end">
+		Svelte Hack 2024 has ended, the winners will be announced on
+		{format(data.date.winnersAnnouncement, 'MMMM do')}
+	</p>
+{/if}
 
 <style>
 	.countdown {
@@ -64,5 +74,11 @@
 
 	.isWord {
 		font-size: var(--font-md);
+	}
+
+	.end {
+		font-size: 1.5rem;
+		margin: 0 auto;
+		text-align: center;
 	}
 </style>

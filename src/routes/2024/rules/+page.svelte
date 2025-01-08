@@ -1,5 +1,10 @@
 <script lang="ts">
 	import { data } from '$lib/years/2024/data'
+	import { format } from 'date-fns'
+
+	function date(type: 'start' | 'end') {
+		return format(data.date[type], 'MMM do yyyy')
+	}
 </script>
 
 <div class="br-md"></div>
@@ -18,22 +23,22 @@
 
 				<li>
 					Submissions must have a demonstration video or working demo included in their
-					README. <br /><sup
-						>excluding <a href="/2024/prizes#migration-magician">Migration Magicians</a
-						></sup
-					>
+					README. <br />
+					<sup>
+						excluding
+						<a href="/2024/prizes#migration-magician">Migration Magicians </a>
+					</sup>
 				</li>
 
 				<li>
 					Submissions must be new. Projects started before
-					<code>{new Date(data.date.start).toDateString().slice(4)}</code> are not eligible.
+					<code>{date('start')}</code> are not eligible.
 				</li>
 
 				<li>
-					Submissions can't be updated after <code
-						>{new Date(data.date.end).toDateString().slice(4)}</code
-					>. Any commits beyond this date must be made in a separate branch until winners
-					are announced.
+					Submissions can't be updated after
+					<code>{date('end')}</code>. Any commits beyond this date must be made in a
+					separate branch until winners are announced.
 				</li>
 
 				<li>
