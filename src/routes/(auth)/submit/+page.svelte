@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { data as year2024 } from '$lib/years/2024/data'
 	import Preferences from './Preferences.svelte'
 	import Submission from './Submission.svelte'
 	import { SUBMISSIONS_OPEN } from '$lib/vars'
 	import { slide } from 'svelte/transition'
 	import '../../../styles/inputs.scss'
+	import { format } from 'date-fns'
 
 	const { data } = $props()
 
@@ -23,8 +25,9 @@
 			{:else}
 				Thanks to everyone who entered.
 			{/if}
-			The <a href="/2024/winners">winners</a> will be posted on January 31st 2025. In the
-			meantime why don't you come hang out on the
+			The <a href="/2024/winners">winners</a> will be posted on
+			{format(year2024.date.winnersAnnouncement, 'MMM do yyyy')}. In the meantime why don't
+			you come hang out on the
 			<a href="https://svelte.dev/chat">Svelte Discord</a>!
 		</p>
 	</div>
