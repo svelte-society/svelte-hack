@@ -10,10 +10,12 @@
 		"preview": "vite preview",
 		"lint": "prettier --check src && pnpm check",
 		"format": "prettier --write src",
-		"check": "svelte-check"
+		"check": "svelte-check",
+		"export": "vite-node ./src/scripts/export-submissions.server.ts"
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^2.2.1",
+		"@std/csv": "npm:@jsr/std__csv@^1.0.4",
 		"@sveltejs/adapter-vercel": "^5.5.2",
 		"@sveltejs/kit": "2.15.2",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
@@ -46,6 +48,7 @@
 		"tslib": "2.8.1",
 		"typescript": "5.7.2",
 		"vite": "^6.0.7",
+		"vite-node": "^3.0.1",
 		"zod": "^3.24.1"
 	},
 	"volta": {
