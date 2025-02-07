@@ -5,11 +5,10 @@
 	import { fly, fade } from 'svelte/transition'
 	import PageFill from './PageFill.svelte'
 	import Burger from './Burger.svelte'
-	import { getContext } from 'svelte'
 	import { page } from '$app/stores'
 
-	const links = getContext<[string, string]>('links')
-	let { showMenu = $bindable() }: { showMenu: boolean } = $props()
+	let { showMenu = $bindable(), links }: { showMenu: boolean; links: [string, string][] } =
+		$props()
 </script>
 
 <div

@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
-	import { getContext } from 'svelte'
 	import { page } from '$app/stores'
 
-	const links: string[][] = getContext('links')
+	interface Props {
+		links: [string, string][]
+	}
+
+	let { links }: Props = $props()
 </script>
 
 <ul>
