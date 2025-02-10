@@ -52,12 +52,15 @@
 						<strong><a href="https://sveltesociety.dev">Svelte Society</a></strong>,
 						donations to the
 						<a href="https://opencollective.com/svelte">Svelte Open Collective</a>, and
-						the amazing Svelte Community.
+						the amazing Svelte Community. We had <strong>$14,250</strong> in prizes,
+						over
+						<strong>80</strong> submissions, at <strong>15</strong> amazing winners.
 					</p>
 
 					<p>
-						The winners will be announced on
-						{format(data.date.winnersAnnouncement, 'MMMM do')}
+						SvelteHack ran from the {format(data.date.start, 'do MMMM yyyy')} to the
+						{format(data.date.end, 'do MMMM yyyy')}, and the winners were announced on
+						the {format(data.date.winnersAnnouncement, 'do MMMM yyyy')}.
 					</p>
 
 					<div class="br-xs"></div>
@@ -133,7 +136,7 @@
 
 	.svelte-society-logo {
 		position: absolute;
-		left: -15%;
+		left: -18%;
 		top: 15%;
 		width: 175px;
 		height: 175px;

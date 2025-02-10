@@ -4,11 +4,7 @@
 	import Website from '$lib/graphics/Website.svelte'
 	import GitHub from '$lib/graphics/GitHub.svelte'
 
-	const {
-		category,
-		winners,
-		rune,
-	}: { category: string; winners: Winner[]; rune: any } = $props()
+	const { category, winners, rune }: { category: string; winners: Winner[]; rune: any } = $props()
 
 	function icon(place: number) {
 		switch (place) {
@@ -36,6 +32,8 @@
 
 		<h2>{category}</h2>
 	</div>
+
+	<div class="br-sm"></div>
 
 	<div class="winners">
 		{#each winners as winner}
