@@ -77,7 +77,7 @@
 					title: 'Twoslash Svelte',
 					description:
 						'Twoslash Svelte is an extension of `twoslashes/twoslash` which supports Svelte. This will be beneficial for adding type hints to code blocks on any documentation website targeting Svelte.',
-					github: 'https://github.com/twoslashes/twoslash/pull/57',
+					github: 'https://github.com/twoslashes/twoslash',
 					website: 'https://deploy-preview-57--twoslash.netlify.app/packages/svelte',
 					place: 2,
 				},
@@ -122,7 +122,7 @@
 					title: 'svelte-ux',
 					description:
 						'Collection of Svelte components, actions, stores, and utilities to build highly interactive applications.',
-					github: 'https://github.com/techniq/svelte-ux/pull/530',
+					github: 'https://github.com/techniq/svelte-ux',
 					website: 'https://svelte-ux.techniq.dev',
 					place: 2,
 				},
